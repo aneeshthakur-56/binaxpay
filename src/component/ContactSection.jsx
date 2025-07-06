@@ -1,189 +1,224 @@
-
-
-
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { FaPaperPlane, FaEnvelope, FaClock, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  FaEnvelope,
+  FaClock,
+  FaTwitter,
+  FaLinkedin,
+  FaGithub,
+  FaTelegramPlane,
+  FaDiscord,
+  FaPaperPlane,
+} from "react-icons/fa";
 
 const ContactSection = () => {
   return (
     <>
       <style>{`
-        body {
-          background-color: #0d0d0d;
-        }
         .contact-section {
-          background-color: #0d0d0d;
-          color: white;
-          padding: 60px 0;
+          background-color: #000000;
+          color: #fff;
+          padding: 80px 0;
         }
 
-        .contact-section h2 {
-          font-weight: 700;
+        .text-accent {
+          color: #00eaff!important;
         }
 
-        .highlight {
-          color: #00eaff;
-         }
-
-        .form-control, .form-control:focus {
-          background-color: #111;
+        .form-control,
+        .form-control:focus {
+          background-color: #1a1a1a;
           border: 1px solid #333;
-          color: white;
+          color: #fff;
         }
 
-        .send-btn {
-          background-color: #00008B;
-          color: white;
+        .btn-primary {
+          background-color: #000066;
           border: none;
-          transition: transform 0.3s ease;
         }
 
-        .send-btn:hover {
-          transform: translateY(-2px);
-          background-color:black;
-          // border-color:aqua;
-            border-color: aqua !important;
-          color:aqua;
+        .btn-primary:hover {
+          background-color: #000;
+          border: 1px solid aqua;
+          color: aqua;
         }
-        
 
-        .info-card {
-          background-color: #111;
+        .feature-card {
+          background-color: #000000;
           border-radius: 15px;
           padding: 30px;
-          color: white;
-          transition: transform 0.3s ease-in-out;
-         
-        }
-  
-
-        .info-card:hover .hover-animate {
-          animation: floatUpDown 1.5s infinite ease-in-out;
-      
+          height: 100%;
+          border:1px solid #1a1a1a;
         }
 
-        @keyframes floatUpDown {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-6px); }
-          100% { transform: translateY(0); }
+        .info-block {
+          display: flex;
+          gap: 15px;
+          margin-bottom: 25px;
         }
 
-        .icon-style {
+        .info-icon {
+          font-size: 1.8rem;
           color: #00eaff;
-          margin-right: 10px;
         }
-          .social-icons{
-           display: flex;
+          .section-title{
+          color:white!important;
           }
 
-          .social_icons_new{
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-             margin-right: 10px;
-            transition: all 0.3s ease;
-          }
-       
-        
+        .social-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.1);
+          color: white;
+          margin-right: 10px;
+          font-size: 18px;
+          transition: all 0.3s ease;
+        }
 
-        .social_icons_new :hover {
-          transform: translateY(-5px);
-          
+        .social-icon:hover {
+          background-color: #00eaff;
+          color: #000;
         }
       `}</style>
 
-      <div className="contact-section">
-        <Container>
-          <div className="text-center mb-5">
-            <h2>
-              Get In <span className="highlight">Touch</span>
-            </h2>
-            <p>Have questions? Our team is here to help you with any inquiries.</p>
+      <section className="contact-section" id="contact">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8 text-center">
+              <h2 className="fw-bold d-flex justify-content-center flex-wrap">
+                <span style={{ position: "relative", display: "inline-block" }}>
+                  <span style={{ color: "#fffff" }}>Ge</span>
+                  <span
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "4px",
+                      backgroundColor: "#00f0ff",
+                      borderRadius: "2px",
+                    }}
+                  />
+                </span>
+                <span style={{ color: "#fffff" }}>t In</span>
+                <span style={{ color: "#00f0ff", marginLeft: "6px" }}>
+                  Touch
+                </span>
+              </h2>
+              <p className="lead mt-5 ">
+                Have questions? Our team is here to help you with any inquiries.
+              </p>
+            </div>
           </div>
-          <Row>
-            {/* Form */}
-            <Col md={7}>
-              <Form>
-                <Row className="mb-3">
-                  <Col>
-                    <Form.Control placeholder="Your Name" />
-                  </Col>
-                  <Col>
-                    <Form.Control placeholder="Your Email" />
-                  </Col>
-                </Row>
-                <Form.Group className="mb-3">
-                  <Form.Control placeholder="Subject" />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Control as="textarea" rows={5} placeholder="Your Message" />
-                </Form.Group>
-                <Button className="send-btn">
-                  <FaPaperPlane className="me-2" /> Send Message
-                </Button>
-              </Form>
-            </Col>
 
-            {/* Info Card */}
-            <Col md={5} className="mt-4 mt-md-0">
-              <Card className="info-card hover-animate">
-               <div className='d-flex align-items-center justify-content-between'>
-                <div className="d-flex mb-3 align-items-start">
-                  <FaEnvelope className="icon-style" />
-                  <div className='container'> 
-                    <h5>Email</h5>
-                    <div>info@Bitsfar.com</div>
-                    <div>support@Bitsfar.com</div>
+          <div className="row mt-5">
+            {/* Contact Form */}
+            <div className="col-lg-6">
+              <form>
+                <div className="row g-3">
+                  <div className="col-md-6">
+                    <input
+                      type="text"
+                      className="form-control bg-black border-dark text-light"
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <input
+                      type="email"
+                      className="form-control bg-black border-dark text-light"
+                      placeholder="Your Email"
+                    />
+                  </div>
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      className="form-control bg-black border-dark text-light"
+                      placeholder="Subject"
+                    />
+                  </div>
+                  <div className="col-12">
+                    <textarea
+                      rows="5"
+                      className="form-control bg-black border-dark text-light"
+                      placeholder="Your Message"
+                    ></textarea>
+                  </div>
+                  <div className="col-12">
+                    <button type="submit" className="btn btn-primary py-5">
+                      <FaPaperPlane className="me-2" />
+                      Send Message
+                    </button>
                   </div>
                 </div>
+              </form>
+            </div>
 
-                <div className="d-flex mb-4 align-items-start " >
-                  <FaClock className="icon-style" />
-                  <div>
-                    <h5>Working Hours</h5>
-                    <div>Mon–Fri: 9am–6pm (UTC)</div>
-                    <div>Sat–Sun: Closed</div>
-                  </div>
-                </div>
-                </div>
-
-                <div>
-                  <h5>Follow Us</h5>
-                  <div className="social-icons mt-2">
-                    <div className='social_icons_new'>
-                    <FaTwitter />
-                     
-                    </div>
-                      <div className='social_icons_new'>
-                          <FaLinkedin />
+            {/* Info Column */}
+            <div className="col-lg-6 mt-5 mt-lg-0">
+              <div className="feature-card">
+                <div className="row g-4">
+                  {/* Email */}
+                  <div className="col-md-6">
+                    <div className="d-flex">
+                      <div className="me-3">
+                        <FaEnvelope className="info-icon" />
                       </div>
-                   <div className='social_icons_new'>
-                    <FaGithub />
-                   </div>
-                     <div className='social_icons_new'>
-                    {/* <FaTwitter style={{ opacity: 0.2 }} /> */}
+                      <div>
+                        <h5 className="mb-2">Email</h5>
+                        <p className="mb-0">info@Bitsfar.com</p>
+                        <p className="mb-0">support@Bitsfar.com</p>
+                      </div>
                     </div>
-                     <div className='social_icons_new'>
-                    {/* <FaLinkedin style={{ opacity: 0.2 }} /> */}
+                  </div>
+
+                  {/* Working Hours */}
+                  <div className="col-md-6">
+                    <div className="d-flex">
+                      <div className="me-3">
+                        <FaClock className="info-icon" />
+                      </div>
+                      <div>
+                        <h5 className="mb-2">Working Hours</h5>
+                        <p className="mb-0">Mon–Fri: 9am–6pm (UTC)</p>
+                        <p className="mb-0">Sat–Sun: Closed</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Social Icons */}
+                  <div className="col-12 mt-4">
+                    <h5 className="mb-3">Follow Us</h5>
+                    <div className="d-flex">
+                      <a href="#" className="social-icon">
+                        <FaTwitter />
+                      </a>
+                      <a href="#" className="social-icon">
+                        <FaLinkedin />
+                      </a>
+                      <a href="#" className="social-icon">
+                        <FaGithub />
+                      </a>
+                      <a href="#" className="social-icon">
+                        <FaTelegramPlane />
+                      </a>
+                      <a href="#" className="social-icon">
+                        <FaDiscord />
+                      </a>
                     </div>
                   </div>
                 </div>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
 
 export default ContactSection;
-
-

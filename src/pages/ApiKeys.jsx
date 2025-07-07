@@ -65,65 +65,18 @@ const ApiKey = () => {
         setTransactions(res.data.data);
       })
       .catch((err) => console.error("ee", err));
-  }, []);
+    let timer;
+    if (otpTimer > 0) {
+      timer = setTimeout(() => setOtpTimer(otpTimer - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+   
+  }, [otpTimer]);
   return (
     <>
       <div class="row">
-        <div
-          class="col-12"
-          data-aos="fade-up"
-          style={{ backgroundColor: "rgb(16, 16, 60)", minHeight: "100vh" }}
-        >
-          {showModal && (
-            <div className="modal fade show d-block" tabIndex="-1">
-              <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content bg-dark text-white rounded">
-                  <ToastContainer position="top-right" autoClose={3000} />
-                  <div className="modal-header border-0">
-                    <h5 className="modal-title fw-semibold">Get OTP</h5>
-                    <button
-                      type="button"
-                      className="btn-close btn-close-white"
-                      onClick={() => setShowModal(false)}
-                    ></button>
-                  </div>
-
-                  <div className="modal-body">
-                    <div className="mb-3 d-flex">
-                      <input
-                        type="text"
-                        className="form-control bg-secondary text-white border-0 me-2"
-                        placeholder="Enter OTP"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                      />
-                      <button
-                        className="btn btn-info text-dark fw-semibold"
-                        onClick={handleGetOtp}
-                        disabled={otpLoading || otpTimer > 0}
-                      >
-                        {otpLoading
-                          ? "Sending..."
-                          : otpTimer > 0
-                          ? `${Math.floor(otpTimer / 60)}:${String(
-                              otpTimer % 60
-                            ).padStart(2, "0")}`
-                          : "Code"}
-                      </button>
-                    </div>
-                    <button
-                      className="btn btn-info text-dark fw-semibold w-100"
-                      onClick={handleForm}
-                      disabled={loading}
-                    >
-                      {loading ? "Processing..." : "Withdraw"}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
+        <div class="col-12" data-aos="fade-up"  style={{ backgroundColor: "rgb(16, 16, 60)", minHeight: "100vh" }}  >
+         
           <div class="d-flex justify-content-between align-items-center mb-4 ">
             <h2 data-aos="fade-right" class="aos-init aos-animate text-white">
               Api Keys
@@ -198,6 +151,60 @@ const ApiKey = () => {
           </div>
         </div>
       </div>
+
+
+
+
+       {showModal && (
+            <div className="modal fade show d-block" tabIndex="-1">
+              <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content bg-dark text-white rounded">
+                  <ToastContainer position="top-right" autoClose={3000} />
+                  <div className="modal-header border-0">
+                    <h5 className="modal-title fw-semibold">Get OTP</h5>
+                    <button
+                      type="button"
+                      className="btn-close btn-close-white"
+                      onClick={() => setShowModal(false)}
+                    ></button>
+                  </div>
+
+                  <div className="modal-body">
+                    <div className="mb-3 d-flex">
+                      <input
+                        type="text"
+                        className="form-control bg-secondary text-white border-0 me-2"
+                        placeholder="Enter OTP"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                      />
+                      <button
+                        className="btn btn-info text-dark fw-semibold"
+                        onClick={handleGetOtp}
+                        disabled={otpLoading || otpTimer > 0}
+                      >
+                        {otpLoading
+                          ? "Sending..."
+                          : otpTimer > 0
+                          ? `${Math.floor(otpTimer / 60)}:${String(
+                              otpTimer % 60
+                            ).padStart(2, "0")}`
+                          : "Code"}
+                      </button>
+                    </div>
+                    <button
+                      className="btn btn-info text-dark fw-semibold w-100"
+                      onClick={handleForm}
+                      disabled={loading}
+                    >
+                      {loading ? "Processing..." : "Withdraw"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
     </>
   );
 };

@@ -30,7 +30,8 @@ const WhirteListIp = () => {
 
       if (response.data.success) {
         toast.success(response.data.message);
-        getData("/user/get_api_keys")
+         setShowModal(false)
+        getData("/user/whitelist_ip_list")
           .then((res) => {
             setTransactions(res.data.data);
           })
@@ -70,7 +71,13 @@ const WhirteListIp = () => {
         setTransactions(res.data.data);
       })
       .catch((err) => console.error("ee", err));
-  }, []);
+
+        let timer;
+    if (otpTimer > 0) {
+      timer = setTimeout(() => setOtpTimer(otpTimer - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [otpTimer]);
   return (
     <>
       <div class="row">
@@ -162,6 +169,7 @@ const WhirteListIp = () => {
             </div>
             <div class="card-body">
               <div class="table-responsive">
+                 <ToastContainer position="top-right" autoClose={3000} />
                 <table
                   class="table table-responsive table-scroll table-hover transaction-table"
                   id="transactionsTable"

@@ -27,7 +27,9 @@ import PayoutTransactions from './pages/PayoutTransactions.jsx';
 import WithdrawHistory from './pages/WithdrawHistory.jsx'
 import Withdraw from  './pages/Withdraw.jsx'
 import ApiKeys from './pages/ApiKeys.jsx'
-import WhirteListIp from './pages/whiteListIp.jsx'
+import WhiteListIp from './pages/whiteListIp.jsx'
+import SelfAddresses from './pages/selfAddresses.jsx';
+import SelfTransactions from './pages/selfTransactions.jsx'
 // 👇 Home component without Signin/Signup
 const Home = () => (
   <>
@@ -66,10 +68,9 @@ const App = () => (
           <Route path="/withdraw_history" element={<WithdrawHistory />} />
           <Route path="/withdraw" element={<Withdraw  />} />
           <Route path="/api_keys" element={<ApiKeys  />} />
-          <Route path="/whitelist_ip" element={<WhirteListIp  />} />
-
-          
-z
+          <Route path="/whitelist_ip" element={<WhiteListIp  />} />
+          <Route path="/self_addresses" element={<SelfAddresses  />} />
+           <Route path="/self_transactions/:address" element={<SelfTransactions />} />
 
           
         </Route>

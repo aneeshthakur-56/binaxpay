@@ -16,27 +16,25 @@ const WhirteListIp = () => {
      const [loading, setLoading] = useState(false);
 
     const handleForm = async() => {
-        console.log('clioced ' )
+      
          if ( !otp ) {
-            toast.error('Please set otp');
+            alert('Please set otp');
             return;
-        }
-
+        } 
          try {
             setLoading(true);
             const response =  await postData('/user/whitelist_ip',{otp : otp,ip : ip});
 
             if (response.data.success) {
-                toast.success(response.data.message); 
-                getData('/user/get_api_keys' ) .then((res) => {
-                    setTransactions(res.data.data)
-                }) .catch((err) => console.error('ee',err)); 
+                alert(response.data.message); 
+                 setShowModal(false)
+                showIpList()
             } else {
-                toast.error(response.data.message || ' Failed');
+                alert(response.data.message || ' Failed');
             }
         } catch (error) {
             console.error(error);
-            toast.error('An error occurred while processing the request.');
+            alert('An error occurred while processing the request.');
         } finally {
             setLoading(false);
         }
@@ -44,27 +42,29 @@ const WhirteListIp = () => {
     const handleGetOtp = async () => {
    
         try {
-        setOtpLoading(true);
-        const response =await getData('/user/withrawOtp',{});
+            setOtpLoading(true);
+            const response =await getData('/user/withrawOtp',{});
 
-        if (response.data.success) {
-            alert('OTP Sent Successfully');
-            setOtpTimer(120);
-        } else {
-            alert(response.data.message || 'Failed to send OTP');
-        }
+            if (response.data.success) {
+                alert('OTP Sent Successfully');
+                setOtpTimer(120);
+            } else {
+                alert(response.data.message || 'Failed to send OTP');
+            }
         } catch (error) {
-        console.error(error);
-        alert('Error sending OTP');
+            console.error(error);
+            alert('Error sending OTP');
         } finally {
-        setOtpLoading(false);
+            setOtpLoading(false);
         }
     };
-
-     useEffect(() => {
+    const showIpList = async() => {
         getData('/user/whitelist_ip_list' ) .then((res) => {
             setTransactions(res.data.data)
         }) .catch((err) => console.error('ee',err)); 
+    }
+     useEffect(() => {
+       showIpList()
         }, []);
     return<>
     <div class="row">
@@ -82,9 +82,10 @@ const WhirteListIp = () => {
               </div>
 
               <div className="modal-body">
+               
                  <div className="mb-3 d-flex"> 
                     <input
-                    type="number"
+                    type="ip"
                     className="form-control bg-secondary text-white border-0"
                     placeholder="IP Address"
                     value={ip}
@@ -112,14 +113,15 @@ const WhirteListIp = () => {
                     </button>
                 </div>
                  <button
+                    type="button"
                     className="btn btn-info text-dark fw-semibold w-100"
-                     onClick={handleForm}
+                    onClick={handleForm}
                     disabled={loading}
                 >
                     {loading ? 'Processing...' : 'Whitelist IP'}
                 </button>
               </div>
-
+                 <ToastContainer position="bottom-right" autoClose={3000}  />
             </div>
           </div>
         </div>

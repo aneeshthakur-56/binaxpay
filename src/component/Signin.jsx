@@ -1,173 +1,153 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bitsfar from '../assets/Image/bitsfar.png';
 import { FaLock, FaEnvelope, FaGlobe, FaBolt, FaShieldAlt } from 'react-icons/fa';
+import { RiGlobalLine } from "react-icons/ri";
 
+import { FaBoltLightning } from "react-icons/fa6";
+
+import { SiFsecure } from "react-icons/si";
+
+import { loginUser } from "../api/api";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { ToastContainer, toast } from 'react-toastify';
+import './custom.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Signin = () => {
+    const { login } = useAuth();
+    const navigate = useNavigate(); 
+    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+     useEffect(() => {
+        AOS.init({
+            duration: 1000, // animation duration
+            once: true,     // whether animation should happen only once
+        });
+        }, []);
+    const handleSubmit =  async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      setError('');
+ 
+      try {
+       
+            let response = await loginUser({email :email, password :password}) 
+            console.log( ' response ' ,response)
+            if (response.success == false) {
+              console.log( ' response ' ,response.message)
+              toast.error(response.message);
+            }else{
+              toast.success(response.message); 
+              login(response.data)
+              // localStorage.setItem('auth_token', response.data);
+              setTimeout(() => {
+                navigate("/verify-signin",{state : {email : email}});
+              }, 2000);
+            }
+            
+
+        } catch (err) {
+          setError(err.message);
+          toast.error(err.message);
+        } finally {
+          setLoading(false);
+        }  
+      };
+
   return (
-    <div className="signin-wrapper d-flex text-white">
-      {/* Left Side */}
-      <div className="signin-left animate-left d-flex flex-column justify-content-center align-items-center text-center p-4">
-        
-        <img src={bitsfar} alt="logo" width="200" className="mb-4" />
-        <h1 className="fw-bold mb-3 display-5 m-0">Welcome Back</h1>
-        <p className="mb-4 w-75 mx-auto">
-          Sign in to access your Bitsfar account and manage your crypto payment gateway services.
-        </p>
-        <div className="text-start w-75">
-          <p><FaShieldAlt className="me-2 text-info" /> Secure & Encrypted</p>
-          <p><FaBolt className="me-2 text-info" /> Lightning Fast</p>
-          <p><FaGlobe className="me-2 text-info" /> Global Access</p>
+    <> 
+        <div class="auth-container">
+          <ToastContainer position="top-right" autoClose={3000} />
+        <div class="auth-left">
+            <div class="auth-content" data-aos="fade-right">
+                <div class="logo">
+                    <Link to="/"><img src={bitsfar}/></Link>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to access your Bitsfars account and manage your crypto payment gateway services.</p>
+                <div class="auth-features">
+                    <div class="feature-item">
+                        {/* <i class="fas fa-shield-alt"></i> */}
+                        <SiFsecure size={24} color="#00E8F8"/> &nbsp;
+                        <span>Secure & Encrypted</span>
+                    </div>
+                    <div class="feature-item">
+                        <FaBoltLightning  size={24} color="#00E8F8"/>&nbsp;
+                        <span>Lightning Fast</span>
+                    </div>
+                    <div class="feature-item">
+                        {/* <i class="fas fa-globe"></i> */}
+                        <RiGlobalLine  size={24} color="#00E8F8"/>&nbsp;
+                        <span>Global Access</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      {/* Right Side */}
-      <div className="signin-right animate-right d-flex flex-column justify-content-center px-4">
-        <div className="w-100" style={{ maxWidth: "400px", margin: "0 auto" }}>
-          <h2 className="fw-bold mb-3">Sign In</h2>
-          <p className="mb-4 text-light">Enter your credentials to access your account</p>
-
-          <form>
-            <div className="mb-3 position-relative">
-              <FaEnvelope className="form-icon" />
-              <input type="email" placeholder="your@email.com" className="form-control custom-input" />
-            </div>
-
-            <div className="mb-3 position-relative">
-              <FaLock className="form-icon" />
-              <input type="password" placeholder="••••••••" className="form-control custom-input" />
-            </div>
-
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <div>
-                <input type="checkbox" className="form-check-input me-2" /> Remember me
-              </div>
-              <Link to="/Forgot" className="text-info text-decoration-none">Forgot password?</Link>
-            </div>
-
-            <button type="submit" className="btn custom-signin-btn w-100">Sign In</button>
-          </form>
-
-          <p className="mt-4 text-center">
-            Don’t have an account?{' '}
-            <Link to="/signup" className="text-info text-decoration-none">Sign up</Link>
-          </p>
-        </div>
-      </div>
-
-      {/* CSS Styles */}
-      <style>{`
-        .signin-wrapper {
-          height: 100vh;
-          background: #000;
-          overflow: hidden;
-        }
-
-        .signin-left, .signin-right {
-          flex: 1;
-          height: 100%;
-        }
-
-        .signin-left {
-              background: linear-gradient(135deg, rgba(0, 0, 102, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
-          background-size: cover;
-          background-position: center;
-        }
-  
+        <div class="auth-right">
+            <div class="auth-form-container" data-aos="fade-left">
+                <h2>Sign In</h2>
+                <p class="form-subtitle">Enter your credentials to access your account</p>
+                
+                <form class="auth-form" onSubmit={handleSubmit}>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            {/* <input type="email" id="email" name="email" placeholder="your@email.com" required/> */}
+                            <input 
+                              type="email"
+                              placeholder="Enter Email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              required
+                              // className="form-control custom-input"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-with-icon">
+                            {/* <i class="fas fa-lock"></i> */}
+                            {/* <FaLock/> */}
+                            {/* <input type="password" id="password" name="password" placeholder="••••••••" required/> */}
+                             <input 
+                              type="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              placeholder="Enter Password"
+                              className="form-control custom-input"
+                            />
+                            <span class="toggle-password" onclick="togglePassword('password')">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember"/>
+                            <label for="remember">Remember me</label>
+                        </div>
+                        {/* <a href="Forgetpass.html" class="forgot-password">Forgot password?</a> */}
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
    
-
-        .signin-right {
-          background-color: #000;
-        }
-
-        .form-icon {
-          position: absolute;
-          top: 50%;
-          left: 12px;
-          transform: translateY(-50%);
-          color: #999;
-        }
-
-        .custom-input {
-          padding-left: 40px;
-          background-color: transparent;
-          border: 1px solid #444;
-          border-radius: 8px;
-          color: white;
-        }
-
-        .custom-input::placeholder {
-          color: #999;
-        }
-
-        .custom-input:focus {
-          border-color: white;
-          color: white;
-          background-color: transparent;
-          box-shadow: none;
-        }
-
-        .custom-signin-btn {
-           background-color:rgb(7, 18, 119);
-           color: white;
-          border-radius: 8px;
-          padding: 10px 20px;
-          border: 2px solid transparent;
-          transition: all 0.3s ease;
-        }
-
-        .custom-signin-btn:hover {
-          background-color: black;
-          color: aqua;
-          border-color: aqua;
-        }
-
-        /* 🔥 Animation */
-        .animate-left {
-          animation: slideInLeft 1s ease-out forwards;
-          transform: translateX(-100%);
-          opacity: 0;
-        }
-
-        .animate-right {
-          animation: slideInRight 1s ease-out forwards;
-          transform: translateX(100%);
-          opacity: 0;
-        }
-
-        @keyframes slideInLeft {
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes slideInRight {
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .signin-wrapper {
-            flex-direction: column;
-          }
-
-          .signin-left, .signin-right {
-            width: 100%;
-            flex: none;
-            min-height: 50vh;
-          }
-
-          .animate-left, .animate-right {
-            transform: none;
-            opacity: 1;
-            animation: none;
-          }
-        }
-      `}</style>
-    </div>
+                    
+                    
+                    <div class="auth-footer">
+                        Don't have an account? <a href="SignUp.html">Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+    </>
   );
 };
 

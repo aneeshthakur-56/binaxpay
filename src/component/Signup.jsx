@@ -1,7 +1,175 @@
-import React from "react";
+import React, { useState , useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import bitsfar from '../assets/Image/bitsfar.png';
+import { FaRocket,   FaHandHoldingUsd } from 'react-icons/fa';  
+import { FcHeadset} from 'react-icons/fc';  
+import { registerUser } from "../api/api";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { ToastContainer, toast } from 'react-toastify';
+import './custom.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Signup = () => {
-  return <div>hello world</div>;
+    const { login } = useAuth();
+    const navigate = useNavigate(); 
+    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [name, setName] = useState('');
+    const [error, setError] = useState('');
+    const handleSubmit =  async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    console.log('button clicked')
+    try {
+       
+        let response = await registerUser({email :email, password :password , name : name , phoneNumber:phone}) 
+        if(response.success == true){
+            toast.success(response.message); 
+            navigate("/verifySignup", { state: {email: email ,password : password} });
+        }else{
+            toast.error(response.message);
+        }
+        
+
+    } catch (err) {
+      setError(err.message);
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }  
+    };
+
+  useEffect(() => {
+    AOS.init({
+        duration: 1000, // animation duration
+        once: true,     // whether animation should happen only once
+    });
+    }, []);
+
+  return (
+    <div className="auth-container">
+        <ToastContainer position="top-right" autoClose={3000} />
+        <div className="auth-left">
+            <div className="auth-content" data-aos="fade-right">
+                <div className="logo">
+                        <Link href="index.html"><img src={bitsfar}/></Link>
+                </div>
+                <h1>Join Us</h1>
+                <p>Create your Bitsfars account to start using our crypto payment gateway services today.</p>
+                <div className="auth-features">
+                    <div className="feature-item"> 
+                        <FaRocket size={24} color="#00E8F8"  /> &nbsp;
+                        <span>Quick Setup</span>
+                    </div>
+                    <div className="feature-item">
+                        {/* <i className="fas fa-hand-holding-usd"></i> */}
+                        <FaHandHoldingUsd size={24} color="#00E8F8"  /> &nbsp; 
+                        <span>Low Fees</span>
+                    </div>
+                    <div className="feature-item">
+                        {/* <i className="fas fa-headset"></i> */}
+                        <FcHeadset size={24} color="#00E8F8"/>&nbsp; 
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="auth-right">
+            <div className="auth-form-container" data-aos="fade-left">
+                <h2>Create Account</h2>
+                <p className="form-subtitle">Fill in your details to get started</p>
+                
+                <form className="auth-form" id="signupForm" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label >Full Name</label>
+                        <div className="input-with-icon">
+                            {/* <i className="fas fa-user"></i> */}
+                            {/* <span class="input-group-text bg-info text-white">
+                                    <FaUser size={24} color="#00E8F8"  />
+                            </span> */}
+                             
+                             <input 
+                                type="text"
+                                placeholder="Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                                className="form-control custom-input"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label>Email</label>
+                        <div className="input-with-icon">
+                            <i className="fas fa-envelope"></i>
+                            {/* <input type="email" id="email" name="email" placeholder="your@email.com" required/> */}
+                            <input 
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                className="form-control custom-input"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div className="form-group">
+                        <label>Phone</label>
+                        <div className="input-with-icon">
+                            <i className="fas fa-phone"></i>
+                            {/* <input type="email" id="email" name="email" placeholder="your@email.com" required/> */}
+                            <input 
+                                type="text"
+                                placeholder="Phone"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                required
+                                className="form-control custom-input"
+                            />
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <div className="input-with-icon">
+                            <i className="fas fa-lock"></i>
+                            {/* <input type="password" id="password" name="password" placeholder="" required/> */}
+                            <input 
+                                type="text"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="form-control custom-input"
+                            />
+                            <span className="toggle-password" >
+                                <i className="fas fa-eye"></i>
+                            </span>
+                        </div> 
+                    </div> 
+                    
+                    <div className="form-group terms">
+                        <input type="checkbox" id="terms" name="terms" required />
+                        <label>I agree to the <Link to="/">Terms of Service</Link>and <Link to="/">Privacy Policy</Link></label>
+                    </div>
+                    
+                    <button type="submit" className="btn btn-primary btn-block">Create Account</button> 
+                    
+                    <div className="auth-footer">
+                        Already have an account? <a href="SignIn.html">Sign in</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  );
 };
 
 export default Signup;

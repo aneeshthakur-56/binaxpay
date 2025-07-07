@@ -61,9 +61,6 @@ const Dashboard = () => {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>Dashboard Overview</h2>
-        <button className="btn btn-danger" onClick={handleLogout}>
-          Logout
-        </button>
       </div>
 
       {/* Dashboard Cards */}
@@ -101,28 +98,34 @@ const Dashboard = () => {
 
       {/* Recent Transactions */}
       <div className="card border-0 shadow-lg">
-        <div
-          className="card-header d-flex justify-content-between align-items-center"
-          style={{ backgroundColor: "#000077", color: "#fff" }}
-        >
-          <h5 className="mb-0">Recent Transactions</h5>
-          <button className="btn btn-outline-light btn-sm">View All</button>
+        <div className="card-header d-flex justify-content-between align-items-center">
+          <h5 className="mb-0 text">Recent Transactions</h5>
+          <button className="btn2 btn-outline-light btn-sm">View All</button>
         </div>
-        <div
-          className="card-body"
-          style={{ backgroundColor: "#13152a", color: "#fff" }}
-        >
+        <div className="card-body">
           <div className="table-responsive">
             <table className="table table-dark table-bordered text-center align-middle">
               <thead>
-                <tr style={{ backgroundColor: "#000077" }}>
-                  <th>ID</th>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Amount</th>
-                  <th>Currency</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                <tr>
+                  <th style={{ backgroundColor: "#000066", color: "#fff" }}>
+                    ID
+                  </th>
+                  <th style={{ backgroundColor: "#000066", color: "#fff" }}>
+                    Date
+                  </th>
+                  <th style={{ backgroundColor: "#000066", color: "#fff" }}>
+                    Type
+                  </th>
+
+                  <th style={{ backgroundColor: "#000066", color: "#fff" }}>
+                    Currency
+                  </th>
+                  <th style={{ backgroundColor: "#000066", color: "#fff" }}>
+                    Status
+                  </th>
+                  <th style={{ backgroundColor: "#000066", color: "#fff" }}>
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -146,7 +149,7 @@ const Dashboard = () => {
                           {trx.tokenName || "USDT"}
                         </span>
                       </td>
-                      <td>
+                      {/* <td>
                         <span
                           className={`badge ${getStatusBadge(
                             trx.status || "Completed"
@@ -155,7 +158,7 @@ const Dashboard = () => {
                           {(trx.status || "Completed").charAt(0).toUpperCase() +
                             (trx.status || "Completed").slice(1)}
                         </span>
-                      </td>
+                      </td> */}
                       <td>
                         <button className="btn btn-outline-primary btn-sm">
                           Details

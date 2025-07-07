@@ -11,6 +11,7 @@ const Sidebar = () => {
   const transactionsRef = useRef(null);
   const supportRef = useRef(null);
   const moreRef = useRef(null);
+  const settingsRef = useRef(null);
 
   const toggleDropdown = (menu) => {
     setOpenDropdown(openDropdown === menu ? null : menu);
@@ -39,6 +40,7 @@ const Sidebar = () => {
     setMaxHeight(transactionsRef, openDropdown === "transactions");
     setMaxHeight(supportRef, openDropdown === "support");
     setMaxHeight(moreRef, openDropdown === "more");
+    setMaxHeight(settingsRef, openDropdown === "settings");
   }, [openDropdown]);
 
   return (
@@ -64,7 +66,7 @@ const Sidebar = () => {
           <li className="nav-item mb-3">
             <Link
               className="nav-link d-flex align-items-center gap-2"
-              to="#dashboard"
+              to="/dashboard"
               onClick={closeSidebar}
               style={{
                 backgroundColor: "#233b99",
@@ -103,24 +105,71 @@ const Sidebar = () => {
             >
               <Link
                 className="text-white d-block py-1"
-                to="#"
+                to="/deposit_transactions"
                 onClick={closeSidebar}
               >
                 Deposit
               </Link>
               <Link
                 className="text-white d-block py-1"
-                to="#"
+                to="/margin_transactions"
                 onClick={closeSidebar}
               >
                 Margin
               </Link>
               <Link
                 className="text-white d-block py-1"
-                to="#"
+                to="payout_transactions"
                 onClick={closeSidebar}
               >
                 Payout
+              </Link>
+            </div>
+          </li>
+
+          <li className="nav-item mb-2">
+            <button
+              className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
+              onClick={() => toggleDropdown("settings")}
+              style={{ padding: "10px 15px", fontWeight: 500 }}
+            >
+              <span className="d-flex align-items-center gap-2">
+                🔄 Settings
+              </span>
+              <span>▼</span>
+            </button>
+            <div
+              ref={settingsRef}
+              className="overflow-hidden"
+              style={{
+                backgroundColor: "#05005C",
+                borderRadius: "8px",
+                maxHeight: "0px",
+                transition: "max-height 0.4s ease",
+                paddingRight: "15px",
+                textAlign: "center",
+              }}
+            >
+              <Link
+                className="text-white d-block py-1"
+                to="/whitelist_ip"
+                onClick={closeSidebar}
+              >
+                IP Management
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="/api_keys"
+                onClick={closeSidebar}
+              >
+                Api Keys
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="/profile"
+                onClick={closeSidebar}
+              >
+                Profile
               </Link>
             </div>
           </li>

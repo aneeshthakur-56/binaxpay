@@ -32,6 +32,7 @@ const VerifySignin = () => {
             if(response.success == true){
                 toast.success(response.message); 
                 //  localStorage.setItem('auth_token', response.data);
+                 localStorage.setItem('user',JSON.stringify(response.user));
                 login(response.token)
                 //   setTimeout(() => {
                         navigate("/dashboard");

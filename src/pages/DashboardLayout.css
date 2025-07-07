@@ -80,12 +80,12 @@ body {
 }
 
 .card {
-  border: none;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 66, 0.1);
   transition: all 0.3s ease;
   background: var(--glass);
+  border-left: 2px solid #00f0ff !important;
 }
 
 .card:hover {
@@ -202,14 +202,14 @@ body {
 .form-select {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
-  color: var(--bs-body-color);
+  color: #a6a6af;
 }
 
 .form-control:focus,
 .form-select:focus {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: var(--accent);
-  color: var(--bs-body-color);
+  color: #a6a6af;
   box-shadow: 0 0 0 0.25rem rgba(0, 240, 255, 0.25);
 }
 

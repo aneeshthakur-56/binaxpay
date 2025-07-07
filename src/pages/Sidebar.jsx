@@ -171,6 +171,13 @@ const Sidebar = () => {
               >
                 Profile
               </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="/self_addresses"
+                onClick={closeSidebar}
+              >
+                Self Address
+              </Link>
             </div>
           </li>
 
@@ -227,9 +234,7 @@ const Sidebar = () => {
               onClick={() => toggleDropdown("support")}
               style={{ padding: "10px 15px", fontWeight: 500 }}
             >
-              <span className="d-flex align-items-center gap-2">
-                Withdraw
-              </span>
+              <span className="d-flex align-items-center gap-2">Withdraw</span>
               <span>▼</span>
             </button>
             <div

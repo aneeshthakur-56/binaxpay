@@ -98,7 +98,7 @@ const WhirteListIp = () => {
                   <div className="modal-body">
                     <div className="mb-3 d-flex">
                       <input
-                        type="number"
+                        type="ip    "
                         className="form-control bg-secondary text-white border-0"
                         placeholder="IP Address"
                         value={ip}

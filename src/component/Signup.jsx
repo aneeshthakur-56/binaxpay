@@ -58,7 +58,7 @@ const Signup = () => {
         <div className="auth-left">
             <div className="auth-content" data-aos="fade-right">
                 <div className="logo">
-                        <Link href="index.html"><img src={bitsfar}/></Link>
+                        <Link to="/"><img src={bitsfar}/></Link>
                 </div>
                 <h1>Join Us</h1>
                 <p>Create your Bitsfars account to start using our crypto payment gateway services today.</p>
@@ -163,7 +163,7 @@ const Signup = () => {
                     <button type="submit" className="btn btn-primary btn-block">Create Account</button> 
                     
                     <div className="auth-footer">
-                        Already have an account? <a href="SignIn.html">Sign in</a>
+                        Already have an account? <a href="Signin">Sign in</a>
                     </div>
                 </form>
             </div>

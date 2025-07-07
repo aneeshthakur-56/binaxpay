@@ -8,11 +8,16 @@ export const AuthProvider = ({ children }) => {
 
     const login = (token) => {
         localStorage.setItem("auth_token", token);
+        // localStorage.setItem("isAuthenticated", true);
+        console.log('setting token ' , token)
+        // isAuthenticated = true;
         setToken(token);
     };
 
     const logout = () => {
         localStorage.removeItem("auth_token");
+         localStorage.setItem("isAuthenticated", false);
+          // isAuthenticated = false;
         setToken(null);
     };
 

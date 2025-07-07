@@ -19,6 +19,8 @@ import VerifySignin from './component/verifySignin.jsx'
 import RegisterSuccess from './component/RegisterSuccess'
 import Forgot from './component/Forgot';
 import Dashboard from './pages/Dashboard'
+import DashboardLayout from './pages/DashboardLayout';
+import Profile from './pages/Profile';
 
 // 👇 Home component without Signin/Signup
 const Home = () => (
@@ -41,19 +43,18 @@ const App = () => (
     <Routes>
  
       <Route path="/" element={ <><Navbar /> <Home /></>} />
-
-   
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/VerifySignup" element={<VerifySignup />} />
-      <Route path="/verify-signin" element={<VerifySignin />} />
-      
-      
+      <Route path="/verify-signin" element={<VerifySignin />} /> 
 
       <Route path="/register-success" element={<RegisterSuccess/>}/>
       <Route path="/forgot" element={<Forgot />} />
       <Route element={<AuthGuard />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Route>
     </Routes>
 

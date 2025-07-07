@@ -21,7 +21,13 @@ import Forgot from './component/Forgot';
 import Dashboard from './pages/Dashboard'
 import DashboardLayout from './pages/DashboardLayout';
 import Profile from './pages/Profile';
-
+import DepositTransactions from './pages/DepositTransactions.jsx'
+import MarginTransactions from './pages/MarginTransactions.jsx'
+import PayoutTransactions from './pages/PayoutTransactions.jsx';
+import WithdrawHistory from './pages/WithdrawHistory.jsx'
+import Withdraw from  './pages/Withdraw.jsx'
+import ApiKeys from './pages/ApiKeys.jsx'
+import WhirteListIp from './pages/whiteListIp.jsx'
 // 👇 Home component without Signin/Signup
 const Home = () => (
   <>
@@ -54,6 +60,18 @@ const App = () => (
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/deposit_transactions" element={<DepositTransactions />} />
+          <Route path="/margin_transactions" element={<MarginTransactions />} />
+          <Route path="/payout_transactions" element={<PayoutTransactions />} />
+          <Route path="/withdraw_history" element={<WithdrawHistory />} />
+          <Route path="/withdraw" element={<Withdraw  />} />
+          <Route path="/api_keys" element={<ApiKeys  />} />
+          <Route path="/whitelist_ip" element={<WhirteListIp  />} />
+
+          
+z
+
+          
         </Route>
       </Route>
     </Routes>

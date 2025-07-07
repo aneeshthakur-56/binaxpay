@@ -1,7 +1,8 @@
 // src/utils/api.js
 import axios from 'axios'; 
 const api = axios.create({
-  baseURL: 'https://backend.bitsfar.com/',
+  // baseURL: 'https://backend.bitsfar.com/',
+  baseURL: 'https://backend.kryptohas.com/',
 });
 // import { toast } from 'react-toastify';
 api.interceptors.request.use(config => {
@@ -49,10 +50,7 @@ export const postData = async (url, data) => {
     console.error('❌ Error:', error);
 
     // Get server message if available
-    const errorMessage =
-      error?.response?.data?.message ||
-      error?.response?.data?.error ||
-      'Something went wrong';
+    const errorMessage =  error?.response?.data?.message ||  error?.response?.data?.error || error?.response?.message ||  'Something went wrong';
 
     // Optionally remove token if unauthorized
     if (error.response?.status === 401) {
@@ -60,7 +58,8 @@ export const postData = async (url, data) => {
     }
 
     // Throw custom error to show in UI
-    throw new Error(errorMessage);
+    return { data : {success : false , message : errorMessage}}
+    // throw new Error(errorMessage);
   }
 };
 

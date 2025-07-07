@@ -97,15 +97,13 @@ const DashboardLayout = () => {
                                 <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
                                 <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
                                 <li><hr class="dropdown-divider"/></li>
-                                <li><a class="dropdown-item" onClick={() => handleLogout()}><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                                <li><button class="dropdown-item" onClick={() => handleLogout()}><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li>
                             </ul>
                         </div>
                         {/* <div class="theme-toggle me-3" id="themeToggle">
                             <i class="fas fa-moon"></i>
                         </div> */}
-                         <button class="btn btn-sm btn-accent" type="button" data-bs-toggle="modal" data-bs-target="#newTransactionModal">
-                            <i class="fas fa-plus me-1"></i> <span class="d-none d-md-inline">New</span>
-                        </button>
+                         <button class="dropdown-item" onClick={() => handleLogout()}><i class="fas fa-sign-out-alt me-2"></i>Logout</button>
                     </div>
                 </div>
                 

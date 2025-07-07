@@ -171,11 +171,18 @@ const Sidebar = () => {
               >
                 Profile
               </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="/self_addresses"
+                onClick={closeSidebar}
+              >
+                Self Address
+              </Link>
             </div>
           </li>
 
           {/* Support Dropdown */}
-          <li className="nav-item mb-2">
+          <li className="nav-item mb-2 d-none">
             <button
               className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
               onClick={() => toggleDropdown("support")}
@@ -218,6 +225,43 @@ const Sidebar = () => {
                 onClick={closeSidebar}
               >
                 Outbox
+              </Link>
+            </div>
+          </li>
+          <li className="nav-item mb-2">
+            <button
+              className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
+              onClick={() => toggleDropdown("support")}
+              style={{ padding: "10px 15px", fontWeight: 500 }}
+            >
+              <span className="d-flex align-items-center gap-2">Withdraw</span>
+              <span>▼</span>
+            </button>
+            <div
+              ref={supportRef}
+              className="overflow-hidden"
+              style={{
+                backgroundColor: "#05005C",
+                borderRadius: "8px",
+                maxHeight: "0px",
+                transition: "max-height 0.4s ease",
+                paddingRight: "15px",
+                textAlign: "center",
+              }}
+            >
+              <Link
+                className="text-white d-block py-1"
+                to="withdraw"
+                onClick={closeSidebar}
+              >
+                Submit Withdraw
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="withdraw_history"
+                onClick={closeSidebar}
+              >
+                Withdraw History
               </Link>
             </div>
           </li>

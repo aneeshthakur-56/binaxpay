@@ -1,104 +1,118 @@
-import React, { useState , useEffect } from 'react';
-import { getData,postData } from '../api/protectedApi';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import { getData, postData } from "../api/protectedApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Withdraw = () => {
-        const [balance, setBalance] = useState(0);
-        const [amount, setAmount] = useState('');
-        const [address, setAddress] = useState('');
-        const [otp, setOtp] = useState('');
-        const [token, setToken] = useState('');
-        const [loading, setLoading] = useState(false);
-        const [otpLoading, setOtpLoading] = useState(false);
-        const [otpTimer, setOtpTimer] = useState(0);
-        const getBalance = () => {
-            postData('/user/wallet_sum', {}) .then((res) => { setBalance(res.data?.walletBalance)  }) .catch((err) => console.error(err));
-        }
-        useEffect(() => { 
-           getBalance()
-        }, []);
-        const handleGetOtp = async () => {
-                try {
-                setOtpLoading(true);
+  const [balance, setBalance] = useState(0);
+  const [amount, setAmount] = useState("");
+  const [address, setAddress] = useState("");
+  const [otp, setOtp] = useState("");
+  const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpTimer, setOtpTimer] = useState(0);
+  const getBalance = () => {
+    postData("/user/wallet_sum", {})
+      .then((res) => {
+        setBalance(res.data?.walletBalance);
+      })
+      .catch((err) => console.error(err));
+  };
+  useEffect(() => {
+    getBalance();
+  }, []);
+  const handleGetOtp = async () => {
+    try {
+      setOtpLoading(true);
 
-                const response = await getData('/user/withrawOtp',{}); //{data : {success : true} }// await axios.post('https://api.example.com/send-otp', {});
-                console.log(' withdraw response ' , response)
-                if (response.data.success) {
-                     toast.success('OTP Sent Successfully!');
-                    setOtpTimer(120);  // Start 2 minute countdown
-                } else {
-                     toast.error(response.data.message || 'Failed to send OTP');
-                }
-                } catch (error) {
-                console.error(error);
-                 toast.error('Error sending OTP');
-                } finally {
-                setOtpLoading(false);
-                }
-            };
+      const response = await getData("/user/withrawOtp", {}); //{data : {success : true} }// await axios.post('https://api.example.com/send-otp', {});
+      console.log(" withdraw response ", response);
+      if (response.data.success) {
+        toast.success("OTP Sent Successfully!");
+        setOtpTimer(120); // Start 2 minute countdown
+      } else {
+        toast.error(response.data.message || "Failed to send OTP");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error sending OTP");
+    } finally {
+      setOtpLoading(false);
+    }
+  };
 
-         useEffect(() => {
-            let timer;
-            if (otpTimer > 0) {
-            timer = setTimeout(() => setOtpTimer(otpTimer - 1), 1000);
-            }
-            return () => clearTimeout(timer);
-        }, [otpTimer]);
- 
-        const handleWithdraw = async () => {
-            if (!amount || !address || !otp ) {
-                toast.error('Please fill all fields');
-                return;
-            }
+  useEffect(() => {
+    let timer;
+    if (otpTimer > 0) {
+      timer = setTimeout(() => setOtpTimer(otpTimer - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [otpTimer]);
 
-            const payload = {
-                amount: amount,
-                walletAddress: address,
-                otp: otp,
-                // token: token
-            };
+  const handleWithdraw = async () => {
+    if (!amount || !address || !otp) {
+      toast.error("Please fill all fields");
+      return;
+    }
 
-            try {
-                setLoading(true);
-                const response =  await postData('/user/placeWithraw',payload);
+    const payload = {
+      amount: amount,
+      walletAddress: address,
+      otp: otp,
+      // token: token
+    };
 
-                if (response.data.success) {
-                    toast.success('Withdraw Request Submitted Successfully');
-                    getBalance()
-                    // Optionally reset form
-                    setAmount('');
-                    setAddress('');
-                    setOtp('');
-                    setToken('');
-                } else {
-                    toast.error(response.data.message || 'Withdraw Failed');
-                }
-            } catch (error) {
-                console.error(error);
-                toast.error('An error occurred while processing the withdrawal.');
-            } finally {
-                setLoading(false);
-            }
-        };
+    try {
+      setLoading(true);
+      const response = await postData("/user/placeWithraw", payload);
 
-    return <div className="bg-dark text-white rounded p-4 shadow-lg mx-auto" style={{ maxWidth: '600px' }}>
-        
+      if (response.data.success) {
+        toast.success("Withdraw Request Submitted Successfully");
+        getBalance();
+        // Optionally reset form
+        setAmount("");
+        setAddress("");
+        setOtp("");
+        setToken("");
+      } else {
+        toast.error(response.data.message || "Withdraw Failed");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while processing the withdrawal.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div
+      className="bg-dark text-white rounded p-4 shadow-lg mx-auto"
+      style={{ maxWidth: "100%", backgroundColor: "#282857" }}
+    >
       <h5 className="mb-3 fw-semibold">Withdraw</h5>
-         <ToastContainer position="top-right" autoClose={3000}  />
+      <ToastContainer position="bottom-right" autoClose={3000} />
       <div className="mb-3">
-        <p className="mb-1 small">Minimum Withdraw: <span className="text-white fw-bold">10 USDT</span></p>
-        <p className="mb-0  small">Current Balance: <span className="text-white fw-bold">${balance.toFixed(3)}</span></p>
+        <p className="mb-1 small">
+          Minimum Withdraw: <span className="text-white fw-bold">10 USDT</span>
+        </p>
+        <p className="mb-0  small">
+          Current Balance:{" "}
+          <span className="text-white fw-bold">${balance.toFixed(3)}</span>
+        </p>
       </div>
 
       <div className="mb-3">
-        <label className="form-label small ">Withdraw Amount  </label>
+        <label className="form-label small ">Withdraw Amount </label>
         <input
           type="number"
           className="form-control bg-secondary text-white border-0"
           placeholder="Enter amount"
           value={amount}
-          onChange={(e)=>{setAmount(e.target.value)}}
+          onChange={(e) => {
+            setAmount(e.target.value);
+          }}
         />
       </div>
 
@@ -108,7 +122,7 @@ const Withdraw = () => {
           type="text"
           className="form-control bg-secondary text-white border-0"
           placeholder="Wallet address"
-            value={address}
+          value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
       </div>
@@ -118,19 +132,22 @@ const Withdraw = () => {
           type="text"
           className="form-control bg-secondary text-white border-0 me-2"
           placeholder="Enter OTP"
-        value={otp}
+          value={otp}
           onChange={(e) => setOtp(e.target.value)}
         />
-         <button
+        <button
           className="btn btn-info text-dark fw-semibold"
           onClick={handleGetOtp}
           disabled={otpLoading || otpTimer > 0}
         >
           {otpLoading
-            ? 'Sending...'
+            ? "Sending..."
             : otpTimer > 0
-              ? `${Math.floor(otpTimer / 60)}:${String(otpTimer % 60).padStart(2, '0')}`
-              : 'Code'}
+            ? `${Math.floor(otpTimer / 60)}:${String(otpTimer % 60).padStart(
+                2,
+                "0"
+              )}`
+            : "Code"}
         </button>
       </div>
 
@@ -148,14 +165,15 @@ const Withdraw = () => {
         </select>
       </div>
 
-       <button
+      <button
         className="btn btn-info text-dark fw-semibold w-100"
         onClick={handleWithdraw}
         disabled={loading}
       >
-        {loading ? 'Processing...' : 'Withdraw'}
+        {loading ? "Processing..." : "Withdraw"}
       </button>
     </div>
-}
+  );
+};
 
 export default Withdraw;

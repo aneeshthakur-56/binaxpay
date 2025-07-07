@@ -44,7 +44,7 @@ const MarginTransactions = () => {
             <div class="card-body">
               <div class="table-responsive">
                 <table
-                  class="table table-responsive table-scroll table-hover transaction-table"
+                  class="table table-responsive bg-dark table-scroll table-hover transaction-table"
                   id="transactionsTable"
                 >
                   <thead style={{ backgroundColor: "#000066" }}>
@@ -99,14 +99,24 @@ const MarginTransactions = () => {
                     ) : (
                       transactions.map((transaction, index) => (
                         <tr key={index}>
-                          <td>{index + (currentPage - 1) * limit + 1}</td>
-                          <td>${transaction.amount.toFixed(3)}</td>
-                          <td>${transaction.commissionAmount.toFixed(3)}</td>
-                          <td>${transaction.transactionCharge.toFixed(3)}</td>
-                          <td>${transaction.payableAmount.toFixed(3)}</td>
-                          <td>{transaction.remark}</td>
-                          <td>{transaction.apiKey}</td>
-                          <td>
+                          <td className="tdn">
+                            {index + (currentPage - 1) * limit + 1}
+                          </td>
+                          <td className="tdn">
+                            ${transaction.amount.toFixed(3)}
+                          </td>
+                          <td className="tdn">
+                            ${transaction.commissionAmount.toFixed(3)}
+                          </td>
+                          <td className="tdn">
+                            ${transaction.transactionCharge.toFixed(3)}
+                          </td>
+                          <td className="tdn">
+                            ${transaction.payableAmount.toFixed(3)}
+                          </td>
+                          <td className="tdn">{transaction.remark}</td>
+                          <td className="tdn">{transaction.apiKey}</td>
+                          <td className="tdn">
                             {moment(transaction.createdAt).format(
                               "DD-MM-YYYY hh:mm A"
                             )}
@@ -125,7 +135,7 @@ const MarginTransactions = () => {
                         onClick={() => handlePageChange(page)}
                         className={`px-3 py-1 rounded border ${
                           currentPage === page
-                            ? "bg-blue-500 text-white"
+                            ? "bg-blue-500 text"
                             : "bg-gray-100"
                         }`}
                       >

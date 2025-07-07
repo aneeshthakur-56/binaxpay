@@ -338,6 +338,14 @@ section {
   display: inline-block;
   margin-bottom: 50px;
 }
+.tdn {
+  background-color: #08080f !important;
+  color: #f5f5f5 !important;
+}
+.tdn:hover {
+  background-color: #1a1a2e !important;
+  color: #00f0ff !important;
+}
 
 .section-title::after {
   content: "";

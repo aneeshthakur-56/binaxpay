@@ -1,12 +1,12 @@
 // src/utils/api.js
 import axios from 'axios'; 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,//'https://api.coinp2ptrader.com/api/',
+  baseURL: 'https://backend.bitsfar.com/',
 });
 // import { toast } from 'react-toastify';
 api.interceptors.request.use(config => {
   const token = localStorage.getItem('auth_token');
-  if (token) config.headers['Authorization'] = "Bearer "+token;
+  if (token) config.headers['Authorization'] = token;
   return config;
 });
 

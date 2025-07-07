@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
     const isAuthenticated = !!token;
 
     const login = (token) => {
-        // localStorage.setItem("auth_token", token);
+        localStorage.setItem("auth_token", token);
         // localStorage.setItem("isAuthenticated", true);
         console.log('setting token ' , token)
         // isAuthenticated = true;
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        // localStorage.removeItem("auth_token");
+        localStorage.removeItem("auth_token");
          localStorage.setItem("isAuthenticated", false);
           // isAuthenticated = false;
         setToken(null);

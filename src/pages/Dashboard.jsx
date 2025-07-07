@@ -1,6 +1,14 @@
-import { useNavigate } from "react-router-dom"
+
+import React, { useState , useEffect } from 'react';
+import { useNavigate,Link } from "react-router-dom"
 import {useAuth } from "./../context/AuthContext"
+
+import { getData,postData } from '../api/protectedApi';
 const Dashboard = () => {
+    const [transactions, setTransactions] = useState([]);
+    useEffect(() => {
+        postData('/user/latest_transactions', {}) .then((res) => {setTransactions(res.data.data)}) .catch((err) => console.error(err));
+    }, []);
     const { logout } = useAuth();
     const navigate = useNavigate()
      const handleLogout = () => {
@@ -111,74 +119,36 @@ const Dashboard = () => {
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-hover transaction-table" id="transactionsTable">
+                                            <table class="table table-responsive table-scroll table-hover transaction-table" id="transactionsTable">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>Date</th>
-                                                        <th>Type</th>
                                                         <th>Amount</th>
+                                                        <th>From</th>
+                                                        <th>Hash</th>
                                                         <th>Currency</th>
-                                                        <th>Status</th>
-                                                        <th>Actions</th>
+                                                        <th>Value</th> 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>#TRX-7845</td>
-                                                        <td>2023-10-15 14:30</td>
-                                                        <td>Deposit</td>
-                                                        <td>0.0254</td>
-                                                        <td><span class="badge bg-primary">BTC</span></td>
-                                                        <td><span class="badge bg-success">Completed</span></td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-outline-primary">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#TRX-7844</td>
-                                                        <td>2023-10-15 12:45</td>
-                                                        <td>Payout</td>
-                                                        <td>1250.00</td>
-                                                        <td><span class="badge bg-info">USD</span></td>
-                                                        <td><span class="badge bg-warning">Pending</span></td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-outline-primary">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#TRX-7843</td>
-                                                        <td>2023-10-14 18:20</td>
-                                                        <td>Exchange</td>
-                                                        <td>1.254</td>
-                                                        <td><span class="badge bg-secondary">ETH</span></td>
-                                                        <td><span class="badge bg-success">Completed</span></td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-outline-primary">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#TRX-7842</td>
-                                                        <td>2023-10-14 10:15</td>
-                                                        <td>Deposit</td>
-                                                        <td>500.00</td>
-                                                        <td><span class="badge bg-success">USDT</span></td>
-                                                        <td><span class="badge bg-success">Completed</span></td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-outline-primary">Details</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#TRX-7841</td>
-                                                        <td>2023-10-13 22:05</td>
-                                                        <td>Margin</td>
-                                                        <td>0.125</td>
-                                                        <td><span class="badge bg-primary">BTC</span></td>
-                                                        <td><span class="badge bg-danger">Failed</span></td>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-outline-primary">Details</button>
-                                                        </td>
-                                                    </tr>
+                                                     {transactions.length === 0 ? (
+                                                            <p>No Transaction found.</p>
+                                                        ) : (
+                                                            transactions.map((transaction, index) => ( 
+                                                                <tr key={index}>
+                                                                    <td>#TRX-7845</td>
+                                                                    <td>{transaction.amount}</td>
+                                                                    <td><Link to={"https://bscscan.com/address/"+transaction.from}>{(transaction.from).substr(0,10)}....</Link></td>
+                                                                    <td><Link to={"https://bscscan.com/tx/"+transaction.transactionHash}>{(transaction.transactionHash).substr(0,10)}....</Link></td>
+                                                                    <td><span class="badge bg-primary">{transaction.tokenName}</span></td> 
+                                                                    <td>
+                                                                        <button class="btn btn-sm btn-outline-primary">Details</button>
+                                                                    </td>
+                                                                </tr>
+                                                            ))
+                                                        )}
+                                                    
+                                                     
                                                 </tbody>
                                             </table>
                                         </div>

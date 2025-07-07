@@ -33,9 +33,9 @@ const VerifySignin = () => {
                 toast.success(response.message); 
                 //  localStorage.setItem('auth_token', response.data);
                 login(response.token)
-                  setTimeout(() => {
+                //   setTimeout(() => {
                         navigate("/dashboard");
-                    }, 2000); 
+                    // }, 2000); 
             }else{
                 console.log('case 2 ' , response.message)
                 toast.error(response.message); 

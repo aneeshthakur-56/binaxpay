@@ -22,7 +22,7 @@ export async function loginUser (data){
 
 
 export async function verifySignIn (data){ 
-    const res = await fetch(`${BASE_URL}user/verify`, {
+    const res = await fetch(`${BASE_URL}user/verifySignIn`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

@@ -42,7 +42,7 @@ const Signin = () => {
               toast.error(response.message);
             }else{
               toast.success(response.message); 
-              login(response.data)
+            //   login(response.data)
               // localStorage.setItem('auth_token', response.data);
               setTimeout(() => {
                 navigate("/verify-signin",{state : {email : email}});

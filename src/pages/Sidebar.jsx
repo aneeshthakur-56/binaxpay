@@ -1,165 +1,283 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-// import bitsfar from "../assets/bitsfar.png";
+import Offcanvas from "bootstrap/js/dist/offcanvas";
 
-import bitsfar from '../assets/Image/bitsfar.png';
+// ✅ Replace with your actual logo image path
+import bitsfar from "../assets/Image/bitsfar.png";
 
 const Sidebar = () => {
-  const offcanvasRef = useRef(null);
-  let offcanvasInstance = useRef(null);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const transactionsRef = useRef(null);
+  const supportRef = useRef(null);
+  const moreRef = useRef(null);
+  const settingsRef = useRef(null);
+
+  const toggleDropdown = (menu) => {
+    setOpenDropdown(openDropdown === menu ? null : menu);
+  };
+
+  const closeSidebar = () => {
+    const sidebarElement = document.getElementById("sidebarCollapse");
+    let instance = Offcanvas.getInstance(sidebarElement);
+
+    if (!instance) {
+      instance = new Offcanvas(sidebarElement);
+    }
+
+    instance.hide(); // ✅ now it works safely
+  };
 
   useEffect(() => {
-    // Initialize Bootstrap Offcanvas only if the element exists
-    if (offcanvasRef.current) {
-      offcanvasInstance.current = new window.bootstrap.Offcanvas(offcanvasRef.current);
-    }
-
-    return () => {
-      // Optional cleanup if needed
-      offcanvasInstance.current = null;
+    const setMaxHeight = (ref, isOpen) => {
+      if (ref.current) {
+        ref.current.style.maxHeight = isOpen
+          ? ref.current.scrollHeight + "px"
+          : "0px";
+      }
     };
-  }, []);
 
-  // Function to close the sidebar
-  const closeSidebar = () => {
-    if (offcanvasInstance.current) {
-      offcanvasInstance.current.hide();
-    }
-  };
+    setMaxHeight(transactionsRef, openDropdown === "transactions");
+    setMaxHeight(supportRef, openDropdown === "support");
+    setMaxHeight(moreRef, openDropdown === "more");
+    setMaxHeight(settingsRef, openDropdown === "settings");
+  }, [openDropdown]);
 
   return (
     <>
-      {/* Sidebar Toggle Button */}
-      <button
-        className="btn btn-primary d-lg-none"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#sidebarCollapse"
-      >
-        <i className="fas fa-bars"></i> Menu
-      </button>
-
-      {/* Offcanvas Sidebar */}
+      {/* Sidebar */}
       <div
-        className="offcanvas offcanvas-start"
+        className="offcanvas offcanvas-start sidebar_box"
         tabIndex="-1"
         id="sidebarCollapse"
-        ref={offcanvasRef}
+        style={{
+          backgroundColor: "#2e2e97",
+          width: "260px",
+          padding: "20px 10px",
+          color: "#fff",
+        }}
       >
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title">Menu</h5>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
+        <div className="text-center mb-4">
+          <img src={bitsfar} alt="Bitsfar Logo" style={{ width: "150px" }} />
         </div>
-        <div className="offcanvas-body">
-          <div className="text-center mb-4">
-            <img src={bitsfar} alt="Bitsfar Logo" className="img-fluid logo" />
-          </div>
-          <ul className="nav flex-column">
-            <li className="nav-item">
+
+        <ul className="nav flex-column">
+          {/* Dashboard */}
+          <li className="nav-item mb-3">
+            <Link
+              className="nav-link d-flex align-items-center gap-2"
+              to="/dashboard"
+              onClick={closeSidebar}
+              style={{
+                backgroundColor: "#233b99",
+                color: "#00E1FF",
+                borderRadius: "10px",
+                padding: "12px 16px",
+              }}
+            >
+              📊 Dashboard
+            </Link>
+          </li>
+
+          {/* Transactions Dropdown */}
+          <li className="nav-item mb-2">
+            <button
+              className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
+              onClick={() => toggleDropdown("transactions")}
+              style={{ padding: "10px 15px", fontWeight: 500 }}
+            >
+              <span className="d-flex align-items-center gap-2">
+                🔄 Transactions
+              </span>
+              <span>▼</span>
+            </button>
+            <div
+              ref={transactionsRef}
+              className="overflow-hidden"
+              style={{
+                backgroundColor: "#05005C",
+                borderRadius: "8px",
+                maxHeight: "0px",
+                transition: "max-height 0.4s ease",
+                paddingRight: "15px",
+                textAlign: "center",
+              }}
+            >
               <Link
-                className="nav-link active"
-                to="#dashboard"
-                data-bs-toggle="tab"
+                className="text-white d-block py-1"
+                to="/deposit_transactions"
                 onClick={closeSidebar}
               >
-                <i className="fas fa-tachometer-alt"></i> Dashboard
+                Deposit
               </Link>
-            </li>
-            <li className="nav-item dropdown">
-              <button
-                className="nav-link dropdown-toggle btn btn-link"
-                id="transactionDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+              <Link
+                className="text-white d-block py-1"
+                to="/margin_transactions"
+                onClick={closeSidebar}
               >
-                <i className="fas fa-exchange-alt"></i> Transactions
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="#deposit"
-                    data-bs-toggle="tab"
-                    onClick={closeSidebar}
-                  >
-                    Deposit
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="#margin"
-                    data-bs-toggle="tab"
-                    onClick={closeSidebar}
-                  >
-                    Margin
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="#payout"
-                    data-bs-toggle="tab"
-                    onClick={closeSidebar}
-                  >
-                    Payout
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <button
-                className="nav-link dropdown-toggle btn btn-link"
-                id="supportDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                Margin
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="payout_transactions"
+                onClick={closeSidebar}
               >
-                <i className="fas fa-headset"></i> Support
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="#create-ticket"
-                    data-bs-toggle="tab"
-                    onClick={closeSidebar}
-                  >
-                    Create Ticket
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="#inbox"
-                    data-bs-toggle="tab"
-                    onClick={closeSidebar}
-                  >
-                    Inbox
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="#outbox"
-                    data-bs-toggle="tab"
-                    onClick={closeSidebar}
-                  >
-                    Outbox
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+                Payout
+              </Link>
+            </div>
+          </li>
+
+          <li className="nav-item mb-2">
+            <button
+              className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
+              onClick={() => toggleDropdown("settings")}
+              style={{ padding: "10px 15px", fontWeight: 500 }}
+            >
+              <span className="d-flex align-items-center gap-2">
+                🔄 Settings
+              </span>
+              <span>▼</span>
+            </button>
+            <div
+              ref={settingsRef}
+              className="overflow-hidden"
+              style={{
+                backgroundColor: "#05005C",
+                borderRadius: "8px",
+                maxHeight: "0px",
+                transition: "max-height 0.4s ease",
+                paddingRight: "15px",
+                textAlign: "center",
+              }}
+            >
+              <Link
+                className="text-white d-block py-1"
+                to="/whitelist_ip"
+                onClick={closeSidebar}
+              >
+                IP Management
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="/api_keys"
+                onClick={closeSidebar}
+              >
+                Api Keys
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="/profile"
+                onClick={closeSidebar}
+              >
+                Profile
+              </Link>
+            </div>
+          </li>
+
+          {/* Support Dropdown */}
+          <li className="nav-item mb-2">
+            <button
+              className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
+              onClick={() => toggleDropdown("support")}
+              style={{ padding: "10px 15px", fontWeight: 500 }}
+            >
+              <span className="d-flex align-items-center gap-2">
+                🎧 Support
+              </span>
+              <span>▼</span>
+            </button>
+            <div
+              ref={supportRef}
+              className="overflow-hidden"
+              style={{
+                backgroundColor: "#05005C",
+                borderRadius: "8px",
+                maxHeight: "0px",
+                transition: "max-height 0.4s ease",
+                paddingRight: "15px",
+                textAlign: "center",
+              }}
+            >
+              <Link
+                className="text-white d-block py-1"
+                to="#"
+                onClick={closeSidebar}
+              >
+                Create Ticket
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="#"
+                onClick={closeSidebar}
+              >
+                Inbox
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="#"
+                onClick={closeSidebar}
+              >
+                Outbox
+              </Link>
+            </div>
+          </li>
+
+          {/* ✅ More Dropdown */}
+          <li className="nav-item mb-2">
+            <button
+              className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
+              onClick={() => toggleDropdown("more")}
+              style={{ padding: "10px 15px", fontWeight: 500 }}
+            >
+              <span className="d-flex align-items-center gap-2">⋯ More</span>
+              <span>▼</span>
+            </button>
+            <div
+              ref={moreRef}
+              className="overflow-hidden"
+              style={{
+                backgroundColor: "#05005C",
+                borderRadius: "8px",
+                maxHeight: "0px",
+                transition: "max-height 0.4s ease",
+                paddingRight: "15px",
+                textAlign: "center",
+              }}
+            >
+              <Link
+                className="text-white d-block py-1"
+                to="#"
+                onClick={closeSidebar}
+              >
+                Supported Coins
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="#"
+                onClick={closeSidebar}
+              >
+                Fees
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="#"
+                onClick={closeSidebar}
+              >
+                Docs
+              </Link>
+              <Link
+                className="text-white d-block py-1"
+                to="#"
+                onClick={closeSidebar}
+              >
+                Blog
+              </Link>
+            </div>
+          </li>
+        </ul>
       </div>
     </>
   );
-}
-
+};
 
 export default Sidebar;

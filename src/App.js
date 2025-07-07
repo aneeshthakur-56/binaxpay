@@ -49,14 +49,20 @@ const Home = () => (
 const App = () => (
   <Router>
     <Routes>
- 
-      <Route path="/" element={ <><Navbar /> <Home /></>} />
+      <Route
+        path="/"
+        element={
+          <>
+            <Navbar /> <Home />
+          </>
+        }
+      />
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/VerifySignup" element={<VerifySignup />} />
-      <Route path="/verify-signin" element={<VerifySignin />} /> 
+      <Route path="/verify-signin" element={<VerifySignin />} />
 
-      <Route path="/register-success" element={<RegisterSuccess/>}/>
+      <Route path="/register-success" element={<RegisterSuccess />} />
       <Route path="/forgot" element={<Forgot />} />
       <Route element={<AuthGuard />}>
         <Route element={<DashboardLayout />}>
@@ -76,7 +82,6 @@ const App = () => (
         </Route>
       </Route>
     </Routes>
-
   </Router>
 );
 

@@ -1,108 +1,195 @@
-
-
-
-import React from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import {
+  FaTwitter,
+  FaLinkedin,
+  FaGithub,
+  FaTelegramPlane,
+  FaDiscord,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
     <>
       <style>{`
         .footer {
-          background-color: #14142b;
-          color: white;
-          padding: 70px 0 40px;
+          background-color: #1a1a2e;
+          color: #ffffff;
+          padding: 80px 0 30px;
+          font-family: 'Segoe UI', sans-serif;
         }
 
-        .footer h5 {
-          font-weight: 700;
-          font-size: 24px;
+        .footer-logo {
+          font-size: 32px;
+          font-weight: 800;
+          font-family: 'Space Grotesk', sans-serif;
         }
 
-        .footer p {
-          color: #ccc;
-          margin-top: 15px;
-          font-size: 16px;
+        .footer-logo .highlight {
+          color: #00f5ff;
         }
 
-        .footer .social-icons svg {
-          // background-color:rgb(91, 204, 245);
-          color: white;
-          padding: 10px;
+        .footer-description {
+          color: #d1d1d1;
+          margin-top: 20px;
+          font-size: 17px;
+          line-height: 1.8;
+          max-width: 520px;
+        }
+
+        .social-icons {
+          margin-top: 30px;
+          display: flex;
+          gap: 16px;
+        }
+
+        .social-icon {
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
-          margin-right: 12px;
-          font-size: 24px;
-          transition: transform 0.3s;
+          background-color: #1d1d3a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: 0.3s ease;
+          color: #ffffff;
         }
 
-        .footer .social-icons svg:hover {
-          transform: translateY(-4px);
+        .social-icon:hover {
+          background-color:#00f0ff;
+          transform: translateY(-2px);
         }
 
-        .footer input {
-          background-color: #0d0d0d;
+        .footer-subscribe-title {
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 20px;
+          color: #ffffff;
+        }
+
+        .subscribe-wrapper {
+          display: flex;
+          max-width: 500px;
+          margin-left: auto;
+          background: transparent;
+          border-radius: 50px;
+          overflow: hidden;
+        }
+
+        .subscribe-input {
+          flex: 1;
           border: none;
+          background-color: #000;
+          color: #fff;
+          padding: 16px 20px;
+          font-size: 16px;
+          border-radius: 50px 0 0 50px;
+        }
+
+        .subscribe-input::placeholder {
+          color: #888;
+        }
+
+        .subscribe-button {
+          background-color: #00008b;
           color: white;
-          padding: 14px 20px;
-          width: 100%;
-          border-radius: 0;
-        }
-
-        .footer input::placeholder {
-          color: #aaa;
-        }
-
-        .footer .subscribe-btn {
-          background-color: #00008B;
           border: none;
-          border-radius: 30px;
-          padding: 14px 30px;
-          color: white;
+          padding: 0 30px;
+          font-size: 16px;
+          font-weight: 600;
+          border-radius: 0 50px 50px 0;
+          transition: 0.3s ease;
+        }
+
+        .subscribe-button:hover {
+          color: #00ffff !important;
+          border: 2px solid #00ffff !important;
+          background-color: transparent !important;
+          box-shadow: 10px 10px  10px 10px #00ffff !important;
         }
 
         .footer-bottom {
-          border-top: 1px solid #2c2c3a;
-          margin-top: 50px;
+          margin-top: 60px;
           padding-top: 20px;
-          color: #bbb;
-          font-size: 14px;
+          border-top: 1px solid #2a2a44;
+          text-align: center;
+          font-size: 20px;
+          color: #fffff;
+        }
+
+        @media (max-width: 767px) {
+          .subscribe-wrapper {
+            flex-direction: column;
+            border-radius: 20px;
+          }
+
+          .subscribe-input {
+            border-radius: 20px 20px 0 0;
+          }
+
+          .subscribe-button {
+            border-radius: 0 0 20px 20px;
+            width: 100%;
+            margin-top: 10px;
+          }
+
+          .footer-subscribe-title {
+            text-align: left;
+          }
         }
       `}</style>
 
       <footer className="footer">
         <Container>
-          <Row className="align-items-center">
-            {/* Left Side */}
+          <Row className="align-items-start">
+            {/* Left */}
             <Col md={6}>
-              <h5>BITSFAR</h5>
-              <p>
-                The most advanced cryptocurrency payment gateway for modern businesses. <br />
-                Secure, fast, and cost-effective solutions for the digital economy.
-              </p>
-              <div className="social-icons mt-4">
-                <FaTwitter size={40} color="white" />
-                <FaLinkedin  size={40} color="white" />
-                <FaGithub  size={40} color="white"/>
-                <FaTwitter style={{ opacity: 0.3 }} />
-                {/* <FaLinkedin style={{ opacity: 0.3 }} /> */}
+              <div className="footer-logo">
+                BIT<span className="highlight">STAR</span>
+              </div>
+              <div className="footer-description">
+                The most advanced cryptocurrency payment gateway for modern
+                businesses. Secure, fast, and cost-effective solutions for the
+                digital economy.
+              </div>
+              <div className="social-icons">
+                <div className="social-icon">
+                  <FaTwitter />
+                </div>
+                <div className="social-icon">
+                  <FaLinkedin />
+                </div>
+                <div className="social-icon">
+                  <FaGithub />
+                </div>
+                <div className="social-icon">
+                  <FaTelegramPlane />
+                </div>
+                <div className="social-icon">
+                  <FaDiscord />
+                </div>
               </div>
             </Col>
 
-          
-            <Col md={6} className="text-md-end mt-5 mt-md-0">
-              <h6 className="mb-3 fw-bold" style={{ fontSize: "17px" }}>
+            {/* Right */}
+            <Col md={6} className="mt-5 mt-md-0 text-md-end">
+              <div className="footer-subscribe-title">
                 Subscribe to Our Newsletter
-              </h6>
-              <div className="d-flex">
-                <Form.Control type="email" placeholder="Your email address" className="me-2" />
-                <Button className="subscribe-btn">Subscribe</Button>
+              </div>
+              <div className="subscribe-wrapper">
+                <input
+                  type="email"
+                  className="subscribe-input"
+                  placeholder="Your email address"
+                />
+                <button className="subscribe-button">Subscribe</button>
               </div>
             </Col>
           </Row>
 
-          <div className="footer-bottom text-center mt-5">
-            © 2023 Bitsfar. All rights reserved. Cryptocurrency services are provided by Bitsfar Technologies AG.
+          <div className="footer-bottom mt-5">
+            © 2023 Bitsfar. All rights reserved. Cryptocurrency services are
+            provided by Bitsfar Technologies AG.
           </div>
         </Container>
       </footer>
@@ -111,4 +198,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

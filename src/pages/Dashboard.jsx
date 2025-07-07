@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 import { postData } from "../api/protectedApi";
 import { useAuth } from "../context/AuthContext";
+import moment from "moment"; 
 
 const Dashboard = () => {
   const [transactions, setTransactions] = useState([]);
+  const [dashboardData, setDashboardData] = useState([]);
   const { logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    postData("/user/latest_transactions", {})
-      .then((res) => {
-        setTransactions(res.data.data);
-      })
-      .catch((err) => console.error(err));
+    postData("/user/latest_transactions", {})  .then((res) => { setTransactions(res.data.data);  }) .catch((err) => console.error(err));
+    postData("/user/wallet_sum", {})  .then((res) => { setDashboardData(res.data);  }) .catch((err) => console.error(err));
   }, []);
 
   const handleLogout = () => {
@@ -65,8 +64,7 @@ const Dashboard = () => {
 
       {/* Dashboard Cards */}
       <div className="row mb-4">
-        {[...Array(4)].map((_, i) => (
-          <div className="col-md-6 col-lg-3 mb-3" key={i}>
+        <div className="col-md-6 col-lg-3 mb-3">
             <div
               className="card text-white h-100"
               style={{ backgroundColor: "#2e2e97" }}
@@ -75,7 +73,7 @@ const Dashboard = () => {
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
                     <h6 className="text-white-50">Total Balance</h6>
-                    <h4>$12,450.75</h4>
+                    <h4>${dashboardData?.walletBalance }</h4>
                   </div>
                   <div
                     style={{
@@ -86,14 +84,36 @@ const Dashboard = () => {
                   >
                     <i className="fas fa-wallet text-dark"></i>
                   </div>
-                </div>
-                <p className="text-success mt-2 mb-0">
-                  <i className="fas fa-caret-up me-1"></i>12.5% from last month
-                </p>
+                </div> 
               </div>
             </div>
-          </div>
-        ))}
+        </div>
+        <div className="col-md-6 col-lg-3 mb-3">
+            <div className="card text-white h-100" style={{ backgroundColor: "#2e2e97" }}  >
+              <div className="card-body">
+                <div className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 className="text-white-50">Tx Count</h6>
+                    <h4>{dashboardData?.depositCount }</h4>
+                  </div> 
+                </div> 
+              </div>
+            </div>
+        </div>
+
+         <div className="col-md-6 col-lg-3 mb-3">
+            <div className="card text-white h-100" style={{ backgroundColor: "#2e2e97" }}  >
+              <div className="card-body">
+                <div className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 className="text-white-50">Deposited Amount</h6>
+                    <h4>${dashboardData?.totalDeposit }</h4>
+                  </div> 
+                </div>
+                 
+              </div>
+            </div>
+        </div>
       </div>
 
       {/* Recent Transactions */}
@@ -121,10 +141,10 @@ const Dashboard = () => {
                     Currency
                   </th>
                   <th style={{ backgroundColor: "#000066", color: "#fff" }}>
-                    Status
+                    From
                   </th>
                   <th style={{ backgroundColor: "#000066", color: "#fff" }}>
-                    Actions
+                    Hash
                   </th>
                 </tr>
               </thead>
@@ -138,32 +158,26 @@ const Dashboard = () => {
                 ) : (
                   transactions.map((trx, index) => (
                     <tr key={index}>
-                      <td>#TRX-{7840 + index}</td>
-                      <td>{trx.timestamp || "2023-10-15 14:30"}</td>
+                      <td> { 1 + index}</td>
+                      <td>{moment(trx.createdAt).format("DD-MM-YYYY hh:mm A" )}</td>
                       <td>{trx.type || "Deposit"}</td>
                       <td>{parseFloat(trx.amount).toFixed(4)}</td>
                       <td>
                         <span
                           className={`badge ${getCurrencyColor(trx.tokenName)}`}
                         >
-                          {trx.tokenName || "USDT"}
-                        </span>
-                      </td>
-                      {/* <td>
-                        <span
-                          className={`badge ${getStatusBadge(
-                            trx.status || "Completed"
-                          )}`}
+                          <Link
+                          to={"https://bscscan.com/address/" + trx.from}
+                          style={{ color: "#00ccff" }}
                         >
-                          {(trx.status || "Completed").charAt(0).toUpperCase() +
-                            (trx.status || "Completed").slice(1)}
+                          {trx.from.substr(0, 10)}....</Link> 
                         </span>
-                      </td> */}
-                      <td>
-                        <button className="btn btn-outline-primary btn-sm">
-                          Details
-                        </button>
-                      </td>
+                      </td>  
+                      <td> <Link
+                          to={"https://bscscan.com/tx/" + trx.transactionHash}
+                          style={{ color: "#00ccff" }}
+                        >
+                          {trx.transactionHash.substr(0, 10)}....</Link></td>
                     </tr>
                   ))
                 )}

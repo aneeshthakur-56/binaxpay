@@ -7,10 +7,11 @@ import Sidebar from "./Sidebar";
 import "./DashboardLayout.css";
 
 const DashboardLayout = () => {
+  let user = JSON.parse(localStorage.getItem('user')) 
   const [collapsed, setCollapsed] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
 
@@ -56,7 +57,7 @@ const DashboardLayout = () => {
 
             {/* ✅ Username + Logout button */}
             <div className="d-flex align-items-center ms-auto gap-3">
-              <span className="text-white fw-semibold">John</span>
+              <span className="text-white fw-semibold">{user.userId} ({user.name})</span>
               <button className="btn btn-sm btn-danger" onClick={handleLogout}>
                 <i className="fas fa-sign-out-alt me-1"></i> Logout
               </button>

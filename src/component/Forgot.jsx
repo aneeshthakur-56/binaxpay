@@ -1,9 +1,46 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bitsfar from '../assets/Image/bitsfar.png';
 import { FaEnvelope, FaLock, FaBolt, FaShieldAlt, FaKey } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import {  resendVierifyOtpMail  } from "../api/api";
 
 const Forgot = () => {
+    const [otp, setOtp] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState(''); 
+    const [showPassword, setShowPassword] = useState(false);
+    const [cPassword, setCPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [otpLoading, setOtpLoading] = useState(false);
+    const [otpTimer, setOtpTimer] = useState(0);
+    const handleGetOtp = async () => {
+        try {
+            setOtpLoading(true); 
+            const response =   await resendVierifyOtpMail({email:email,type:"resendOtp"}); 
+            console.log(' withdraw response ' , response)
+            if (response.data.success) {
+                  toast.success('OTP Sent Successfully!');
+                setOtpTimer(120);  // Start 2 minute countdown
+            } else {
+                  toast.error(response.data.message || 'Failed to send OTP');
+            }
+          } catch (error) {
+                    console.error(error);
+                     toast.error('Error sending OTP');
+        } finally {
+         setOtpLoading(false);
+        }
+    };
+    useEffect(() => {
+      let timer;
+      if (otpTimer > 0) {
+      timer = setTimeout(() => setOtpTimer(otpTimer - 1), 1000);
+      }
+      return () => clearTimeout(timer);
+  }, [otpTimer]);
   return (
     <div className="forgot-wrapper d-flex flex-column flex-md-row text-white ">
       {/* Left Side */}
@@ -26,14 +63,63 @@ const Forgot = () => {
       <div className="forgot-right animate-right d-flex flex-column justify-content-center align-items-center px-4 py-5 w-100">
         <div className="w-100" style={{ maxWidth: "400px" }}>
           <h3 className="fw-bold mb-3">Forgot Password</h3>
-          <p className="mb-4 text-light">We'll send you a link to reset your password</p>
+          <p className="mb-4 text-light">You can reset password here</p>
 
           <form>
             <div className="mb-3 position-relative">
-              <FaEnvelope className="form-icon" />
-              <input type="email" placeholder="your@email.com" className="form-control custom-input" />
+              <FaEnvelope className="form-icon" /> 
+               <input
+                    type="email"
+                    placeholder="Enter Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className='form-control custom-input'
+                  />
             </div>
-
+            <span
+                                style={{
+                                  position: "absolute",
+                                  left: "10px",
+                                  top: "50%",
+                                  transform: "translateY(-50%)",
+                                  color: "#aaa",
+                                }}
+                              >
+                                <FaLock />
+                              </span>
+                              <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Enter Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                style={{
+                                  paddingLeft: "35px",
+                                  paddingRight: "35px",
+                                }}
+                              />
+             <div className="mb-3 d-flex">
+              <input
+                type="text"
+                className="form-control bg-secondary text-white border-0 me-2"
+                placeholder="Enter OTP"
+              value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+              />
+              <button
+                type="button"
+                className="btn btn-info text-dark fw-semibold"
+                onClick={handleGetOtp}
+                disabled={otpLoading || otpTimer > 0}
+              >
+                {otpLoading
+                  ? 'Sending...'
+                  : otpTimer > 0
+                    ? `${Math.floor(otpTimer / 60)}:${String(otpTimer % 60).padStart(2, '0')}`
+                    : 'Code'}
+              </button>
+            </div>
             <button type="submit" className="btn custom-reset-btn w-100">Send Reset Link</button>
           </form>
 

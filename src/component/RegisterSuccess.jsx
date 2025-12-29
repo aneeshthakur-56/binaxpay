@@ -1,5 +1,5 @@
 
-import bitsfar from '../assets/Image/bitsfar.png';
+import bitsfar from '../assets/Image/binaxpay.png';
 
 import { Link } from 'react-router-dom';
 import './custom.css';

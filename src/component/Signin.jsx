@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "react-toastify/dist/ReactToastify.css";
-import bitsfar from "../assets/Image/bitsfar.png";
+import bitsfar from "../assets/Image/binaxpay.png";
 import { loginUser } from "../api/api";
 import { useAuth } from "../context/AuthContext";
 import "./custom.css";

@@ -1,8 +1,7 @@
 // src/utils/api.js
 import axios from 'axios'; 
 const api = axios.create({
-  baseURL: 'https://backend.bitsfar.com/',
-  // baseURL: 'https://backend.kryptohas.com/',
+  baseURL: 'https://api.binaxpay.online/', 
 });
 // import { toast } from 'react-toastify';
 api.interceptors.request.use(config => {

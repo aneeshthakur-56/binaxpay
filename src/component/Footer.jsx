@@ -145,7 +145,7 @@ const Footer = () => {
             {/* Left */}
             <Col md={6}>
               <div className="footer-logo">
-                BIT<span className="highlight">STAR</span>
+                BINA<span className="highlight">X PAY</span>
               </div>
               <div className="footer-description">
                 The most advanced cryptocurrency payment gateway for modern

@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import bitsfar from '../assets/Image/bitsfar.png';
+import bitsfar from '../assets/Image/binaxpay.png';
 import { FaRocket,   FaHandHoldingUsd } from 'react-icons/fa';  
 import { FcHeadset} from 'react-icons/fc';  
 import { registerUser } from "../api/api";

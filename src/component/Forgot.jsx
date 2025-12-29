@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import bitsfar from '../assets/Image/bitsfar.png';
+import bitsfar from '../assets/Image/binaxpay.png';
 import { FaEnvelope, FaLock, FaBolt, FaShieldAlt, FaKey } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

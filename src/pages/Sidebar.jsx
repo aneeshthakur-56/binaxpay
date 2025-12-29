@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Offcanvas from "bootstrap/js/dist/offcanvas";
 
 // ✅ Replace with your actual logo image path
-import bitsfar from "../assets/Image/bitsfar.png";
+import bitsfar from "../assets/Image/binaxpay.png";
 
 const Sidebar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);

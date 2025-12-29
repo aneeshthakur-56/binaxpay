@@ -1,6 +1,6 @@
 import React, { useState , useEffect,useRef } from 'react';
 import { Link } from 'react-router-dom';
-import bitsfar from '../assets/Image/bitsfar.png';
+import bitsfar from '../assets/Image/binaxpay.png';
 import { FaRocket,   FaHandHoldingUsd, FaUser, FaShieldAlt } from 'react-icons/fa';  
 import { FcHeadset} from 'react-icons/fc';  
 import { verifySignIn , resendVierifyOtpMail  } from "../api/api";

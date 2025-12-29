@@ -1,5 +1,4 @@
-const BASE_URL = 'https://backend.bitsfar.com/';//process.env.BASE_URL
-// const BASE_URL = 'https://backend.kryptohas.com/';//process.env.BASE_URL
+const BASE_URL = 'https://api.binaxpay.online/';//process.env.BASE_URL 
 console.log(' BASE_URL ' , BASE_URL)
 
 export async function registerUser (data ){

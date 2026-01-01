@@ -72,7 +72,7 @@ const Dashboard = () => {
               <div className="card-body">
                 <div className="d-flex justify-content-between align-items-center">
                   <div>
-                    <h6 className="text-white-50">Total Balance</h6>
+                    <h6 className="text-white-50 ">Total Balance</h6>
                     <h4>${dashboardData?.walletBalance }</h4>
                   </div>
                   <div
@@ -120,7 +120,7 @@ const Dashboard = () => {
       <div className="card border-0 shadow-lg">
         <div className="card-header d-flex justify-content-between align-items-center">
           <h5 className="mb-0 text">Recent Transactions</h5>
-          <button className="btn2 btn-outline-light btn-sm">View All</button>
+          <button className="btn2 btn-outline-light btn-sm ">View All</button>
         </div>
         <div className="card-body">
           <div className="table-responsive">

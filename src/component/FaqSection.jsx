@@ -39,29 +39,29 @@ const FaqSection = () => {
 
   const faqs = [
     {
-      question: "What cryptocurrencies does Bitsfar support?",
+      question: "What cryptocurrencies does Binaxpay support?",
       answer:
-        "Bitsfar currently supports over 50 cryptocurrencies including Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC), Ripple (XRP), Bitcoin Cash (BCH), Cardano (ADA), Polkadot (DOT), and many more. We continuously add support for new cryptocurrencies based on market demand.",
+        "Binaxpay currently supports over 50 cryptocurrencies including Bitcoin (BTC), Ethereum (ETH), Litecoin (LTC), Ripple (XRP), Bitcoin Cash (BCH), Cardano (ADA), Polkadot (DOT), and many more. We continuously add support for new cryptocurrencies based on market demand.",
     },
     {
       question: "How quickly are transactions processed?",
       answer:
-        "Bitsfar processes transactions in near real-time. Most cryptocurrency transactions are confirmed within 30 seconds to 2 minutes, depending on the blockchain network.",
+        "Binaxpay processes transactions in near real-time. Most cryptocurrency transactions are confirmed within 30 seconds to 2 minutes, depending on the blockchain network.",
     },
     {
       question: "Can I convert crypto to fiat automatically?",
       answer:
-        "Yes! Bitsfar offers automatic conversion to fiat currencies at competitive exchange rates. You can choose to receive settlements in crypto or fiat.",
+        "Yes! Binaxpay offers automatic conversion to fiat currencies at competitive exchange rates. You can choose to receive settlements in crypto or fiat.",
     },
     {
       question: "What security measures are in place?",
       answer:
-        "Bitsfar employs multiple layers of security including military-grade encryption, multi-signature wallets, cold storage, and two-factor authentication.",
+        "Binaxpay employs multiple layers of security including military-grade encryption, multi-signature wallets, cold storage, and two-factor authentication.",
     },
     {
-      question: "How do I integrate Bitsfar with my website?",
+      question: "How do I integrate Binaxpay with my website?",
       answer:
-        "Bitsfar offers hosted payment pages, plugins for WooCommerce/Shopify/Magento, and API options for developers. Most merchants can set up in under an hour.",
+        "Binaxpay offers hosted payment pages, plugins for WooCommerce/Shopify/Magento, and API options for developers. Most merchants can set up in under an hour.",
     },
   ];
 

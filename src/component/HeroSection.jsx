@@ -14,16 +14,13 @@ const HeroSection = () => {
             {/* Text Column */}
             <div className="col-lg-6 order-2 order-lg-1 mt-5 mt-lg-0 text-slide">
               <h1 className="display-4 fw-bold mb-3 mt-5">
-                The Future of <br />
-                <span className="text-info">Crypto Payments</span> <br />
-                Starts Here
+                CRYPTO  <br />
+                <span className="text-info">PAYMENTS</span> <br />
+                MADE EASY
               </h1>
 
               <p className="fs-5 mb-4">
-                Bitsfar is revolutionizing digital commerce with our
-                lightning-fast, ultra-secure cryptocurrency payment gateway.
-                Accept payments in Bitcoin, Ethereum, and 50+ other
-                cryptocurrencies with ease.
+                Seamlessly accept and send crypto payments with our cutting-edge platform, built for businesses, traders, and everyday users alike. Whether you're an entrepreneur looking to expand your payment options, a crypto investor managing digital assets, or even an explorer from another world —our gateway makes transactions fast, secure, and borderless.
               </p>
 
               <div className="d-flex gap-3 flex-wrap cta-buttons mb-4">

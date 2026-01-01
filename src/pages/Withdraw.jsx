@@ -107,17 +107,21 @@ const Withdraw = () => {
         <label className="form-label small ">Withdraw Amount </label>
         <input
           type="number"
+          min="0"
+          step="any"
           className="form-control bg-secondary text-white border-0"
           placeholder="Enter amount"
           value={amount}
           onChange={(e) => {
-            setAmount(e.target.value);
+            const value = e.target.value;
+            if (value < 0) return;
+            setAmount(value);
           }}
         />
       </div>
 
       <div className="mb-3">
-        <label className="form-label small  ">Address</label>
+        <label className="form-label small">Address</label>
         <input
           type="text"
           className="form-control bg-secondary text-white border-0"
@@ -143,11 +147,11 @@ const Withdraw = () => {
           {otpLoading
             ? "Sending..."
             : otpTimer > 0
-            ? `${Math.floor(otpTimer / 60)}:${String(otpTimer % 60).padStart(
+              ? `${Math.floor(otpTimer / 60)}:${String(otpTimer % 60).padStart(
                 2,
                 "0"
               )}`
-            : "Code"}
+              : "Code"}
         </button>
       </div>
 

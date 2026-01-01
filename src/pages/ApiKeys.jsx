@@ -197,7 +197,7 @@ const ApiKey = () => {
                       onClick={handleForm}
                       disabled={loading}
                     >
-                      {loading ? "Processing..." : "Withdraw"}
+                      {loading ? "Processing..." : "Generate API Key"}
                     </button>
                   </div>
                 </div>

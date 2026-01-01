@@ -73,7 +73,7 @@ const CallToAction = () => {
               Accepting Crypto Payments?
             </h1>
             <p className="mt-3 fs-5 text-white-50">
-              Join thousands of businesses using Bitsfar to streamline their
+              Join thousands of businesses using Binaxpay to streamline their
               payment processing and unlock new revenue opportunities in the
               growing cryptocurrency market.
             </p>

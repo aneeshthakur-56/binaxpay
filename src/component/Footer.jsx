@@ -188,8 +188,7 @@ const Footer = () => {
           </Row>
 
           <div className="footer-bottom mt-5">
-            © 2023 Bitsfar. All rights reserved. Cryptocurrency services are
-            provided by Bitsfar Technologies AG.
+            © 2022-2025 Binaxpay. All rights reserved. Wallet services and other virtual asset services provided by Hodltech OÜ or its partners.
           </div>
         </Container>
       </footer>

@@ -7,7 +7,7 @@ const testimonials = [
     role: "CEO, TechStart",
     img: "https://randomuser.me/api/portraits/women/44.jpg",
     quote:
-      "Bitsfar has transformed how we accept international payments. The low fees and fast settlement times have saved us thousands in transaction costs while opening up new markets we couldn't reach before.",
+      "Binaxpay has transformed how we accept international payments. The low fees and fast settlement times have saved us thousands in transaction costs while opening up new markets we couldn't reach before.",
   },
   {
     name: "Michael Chen",
@@ -21,7 +21,7 @@ const testimonials = [
     role: "Founder, CryptoStore",
     img: "https://randomuser.me/api/portraits/women/65.jpg",
     quote:
-      "As a crypto-native business, we needed a payment processor that truly understands blockchain. Bitsfar's multi-chain support and automatic conversions are game-changers. Our revenue increased by 40% after switching to Bitsfar.",
+      "As a crypto-native business, we needed a payment processor that truly understands blockchain. Binaxpay's multi-chain support and automatic conversions are game-changers. Our revenue increased by 40% after switching to Binaxpay.",
   },
 ];
 

@@ -123,7 +123,7 @@ const Business = () => {
           <span className="text-accent">Benefits</span>
         </h2>
         <p className="mb-5 mt-2 fs-5 text-white">
-          Discover how Bitsfar can transform your payment processing and grow
+          Discover how Binaxpay can transform your payment processing and grow
           your business.
         </p>
 

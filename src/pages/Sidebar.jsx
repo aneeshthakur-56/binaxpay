@@ -4,6 +4,7 @@ import Offcanvas from "bootstrap/js/dist/offcanvas";
 
 // ✅ Replace with your actual logo image path
 import bitsfar from "../assets/Image/binaxpay.png";
+import { FaAddressBook, FaArrowDown, FaChartLine, FaHistory, FaKey, FaNetworkWired, FaPaperPlane, FaUser, FaWallet } from "react-icons/fa";
 
 const Sidebar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -104,24 +105,27 @@ const Sidebar = () => {
               }}
             >
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-flex align-items-center gap-3 py-1 justify-content-center"
                 to="/deposit_transactions"
                 onClick={closeSidebar}
               >
+                <FaArrowDown size={14} />
                 Deposit
               </Link>
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-flex align-items-center gap-3 py-1 justify-content-center"
                 to="/margin_transactions"
                 onClick={closeSidebar}
               >
+                <FaChartLine size={14} />
                 Margin
               </Link>
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-flex align-items-center py-1 gap-3 justify-content-center "
                 to="payout_transactions"
                 onClick={closeSidebar}
               >
+                <FaWallet size={14} />
                 Payout
               </Link>
             </div>
@@ -146,36 +150,41 @@ const Sidebar = () => {
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
-                paddingRight: "15px",
+                // paddingRight: "15px",
+                paddingLeft: "72px",
                 textAlign: "center",
               }}
             >
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-block py-1 d-flex gap-3 align-items-center text-start"
                 to="/whitelist_ip"
                 onClick={closeSidebar}
               >
+                <FaNetworkWired size={14} />
                 IP Management
               </Link>
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-block py-1 d-flex gap-3 align-items-center text-start"
                 to="/api_keys"
                 onClick={closeSidebar}
               >
+                <FaKey size={14} />
                 Api Keys
               </Link>
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-block py-1 d-flex gap-3 align-items-center text-start"
                 to="/profile"
                 onClick={closeSidebar}
               >
+                <FaUser size={14} />
                 Profile
               </Link>
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-block py-1 d-flex gap-3 align-items-center text-start"
                 to="/self_addresses"
                 onClick={closeSidebar}
               >
+                <FaAddressBook size={14} />
                 Self Address
               </Link>
             </div>
@@ -245,22 +254,25 @@ const Sidebar = () => {
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
-                paddingRight: "15px",
+                // paddingRight: "15px",
+                paddingLeft: "52px",
                 textAlign: "center",
               }}
             >
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-block py-1 gap-3 d-flex align-items-center justify-content-center"
                 to="withdraw"
                 onClick={closeSidebar}
               >
+                <FaPaperPlane size={14} />
                 Submit Withdraw
               </Link>
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-block py-1 gap-3 d-flex align-items-center justify-content-center"
                 to="withdraw_history"
                 onClick={closeSidebar}
               >
+                <FaHistory size={14} />
                 Withdraw History
               </Link>
             </div>

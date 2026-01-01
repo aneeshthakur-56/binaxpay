@@ -35,9 +35,9 @@ const WithdrawHistory = () => {
   }, [currentPage]);
   return (
     <>
-      <div class="row">
+      <div class="row" >
         <div class="col-12" data-aos="fade-up">
-          <div class="card">
+          <div class="card" style={{ maxWidth: "100%", backgroundColor: "#282857" }}>
             <div class="card-header d-flex justify-content-between align-items-center">
               <h5 class="mb-0 text">Recent Transactions</h5>
             </div>

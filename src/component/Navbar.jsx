@@ -61,7 +61,7 @@ const Navbar = () => {
 
               <Link
                 to="/Signin"
-                className="btn btn-signin rounded-pill fw-semibold d-inline-flex align-items-center justify-content-center px-3 py-2"
+                className="btn btn-signin rounded-pill fw-semibold d-inline-flex align-items-center justify-content-center px-3 py-2 "
               >
                 <i className="mdi mdi-login"></i>
                 <span className="ms-2">Sign In</span>

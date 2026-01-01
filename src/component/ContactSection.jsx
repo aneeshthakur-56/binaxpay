@@ -170,14 +170,14 @@ const ContactSection = () => {
                       </div>
                       <div>
                         <h5 className="mb-2">Email</h5>
-                        <p className="mb-0">info@Bitsfar.com</p>
-                        <p className="mb-0">support@Bitsfar.com</p>
+                        <p className="mb-0">info@Binaxpay.com</p>
+                        <p className="mb-0">support@Binaxpay.com</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Working Hours */}
-                  <div className="col-md-6">
+                  {/* <div className="col-md-6">
                     <div className="d-flex">
                       <div className="me-3">
                         <FaClock className="info-icon" />
@@ -188,7 +188,7 @@ const ContactSection = () => {
                         <p className="mb-0">Sat–Sun: Closed</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Social Icons */}
                   <div className="col-12 mt-4">

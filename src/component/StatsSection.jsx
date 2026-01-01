@@ -23,7 +23,7 @@ const StatsSection = () => {
             <span className="highlight">Numbers</span>
           </h2>
           <p className="description mb-5">
-            Join thousands of businesses already benefiting from Bitsfar's
+            Join thousands of businesses already benefiting from Binaxpay's
             revolutionary payment solutions.
           </p>
 

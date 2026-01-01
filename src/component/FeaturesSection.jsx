@@ -11,7 +11,7 @@ const features = [
     ),
     title: "Military-Grade Security",
     description:
-      "Bitsfar employs advanced encryption, multi-signature wallets, and cold storage to ensure your transactions and funds are always protected against threats.",
+      "Binaxpay employs advanced encryption, multi-signature wallets, and cold storage to ensure your transactions and funds are always protected against threats.",
   },
   {
     icon: (
@@ -75,7 +75,11 @@ const FeaturesSection = () => {
 
         .section-title {
           font-size: 2.5rem;
-          color: #2b2b2b;
+          color: #2b2b2b !important;
+        }
+
+        .powerful {
+        color:#2b2b2b !important;
         }
 
         .highlight {
@@ -184,7 +188,7 @@ const FeaturesSection = () => {
       <section className="features-heading-section text-center">
         <div className="container">
           <h2 className="section-title fw-bold">
-            <span className="underlined">Powerful</span>{" "}
+            <span className="underlined powerful">Powerful</span>{" "}
             <span className="highlight">Features</span>
           </h2>
           <p className="section-subtext mt-4">

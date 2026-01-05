@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import bitsfar from "../assets/Image/binaxpay.png";
 import { Link } from "react-router-dom";
+import Sidebar from "../pages/Sidebar";
 
 const navItems = [
   "Home",
@@ -13,6 +14,7 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-custom px-3 py-3">
@@ -33,8 +35,9 @@ const Navbar = () => {
           <button
             className="navbar-toggler bg-light"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#sidebarCollapse"
+            aria-controls="sidebarCollapse"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -70,6 +73,11 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+
 
       <style>{`
         .navbar-custom {

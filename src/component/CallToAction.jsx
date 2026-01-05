@@ -50,7 +50,7 @@ const CallToAction = () => {
       </style>
 
       <div
-        className="d-flex justify-content-center align-items-center min-vh-100 px-3"
+        className="d-flex justify-content-center align-items-center min-vh-100 px-3 py-3"
         style={{
           background: "linear-gradient(to right, #03045e, #0a0a0a)",
           color: "#fff",

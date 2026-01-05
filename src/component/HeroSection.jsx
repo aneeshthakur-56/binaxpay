@@ -39,7 +39,7 @@ const HeroSection = () => {
                   <img src={photo2} alt="avatar3" className="avatar avatar-3" />
                 </div>
                 <p className="mb-0 fw-semibold text-white trust-text">
-                  10,000+ businesses trust Bitsfar
+                  10,000+ businesses trust Binaxpay
                 </p>
               </div>
             </div>
@@ -50,7 +50,7 @@ const HeroSection = () => {
                 src={hero}
                 alt="Crypto Safe"
                 className="img-fluid float-animation"
-                style={{ maxWidth: "460px" }}
+                // style={{ maxWidth: "460px" }}
               />
             </div>
           </div>
@@ -159,7 +159,8 @@ const HeroSection = () => {
 
           .float-animation {
             max-width: 90%;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
           }
         }
       `}</style>

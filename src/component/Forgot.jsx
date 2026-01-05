@@ -1,50 +1,50 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bitsfar from '../assets/Image/binaxpay.png';
 import { FaEnvelope, FaLock, FaBolt, FaShieldAlt, FaKey } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {  resendVierifyOtpMail  } from "../api/api";
+import { resendVierifyOtpMail } from "../api/api";
 
 const Forgot = () => {
-    const [otp, setOtp] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); 
-    const [showPassword, setShowPassword] = useState(false);
-    const [cPassword, setCPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [otpLoading, setOtpLoading] = useState(false);
-    const [otpTimer, setOtpTimer] = useState(0);
-    const handleGetOtp = async () => {
-        try {
-            setOtpLoading(true); 
-            const response =   await resendVierifyOtpMail({email:email,type:"resendOtp"}); 
-            console.log(' withdraw response ' , response)
-            if (response.data.success) {
-                  toast.success('OTP Sent Successfully!');
-                setOtpTimer(120);  // Start 2 minute countdown
-            } else {
-                  toast.error(response.data.message || 'Failed to send OTP');
-            }
-          } catch (error) {
-                    console.error(error);
-                     toast.error('Error sending OTP');
-        } finally {
-         setOtpLoading(false);
-        }
-    };
-    useEffect(() => {
-      let timer;
-      if (otpTimer > 0) {
-      timer = setTimeout(() => setOtpTimer(otpTimer - 1), 1000);
+  const [otp, setOtp] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [cPassword, setCPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpTimer, setOtpTimer] = useState(0);
+  const handleGetOtp = async () => {
+    try {
+      setOtpLoading(true);
+      const response = await resendVierifyOtpMail({ email: email, type: "resendOtp" });
+      console.log(' withdraw response ', response)
+      if (response.data.success) {
+        toast.success('OTP Sent Successfully!');
+        setOtpTimer(120);  // Start 2 minute countdown
+      } else {
+        toast.error(response.data.message || 'Failed to send OTP');
       }
-      return () => clearTimeout(timer);
+    } catch (error) {
+      console.error(error);
+      toast.error('Error sending OTP');
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+  useEffect(() => {
+    let timer;
+    if (otpTimer > 0) {
+      timer = setTimeout(() => setOtpTimer(otpTimer - 1), 1000);
+    }
+    return () => clearTimeout(timer);
   }, [otpTimer]);
   return (
     <div className="forgot-wrapper d-flex flex-column flex-md-row text-white ">
       {/* Left Side */}
-     
+
       <div className="forgot-left animate-left d-flex flex-column justify-content-center align-items-center text-center p-4">
         <img src={bitsfar} alt="logo" width="90" className="mb-3" />
         <h1 className="fw-bold display-6 m-0">Reset Password</h1>
@@ -57,7 +57,7 @@ const Forgot = () => {
           <p><FaKey className="me-2 text-info" /> New Password</p>
         </div>
       </div>
-   
+
 
       {/* Right Side */}
       <div className="forgot-right animate-right d-flex flex-column justify-content-center align-items-center px-4 py-5 w-100">
@@ -67,44 +67,44 @@ const Forgot = () => {
 
           <form>
             <div className="mb-3 position-relative">
-              <FaEnvelope className="form-icon" /> 
-               <input
-                    type="email"
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className='form-control custom-input'
-                  />
+              <FaEnvelope className="form-icon" />
+              <input
+                type="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className='form-control custom-input'
+              />
             </div>
             <span
-                                style={{
-                                  position: "absolute",
-                                  left: "10px",
-                                  top: "50%",
-                                  transform: "translateY(-50%)",
-                                  color: "#aaa",
-                                }}
-                              >
-                                <FaLock />
-                              </span>
-                              <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Enter Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                style={{
-                                  paddingLeft: "35px",
-                                  paddingRight: "35px",
-                                }}
-                              />
-             <div className="mb-3 d-flex">
+              style={{
+                position: "absolute",
+                left: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#aaa",
+              }}
+            >
+              <FaLock />
+            </span>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              style={{
+                paddingLeft: "35px",
+                paddingRight: "35px",
+              }}
+            />
+            <div className="mb-3 d-flex">
               <input
                 type="text"
                 className="form-control bg-secondary text-white border-0 me-2"
                 placeholder="Enter OTP"
-              value={otp}
+                value={otp}
                 onChange={(e) => setOtp(e.target.value)}
               />
               <button

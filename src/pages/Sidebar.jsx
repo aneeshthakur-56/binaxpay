@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Offcanvas from "bootstrap/js/dist/offcanvas";
 
 // ✅ Replace with your actual logo image path
-import bitsfar from "../assets/Image/binaxpay.png";
-import { FaAddressBook, FaArrowDown, FaChartLine, FaHistory, FaKey, FaNetworkWired, FaPaperPlane, FaUser, FaWallet } from "react-icons/fa";
+import binaxpay from "../assets/Image/binaxpay.png";
+import { FaAddressBook, FaArrowDown, FaChartLine, FaHistory, FaKey, FaNetworkWired, FaPaperPlane, FaUser, FaWallet, FaMoneyBillWave } from "react-icons/fa";
 
 const Sidebar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -52,14 +52,14 @@ const Sidebar = () => {
         tabIndex="-1"
         id="sidebarCollapse"
         style={{
-          backgroundColor: "#2e2e97",
+          backgroundColor: "#0f0f1f",
           width: "260px",
           padding: "20px 10px",
           color: "#fff",
         }}
       >
         <div className="text-center mb-4">
-          <img src={bitsfar} alt="Bitsfar Logo" style={{ width: "150px" }} />
+          <img src={binaxpay} alt="Bitsfar Logo" style={{ width: "150px" }} />
         </div>
 
         <ul className="nav flex-column">
@@ -70,10 +70,11 @@ const Sidebar = () => {
               to="/dashboard"
               onClick={closeSidebar}
               style={{
-                backgroundColor: "#233b99",
+                backgroundColor: "#00ffff",
                 color: "#00E1FF",
                 borderRadius: "10px",
                 padding: "12px 16px",
+                // color:"black",
               }}
             >
               📊 Dashboard
@@ -94,14 +95,15 @@ const Sidebar = () => {
             </button>
             <div
               ref={transactionsRef}
-              className="overflow-hidden"
+              className="overflow-hidden "
               style={{
-                backgroundColor: "#05005C",
+                backgroundColor: "#00ffff",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
                 paddingRight: "15px",
                 textAlign: "center",
+                marginLeft: "15px",
               }}
             >
               <Link
@@ -146,13 +148,14 @@ const Sidebar = () => {
               ref={settingsRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#05005C",
+                backgroundColor: "#00ffff",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
                 // paddingRight: "15px",
-                paddingLeft: "72px",
+                paddingLeft: "60px",
                 textAlign: "center",
+                marginLeft: "15px"
               }}
             >
               <Link
@@ -206,7 +209,7 @@ const Sidebar = () => {
               ref={supportRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#05005C",
+                backgroundColor: "#00ffff",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
@@ -243,20 +246,21 @@ const Sidebar = () => {
               onClick={() => toggleDropdown("support")}
               style={{ padding: "10px 15px", fontWeight: 500 }}
             >
-              <span className="d-flex align-items-center gap-2">Withdraw</span>
+              <span className="d-flex align-items-center gap-2">🔄 Withdraw</span>
               <span>▼</span>
             </button>
             <div
               ref={supportRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#05005C",
+                backgroundColor: "#00ffff",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
                 // paddingRight: "15px",
-                paddingLeft: "52px",
+                paddingLeft: "44px",
                 textAlign: "center",
+                marginLeft: "15px"
               }}
             >
               <Link
@@ -292,42 +296,48 @@ const Sidebar = () => {
               ref={moreRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#05005C",
+                backgroundColor: "#00ffff",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
                 paddingRight: "15px",
+                paddingLeft:"48px",
                 textAlign: "center",
+                marginLeft: "15px"
               }}
             >
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-flex align-items-center py-1 px-3"
                 to="#"
                 onClick={closeSidebar}
               >
                 Supported Coins
               </Link>
+
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-flex align-items-center py-1 px-3"
                 to="#"
                 onClick={closeSidebar}
               >
                 Fees
               </Link>
+
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-flex align-items-center py-1 px-3"
                 to="#"
                 onClick={closeSidebar}
               >
                 Docs
               </Link>
+
               <Link
-                className="text-white d-block py-1"
+                className="text-white d-flex align-items-center py-1 px-3"
                 to="#"
                 onClick={closeSidebar}
               >
                 Blog
               </Link>
+
             </div>
           </li>
         </ul>

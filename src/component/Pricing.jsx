@@ -190,7 +190,7 @@ const Pricing = () => {
       <section className="pricing-section">
         <div className="text-center">
           <h2 className="pricing-heading">
-            <span className="underline">Simple, Transparent</span>{" "}
+            <span className="">Simple, Transparent</span>{" "}
             <span className="highlight">Pricing</span>
           </h2>
           <p className="pricing-subtext mt-5">

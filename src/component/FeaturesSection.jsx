@@ -151,6 +151,7 @@ const FeaturesSection = () => {
           font-size: 1.2rem;
           font-weight: 600;
           margin-bottom: 10px;
+          color: white;
         }
 
         .learn-link {
@@ -201,7 +202,7 @@ const FeaturesSection = () => {
               <div key={index} className="feature-card text-start h-100">
                 <div className="icon-circle">{feature.icon}</div>
                 <h5 className="feature-title">{feature.title}</h5>
-                <p>{feature.description}</p>
+                <p style={{ color: "#fff" }}>{feature.description}</p>
                 <a href="#" className="learn-link">
                   Learn more →
                 </a>

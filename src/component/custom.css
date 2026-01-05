@@ -204,7 +204,7 @@ section {
 }
 
 .nav-link {
-  color: var(--text) !important;
+  color: var(--gray) !important;
   font-weight: 500;
   margin: 0 10px;
   position: relative;
@@ -225,6 +225,7 @@ section {
 .nav-link:hover::after {
   width: 5%;
 }
+
 
 /* Buttons */
 .btn {
@@ -327,6 +328,18 @@ section {
   padding: 15px 40px;
   font-size: 1.1rem;
 }
+/* Hide sidebar by default */
+.sidebar_box {
+  display: none;
+}
+
+/* Show sidebar only on screens <= 768px */
+@media (max-width: 990px) {
+  .sidebar_box {
+    display: block;
+  }
+}
+
 
 /* Cards */
 .feature-card {
@@ -1358,7 +1371,7 @@ section {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 990px) {
   .sidebar_box {
     position: unset;
     transform: translateX(0px) !important;

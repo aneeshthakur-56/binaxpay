@@ -41,7 +41,7 @@ const DashboardTransactions = () => {
   return (
     <div
       className="container-fluid p-4"
-      style={{ backgroundColor: "#282857", minHeight: "100vh" }}
+      style={{ backgroundColor: "#1b1c2a", minHeight: "100vh" }}
     >
       <div className="card border-0 shadow-lg">
         <div className="card-header">
@@ -49,34 +49,34 @@ const DashboardTransactions = () => {
         </div>
         <div
           className="card-body"
-          style={{ backgroundColor: "#282857", color: "#fff" }}
+          style={{ backgroundColor: "#1b1c2a", color: "#fff" }}
         >
           <div className="table-responsive">
             <table
               className="table table-bordered bg-dark table-hover text-center align-middle mb-0"
               style={{ color: "#fff" }}
             >
-              <thead style={{ backgroundColor: "#000066" }}>
+              <thead style={{ backgroundColor: "#00f0ff" }}>
                 <tr>
-                  <th style={{ color: "#ffffff", backgroundColor: "#000066" }}>
+                  <th style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}>
                     ID
                   </th>
-                  <th style={{ color: "#ffffff", backgroundColor: "#000066" }}>
+                  <th style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}>
                     Amount
                   </th>
-                  <th style={{ color: "#ffffff", backgroundColor: "#000066" }}>
+                  <th style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}>
                     From
                   </th>
-                  <th style={{ color: "#ffffff", backgroundColor: "#000066" }}>
+                  <th style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}>
                     Hash
                   </th>
-                  <th style={{ color: "#ffffff", backgroundColor: "#000066" }}>
+                  <th style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}>
                     Currency
                   </th>
-                  <th style={{ color: "#ffffff", backgroundColor: "#000066" }}>
+                  <th style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}>
                     Value
                   </th>
-                  <th style={{ color: "#ffffff", backgroundColor: "#000066" }}>
+                  <th style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}>
                     Date
                   </th>
                 </tr>
@@ -95,9 +95,9 @@ const DashboardTransactions = () => {
                 ) : (
                   transactions.map((transaction, index) => (
                     <tr key={index} style={{ color: "#ffffff" }}>
-                      <td>{index + (currentPage - 1) * limit + 1}</td>
-                      <td>${transaction.amount.toFixed(3)}</td>
-                      <td>
+                      <td className="text-nowrap">{index + (currentPage - 1) * limit + 1}</td>
+                      <td className="text-nowrap">${transaction.amount.toFixed(3)}</td>
+                      <td className="text-nowrap">
                         <Link
                           to={"https://bscscan.com/address/" + transaction.from}
                           style={{ color: "#00ccff" }}
@@ -105,7 +105,7 @@ const DashboardTransactions = () => {
                           {transaction.from.substr(0, 10)}....
                         </Link>
                       </td>
-                      <td>
+                      <td className="text-nowrap">
                         <Link
                           to={
                             "https://bscscan.com/tx/" +
@@ -116,9 +116,9 @@ const DashboardTransactions = () => {
                           {transaction.transactionHash.substr(0, 10)}....
                         </Link>
                       </td>
-                      <td>{transaction.tokenName}</td>
-                      <td>{transaction.value}</td>
-                      <td>
+                      <td className="text-nowrap">{transaction.tokenName}</td>
+                      <td className="text-nowrap">{transaction.value}</td>
+                      <td className="text-nowrap">
                         {moment(transaction.createdAt).format(
                           "DD-MM-YYYY hh:mm A"
                         )}
@@ -131,7 +131,7 @@ const DashboardTransactions = () => {
           </div>
 
           {/* Pagination */}
-          <div className="d-flex justify-content-end align-items-center mt-3">
+          <div className="d-flex justify-content-center align-items-center mt-3">
             {Array.from({ length: totalPages }).map((_, idx) => {
               const page = idx + 1;
               return (

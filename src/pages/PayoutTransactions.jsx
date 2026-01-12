@@ -47,45 +47,45 @@ const PayoutTransactions = () => {
                   class="table table-responsive table-scroll table-hover transaction-table bg-dark"
                   id="transactionsTable"
                 >
-                  <thead style={{ backgroundColor: "#000066" }}>
+                  <thead style={{ backgroundColor: "#00f0ff" }}>
                     <tr>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         ID
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         WalletAddress
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         RequestID
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Amount
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Status
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         CallbackUrl
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Remark
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Date
                       </th>
@@ -94,21 +94,21 @@ const PayoutTransactions = () => {
                   <tbody>
                     {transactions.length === 0 ? (
                       <tr>
-                        <td>No Transaction found.</td>
+                        <td className="justify-content-center">No Transaction found.</td>
                       </tr>
                     ) : (
                       transactions.map((transaction, index) => (
                         <tr key={index}>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap"> text-nowrap
                             {index + (currentPage - 1) * limit + 1}
                           </td>
-                          <td className="tdn">{transaction.walletAddress}</td>
-                          <td className="tdn">{transaction.requestId}</td>
-                          <td className="tdn">${transaction.amount}</td>
-                          <td className="tdn">{transaction.status}</td>
-                          <td className="tdn">{transaction.callbackUrl}</td>
-                          <td className="tdn">{transaction.remark}</td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">{transaction.walletAddress}</td>
+                          <td className="tdn text-nowrap">{transaction.requestId}</td>
+                          <td className="tdn text-nowrap">${transaction.amount}</td>
+                          <td className="tdn text-nowrap">{transaction.status}</td>
+                          <td className="tdn text-nowrap">{transaction.callbackUrl}</td>
+                          <td className="tdn text-nowrap">{transaction.remark}</td>
+                          <td className="tdn text-nowrap">
                             {moment(transaction.createdAt).format(
                               "DD-MM-YYYY hh:mm A"
                             )}

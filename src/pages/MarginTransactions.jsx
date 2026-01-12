@@ -47,45 +47,45 @@ const MarginTransactions = () => {
                   class="table table-responsive bg-dark table-scroll table-hover transaction-table"
                   id="transactionsTable"
                 >
-                  <thead style={{ backgroundColor: "#000066" }}>
+                  <thead style={{ backgroundColor: "#00f0ff" }}>
                     <tr>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         ID
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Amount
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Commision
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Charge
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Payable
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Remark
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         ApiKey
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Date
                       </th>
@@ -99,24 +99,24 @@ const MarginTransactions = () => {
                     ) : (
                       transactions.map((transaction, index) => (
                         <tr key={index}>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             {index + (currentPage - 1) * limit + 1}
                           </td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             ${transaction.amount.toFixed(3)}
                           </td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             ${transaction.commissionAmount.toFixed(3)}
                           </td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             ${transaction.transactionCharge.toFixed(3)}
                           </td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             ${transaction.payableAmount.toFixed(3)}
                           </td>
-                          <td className="tdn">{transaction.remark}</td>
-                          <td className="tdn">{transaction.apiKey}</td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">{transaction.remark}</td>
+                          <td className="tdn text-nowrap">{transaction.apiKey}</td>
+                          <td className="tdn text-nowrap">
                             {moment(transaction.createdAt).format(
                               "DD-MM-YYYY hh:mm A"
                             )}

@@ -25,7 +25,7 @@ const SelfAddresses = () => {
         }
     };
     return(
-        <div className="container py-5 bg-dark text-white min-vh-100">
+        <div className=" py-5 bg-dark text-white min-vh-100">
             <div className="text-center mb-4">
                 <button className="btn btn-primary rounded-pill px-4 py-2" onClick={() => generateAddress()}>
                 + Generate New Address

@@ -8,11 +8,11 @@ const Profile = () => {
   return (
     <>
       <div
-        class="container  py-5"
-        style={{ backgroundColor: "#282857", minHeight: "100vh" }}
+        class="  py-5"
+        style={{ backgroundColor: "#1b1c2a", minHeight: "100vh" }}
       >
         <div class="card mx-auto shadow" style={{ maxWidth: "500px" }}>
-          <div class="card-header bg-dark text-white text-center">
+          <div class="card-header bg-accent text-white text-center">
             <h5 class="mb-0">
               <i class="bi bi-person-circle me-2"></i>My Profile
             </h5>
@@ -40,7 +40,7 @@ const Profile = () => {
                 <i class="bi bi-envelope-fill me-2"></i>
                 <strong>Email:</strong>
               </div>
-              <div class="col-7 text-end">{user.email}</div>
+              <div class="col-7 text-end text-nowrap">{user.email}</div>
             </div>
 
             <div class="row mb-3">

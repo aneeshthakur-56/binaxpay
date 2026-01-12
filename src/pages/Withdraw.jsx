@@ -89,7 +89,7 @@ const Withdraw = () => {
   return (
     <div
       className="bg-dark text-white rounded p-4 shadow-lg mx-auto"
-      style={{ maxWidth: "100%", backgroundColor: "#282857" }}
+      style={{ maxWidth: "100%", backgroundColor: "#1b1c2a" }}
     >
       <h5 className="mb-3 fw-semibold">Withdraw</h5>
       <ToastContainer position="bottom-right" autoClose={3000} />
@@ -141,9 +141,13 @@ const Withdraw = () => {
         />
         <button
           className="btn btn-info text-dark fw-semibold"
+          style={{
+            background: "#00f0ff",
+          }}
           onClick={handleGetOtp}
           disabled={otpLoading || otpTimer > 0}
         >
+
           {otpLoading
             ? "Sending..."
             : otpTimer > 0
@@ -171,6 +175,9 @@ const Withdraw = () => {
 
       <button
         className="btn btn-info text-dark fw-semibold w-100"
+        style={{
+            background: "#00f0ff",
+          }}
         onClick={handleWithdraw}
         disabled={loading}
       >

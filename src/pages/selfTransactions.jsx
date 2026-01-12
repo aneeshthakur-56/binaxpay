@@ -34,7 +34,7 @@ const SelfTransactions = () => {
            <div class="col-12" data-aos="fade-up">
                <div class="card">
                    <div class="card-header d-flex justify-content-between align-items-center">
-                       <h5 class="mb-0">Self Transactions {address}</h5> 
+                      <h5 class="mb-0 text-light">Self Transactions {address}</h5>
                    </div>
                    <div class="card-body">
                        <div class="table-responsive">
@@ -56,11 +56,11 @@ const SelfTransactions = () => {
                                            transactions.map((transaction, index) => ( 
                                                <tr key={index}>
                                                    <td>{index + ((currentPage - 1) * limit) + 1}</td>
-                                                   <td>${transaction.amount.toFixed(3)}</td>
-                                                   <td><Link to={"https://bscscan.com/address/"+transaction.from}>{(transaction.from).substr(0,10)}....</Link></td>
-                                                    <td><Link to={"https://bscscan.com/tx/"+transaction.transactionHash}>{(transaction.transactionHash).substr(0,10)}....</Link></td>
-                                                    <td>{transaction.value}</td> 
-                                                   <td>{moment(transaction.createdAt).format('DD-MM-YYYY hh:mm A')}</td>  
+                                                   <td className='text-nowrap'>${transaction.amount.toFixed(3)}</td>
+                                                   <td className='text-nowrap'><Link to={"https://bscscan.com/address/"+transaction.from}>{(transaction.from).substr(0,10)}....</Link></td>
+                                                    <td className='text-nowrap'><Link to={"https://bscscan.com/tx/"+transaction.transactionHash}>{(transaction.transactionHash).substr(0,10)}....</Link></td>
+                                                    <td className='text-nowrap'>{transaction.value}</td> 
+                                                   <td className='text-nowrap'>{moment(transaction.createdAt).format('DD-MM-YYYY hh:mm A')}</td>  
                                                </tr>
                                            ))
                                        )}

@@ -58,6 +58,7 @@ const Sidebar = () => {
           color: "#fff",
         }}
       >
+
         <div className="text-center mb-4">
           <img src={binaxpay} alt="Bitsfar Logo" style={{ width: "150px" }} />
         </div>
@@ -70,7 +71,7 @@ const Sidebar = () => {
               to="/dashboard"
               onClick={closeSidebar}
               style={{
-                backgroundColor: "#00ffff",
+                backgroundColor: "#00D5C0",
                 color: "#00E1FF",
                 borderRadius: "10px",
                 padding: "12px 16px",
@@ -88,7 +89,7 @@ const Sidebar = () => {
               onClick={() => toggleDropdown("transactions")}
               style={{ padding: "10px 15px", fontWeight: 500 }}
             >
-              <span className="d-flex align-items-center gap-2">
+              <span className="d-flex align-items-center gap-2 ">
                 🔄 Transactions
               </span>
               <span>▼</span>
@@ -97,7 +98,7 @@ const Sidebar = () => {
               ref={transactionsRef}
               className="overflow-hidden "
               style={{
-                backgroundColor: "#00ffff",
+                backgroundColor: "#00D5C0",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
@@ -107,7 +108,7 @@ const Sidebar = () => {
               }}
             >
               <Link
-                className="text-white d-flex align-items-center gap-3 py-1 justify-content-center"
+                className="text-white d-flex align-items-center gap-3 py-1 justify-content-center "
                 to="/deposit_transactions"
                 onClick={closeSidebar}
               >
@@ -148,7 +149,7 @@ const Sidebar = () => {
               ref={settingsRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#00ffff",
+                backgroundColor: "#00D5C0",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
@@ -209,7 +210,7 @@ const Sidebar = () => {
               ref={supportRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#00ffff",
+                backgroundColor: "#00D5C0",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
@@ -253,7 +254,7 @@ const Sidebar = () => {
               ref={supportRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#00ffff",
+                backgroundColor: "#00D5C0",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
@@ -296,12 +297,12 @@ const Sidebar = () => {
               ref={moreRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#00ffff",
+                backgroundColor: "#00D5C0",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
                 paddingRight: "15px",
-                paddingLeft:"48px",
+                paddingLeft: "48px",
                 textAlign: "center",
                 marginLeft: "15px"
               }}

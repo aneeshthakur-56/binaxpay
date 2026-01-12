@@ -50,7 +50,7 @@ const Testimonials = () => {
         .wh-underline::after {
           content: "";
           position: absolute;
-          bottom: -6px;
+          bottom: -1px;
           left: 0;
           width: 100%;
           height: 4px;
@@ -101,7 +101,7 @@ const Testimonials = () => {
 
       <div className="testimonial-section">
         {/* Heading */}
-        <h2 className="custom-heading">
+        <h2 className="custom-heading ">
           <span className="wh-underline">Wh</span>at Our{" "}
           <span className="highlight">Clients</span> Say
         </h2>

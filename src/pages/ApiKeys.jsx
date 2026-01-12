@@ -75,7 +75,7 @@ const ApiKey = () => {
   return (
     <>
       <div class="row">
-        <div class="col-12" data-aos="fade-up"  style={{ backgroundColor: "rgb(16, 16, 60)", minHeight: "100vh" }}  >
+        <div class="col-12" data-aos="fade-up"  style={{ backgroundColor: "#1b1c2a", minHeight: "100vh" }}  >
          
           <div class="d-flex justify-content-between align-items-center mb-4 ">
             <h2 data-aos="fade-right" class="aos-init aos-animate text-white">
@@ -83,7 +83,7 @@ const ApiKey = () => {
             </h2>
             <div class="d-flex">
               <button
-                class="btn btn-sm btn-outline-primary me-2"
+                class="btn btn-sm btn-outline me-2"
                 onClick={() => setShowModal(true)}
               >
                 <i class="fas fa-plus me-1"></i>{" "}
@@ -101,25 +101,25 @@ const ApiKey = () => {
                   class="table table-responsive bg-dark table-scroll table-hover transaction-table"
                   id="transactionsTable"
                 >
-                  <thead style={{ backgroundColor: "#000066" }}>
+                  <thead style={{ backgroundColor: "#00f0ff" }}>
                     <tr>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         #
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Key
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Secret
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Date
                       </th>
@@ -136,7 +136,7 @@ const ApiKey = () => {
                           <td className="tdn">{index + 1}</td>
                           <td className="tdn">{transaction.apiKey}</td>
                           <td className="tdn"> {transaction.apiSecret}</td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             {moment(transaction.createdAt).format(
                               "DD-MM-YYYY hh:mm A"
                             )}

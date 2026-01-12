@@ -5,13 +5,14 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Sidebar from "./Sidebar";
 import "./DashboardLayout.css";
+import Offcanvas from "bootstrap/js/dist/offcanvas";
 
 const DashboardLayout = () => {
-  let user = JSON.parse(localStorage.getItem('user')) 
+  let user = JSON.parse(localStorage.getItem('user'))
   const [collapsed, setCollapsed] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
 
@@ -43,20 +44,23 @@ const DashboardLayout = () => {
       <Sidebar />
       <div className="main-content flex-grow-1">
         {/* ✅ Top Navbar */}
-        <nav className="navbar navbar-expand-lg mobile-navbar bg-primary px-3">
-          <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg mobile-navbar bg-primary px-1 ">
+          <div className="container-fluid ">
             {/* Sidebar toggle for mobile */}
             <button
-              className="btn btn-sm sidebar-toggle d-md-none"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#sidebarCollapse"
+              className="btn btn-sm sidebar-toggle"
+              onClick={() => {
+                const el = document.getElementById("sidebarCollapse");
+                const instance = Offcanvas.getOrCreateInstance(el);
+                instance.show();
+              }}
             >
-              <i className="fas fa-bars"></i>
+              <i className="fas fa-bars text-white fs-4 fs-lg-2"></i>
+
             </button>
 
             {/* ✅ Username + Logout button */}
-            <div className="d-flex align-items-center ms-auto gap-3">
+            <div className="d-flex align-items-center ms-auto gap-2">
               <span className="text-white fw-semibold">{user.userId} ({user.name})</span>
               <button className="btn btn-sm btn-danger" onClick={handleLogout}>
                 <i className="fas fa-sign-out-alt me-1"></i> Logout

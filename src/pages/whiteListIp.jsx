@@ -84,7 +84,7 @@ const WhirteListIp = () => {
         <div
           class="col-12"
           data-aos="fade-up"
-          style={{ backgroundColor: "#10103c", minHeight: "100vh" }}
+          style={{ backgroundColor: "#1b1c2a", minHeight: "100vh" }}
         >
           {showModal && (
             <div className="modal fade show d-block" tabIndex="-1">
@@ -149,13 +149,13 @@ const WhirteListIp = () => {
             </div>
           )}
 
-          <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-4 px-2">
             <h2 data-aos="fade-right" class="aos-init aos-animate text-white">
               IP WhiteList
             </h2>
             <div class="d-flex">
               <button
-                class="btn btn-sm btn-outline-primary me-2"
+                class="btn btn-sm btn-outline me-2"
                 onClick={() => setShowModal(true)}
               >
                 <i class="fas fa-plus me-1"></i>{" "}
@@ -163,8 +163,8 @@ const WhirteListIp = () => {
               </button>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
+          <div class="card ">
+            <div class="card-header d-flex justify-content-between align-items-center ">
               <h5 class="mb-0 text">Api Key List</h5>
             </div>
             <div class="card-body">
@@ -191,7 +191,7 @@ const WhirteListIp = () => {
                         <tr key={index}>
                           <td className="tdn">{index + 1}</td>
                           <td className="tdn">{transaction.ipAddress}</td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             {moment(transaction.createdAt).format(
                               "DD-MM-YYYY hh:mm A"
                             )}

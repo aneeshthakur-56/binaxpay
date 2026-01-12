@@ -37,7 +37,7 @@ const WithdrawHistory = () => {
     <>
       <div class="row" >
         <div class="col-12" data-aos="fade-up">
-          <div class="card" style={{ maxWidth: "100%", backgroundColor: "#282857" }}>
+          <div class="card" style={{ maxWidth: "100%", backgroundColor: "#1b1c2a" }}>
             <div class="card-header d-flex justify-content-between align-items-center">
               <h5 class="mb-0 text">Recent Transactions</h5>
             </div>
@@ -50,32 +50,37 @@ const WithdrawHistory = () => {
                   <thead>
                     <tr>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         ID
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Amount
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Payable
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Remark
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
+                      >
+                        Address
+                      </th>
+                      <th
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Status
                       </th>
                       <th
-                        style={{ color: "#ffffff", backgroundColor: "#000066" }}
+                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
                       >
                         Date
                       </th>
@@ -97,8 +102,9 @@ const WithdrawHistory = () => {
                           </td>
                           <td className="tdn"> {transaction.payAbleAmount}</td>
                           <td className="tdn"> {transaction.remarks} </td>
+                          <td className="tdn"> {transaction.walletAddress} </td>
                           <td className="tdn"> {transaction.status} </td>
-                          <td className="tdn">
+                          <td className="tdn text-nowrap">
                             {moment(transaction.createdAt).format(
                               "DD-MM-YYYY hh:mm A"
                             )}

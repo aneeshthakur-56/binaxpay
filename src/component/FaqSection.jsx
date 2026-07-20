@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 // FAQ Item Component
 const FaqItem = ({ question, answer, isOpen, onClick }) => {
@@ -7,24 +8,49 @@ const FaqItem = ({ question, answer, isOpen, onClick }) => {
     <div className="mb-4">
       <div
         className="bg-white rounded shadow"
-        style={{ transition: "all 0.3s ease" }}
+        style={{ transition: "all 0.3s ease", overflow: "hidden" }}
       >
         <button
-          className="w-100 text-start px-4 py-4 border-0 bg-white rounded"
-          style={{ fontWeight: "600", fontSize: "18px", color: "#1c1c1c" }}
+          className="w-100 text-start px-4 py-4 border-0 bg-white rounded d-flex align-items-center"
+          style={{ 
+            fontWeight: "600", 
+            fontSize: "18px", 
+            color: isOpen ? "#12896B" : "#1c1c1c",
+            transition: "color 0.3s ease"
+          }}
           onClick={onClick}
         >
-          {question}
-          <span className="float-end" style={{ fontSize: "20px" }}>
-            {isOpen ? "▲" : "▼"}
+          <span 
+            className="me-3"
+            style={{ 
+              fontSize: "20px", 
+              color: isOpen ? "#12896B" : "#1c1c1c",
+              transition: "transform 0.3s ease, color 0.3s ease",
+              transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+              display: "inline-flex",
+              alignItems: "center"
+            }}
+          >
+            <i className="bi bi-chevron-right"></i>
           </span>
+          <span>{question}</span>
         </button>
 
-        {isOpen && (
-          <div className="px-4 pb-4 text-muted" style={{ fontSize: "16px" }}>
-            {answer}
-          </div>
-        )}
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              style={{ overflow: "hidden" }}
+            >
+              <div className="px-4 pb-4 text-muted" style={{ fontSize: "16px" }}>
+                {answer}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -82,13 +108,13 @@ const FaqSection = () => {
                 left: 0,
                 width: "100%",
                 height: "4px",
-                backgroundColor: "#000066",
+                backgroundColor: "#12896B",
                 borderRadius: "2px",
               }}
             />
           </span>
           <span style={{ color: "#2e2e2e" }}>equently Asked</span>
-          <span style={{ color: "#000066", marginLeft: "6px" }}>Questions</span>
+          <span style={{ color: "#12896B", marginLeft: "6px" }}>Questions</span>
         </h2>
         <p className="text-muted mt-3" style={{ fontSize: "18px" }}>
           Get answers to common questions about Bitsfar's crypto payment

@@ -74,16 +74,26 @@ const Footer = () => {
           background: transparent;
           border-radius: 50px;
           overflow: hidden;
+          border: 1px solid #333;
+          transition: border-color 0.3s ease;
+        }
+
+        .subscribe-wrapper:focus-within {
+          border-color: #12896B;
         }
 
         .subscribe-input {
           flex: 1;
           border: none;
-          background-color: #000;
+          background-color: #111;
           color: #fff;
           padding: 16px 20px;
           font-size: 16px;
           border-radius: 50px 0 0 50px;
+        }
+
+        .subscribe-input:focus {
+          outline: none !important;
         }
 
         .subscribe-input::placeholder {
@@ -91,21 +101,21 @@ const Footer = () => {
         }
 
         .subscribe-button {
-          background-color: #00008b;
+          background-color: #12896B;
           color: white;
-          border: none;
+          border: 2px solid transparent;
           padding: 0 30px;
           font-size: 16px;
           font-weight: 600;
           border-radius: 0 50px 50px 0;
-          transition: 0.3s ease;
+          transition: all 0.3s ease;
+          cursor: pointer;
         }
 
         .subscribe-button:hover {
-          color: #00ffff !important;
-          border: 2px solid #00ffff !important;
           background-color: transparent !important;
-          box-shadow: 10px 10px  10px 10px #00ffff !important;
+          color: #12896B !important;
+          box-shadow: inset 0 0 0 2px #12896B !important;
         }
 
         .footer-bottom {

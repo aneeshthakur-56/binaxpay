@@ -54,6 +54,12 @@ const plans = [
 ];
 
 const Pricing = () => {
+  const orderClasses = {
+    starter: "order-1 order-md-1 order-lg-1",
+    pro: "order-2 order-md-3 order-lg-2",
+    enterprise: "order-3 order-md-2 order-lg-3"
+  };
+
   return (
     <>
       <style>{`
@@ -85,7 +91,7 @@ const Pricing = () => {
           left: 0;
           width: 50px;
           height: 4px;
-          background-color: #000066;
+          background-color: #12896B;
           border-radius: 2px;
         }
 
@@ -98,28 +104,77 @@ const Pricing = () => {
         }
 
         .pricing-box {
-          background: #fff;
+          background: #222234 !important;
           border-radius: 20px;
           padding: 40px;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.08);
           height: 100%;
-          transition: all 0.4s ease;
+          display: flex;
+          flex-direction: column;
         }
 
-        .pricing-box:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        .pricing-box h5 {
+          color: #FFFFFF !important;
         }
 
-        .rate {
+        .plan-desc {
+          color: #A3A3A3 !important;
+          min-height: 48px;
+        }
+
+        .plan-starter,
+        .plan-enterprise {
+          border: 1px solid #2A2A2A !important;
+          transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .plan-starter:hover,
+        .plan-enterprise:hover {
+          border-color: #2E9F97 !important;
+          transform: translateY(-4px) !important;
+          box-shadow: 0 8px 30px rgba(46, 159, 151, 0.15) !important;
+        }
+
+        .plan-pro {
+          border: 1px solid #2E9F97 !important; /* solid fallback */
+          background: linear-gradient(#222234, #222234) padding-box,
+                      linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) border-box !important;
+          box-shadow: 0 8px 25px rgba(111, 230, 184, 0.1) !important;
+          transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        @media (min-width: 992px) {
+          .plan-pro {
+            transform: translateY(-15px) !important;
+          }
+          .plan-pro:hover {
+            transform: translateY(-19px) !important;
+          }
+        }
+
+        .plan-pro:hover {
+          box-shadow: 0 12px 30px rgba(111, 230, 184, 0.25) !important;
+        }
+
+        .rate-container {
+          display: flex;
+          align-items: baseline;
+          margin-bottom: 1rem;
+        }
+
+        .rate-val {
           font-size: 2.5rem;
           font-weight: bold;
-          color: #000066;
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: #6FE6B8; /* fallback solid color */
+          -webkit-text-fill-color: transparent;
         }
 
         .note {
           font-size: 0.9rem;
-          color: gray;
+          color: #A3A3A3 !important;
+          font-weight: 400;
           margin-left: 4px;
         }
 
@@ -128,6 +183,7 @@ const Pricing = () => {
           display: flex;
           align-items: center;
           font-size: 0.95rem;
+          color: #E0E0E0 !important;
         }
 
         .plan-feature .icon {
@@ -136,54 +192,82 @@ const Pricing = () => {
         }
 
         .plan-feature.included .icon {
-          color: #00e5ff;
+          color: #6FE6B8 !important;
         }
 
         .plan-feature.excluded {
-          color: #999;
+          color: #8A8A8A !important;
         }
 
         .plan-feature.excluded .icon {
-          color: red;
+          color: #C24545 !important;
+        }
+
+        .features-container {
+          margin-top: 1rem;
+          margin-bottom: 1.5rem;
+          flex-grow: 1;
         }
 
         .plan-btn {
-          border: 2px solid #00e5ff;
-          color: #00e5ff;
           font-weight: 600;
           padding: 10px 20px;
           border-radius: 30px;
           transition: all 0.3s ease;
         }
 
-        .plan-btn:hover {
-          background-color: #00e5ff;
-          color: #001067;
+        .plan-starter .plan-btn,
+        .plan-enterprise .plan-btn {
+          background: transparent !important;
+          border: 2px solid #6FE6B8 !important;
+          color: #6FE6B8 !important;
+          font-weight: bold !important;
+          border-radius: 30px !important;
+          transition: all 0.3s ease !important;
         }
 
-        .pro-btn {
-          background-color: #001067;
-          color: #fff;
-          border: none;
+        .plan-starter .plan-btn:hover,
+        .plan-enterprise .plan-btn:hover {
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+          color: #0A0A0A !important;
+          border-color: transparent !important;
+          box-shadow: 0 4px 15px rgba(111, 230, 184, 0.25) !important;
         }
 
-        .pro-btn:hover {
-          background-color: transparent;
-          color: #00e5ff;
-          border: 2px solid #00e5ff;
+        .plan-pro .plan-btn {
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+          color: #0A0A0A !important;
+          border: none !important;
+          font-weight: bold !important;
+          border-radius: 30px !important;
+          box-shadow: 0 4px 15px rgba(111, 230, 184, 0.15) !important;
+          transition: all 0.3s ease !important;
+        }
+
+        .plan-pro .plan-btn:hover {
+        background: transparent !important;
+          border: 2px solid #6FE6B8 !important;
+          color: #6FE6B8 !important;
+          box-shadow: 0 4px 20px rgba(111, 230, 184, 0.35) !important;
+          transform: translateY(-2px) !important;
+        }
+
+        [type="button"]:not(:disabled), [type="reset"]:not(:disabled), [type="submit"]:not(:disabled), button:not(:disabled) {
+          cursor: pointer;
         }
 
         .popular-tag {
           position: absolute;
-          top: 17px;
-          right: 0;
-          background: #001067;
-          color: #fff;
-          font-size: 0.75rem;
-          padding: 4px 10px;
-          border-radius: 0 16px 0 8px;
-          transform: rotate(12deg);
-          transform-origin: top right;
+          top: 20px;
+          right: 20px;
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+          color: #0A0A0A !important;
+          font-size: 0.7rem;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding: 4px 12px;
+          border-radius: 50px;
+          box-shadow: 0 2px 8px rgba(111, 230, 184, 0.2);
         }
       `}</style>
 
@@ -191,7 +275,7 @@ const Pricing = () => {
         <div className="text-center">
           <h2 className="pricing-heading">
             <span className="">Simple, Transparent</span>{" "}
-            <span className="highlight">Pricing</span>
+            <span className="text-heading-green">Pricing</span>
           </h2>
           <p className="pricing-subtext mt-5">
             Choose the plan that fits your business needs. Scale up or down as
@@ -202,9 +286,9 @@ const Pricing = () => {
         <div className="container">
           <div className="row justify-content-center g-4">
             {plans.map((plan, index) => (
-              <div className="col-md-4" key={index}>
+              <div className={`col-12 col-md-6 col-lg-4 mb-4 ${orderClasses[plan.style] || ""}`} key={index}>
                 <motion.div
-                  className="pricing-box position-relative"
+                  className={`pricing-box position-relative plan-${plan.style}`}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -214,19 +298,18 @@ const Pricing = () => {
                     <div className="popular-tag">POPULAR</div>
                   )}
                   <h5 className="fw-bold">{plan.title}</h5>
-                  <p className="text-muted mb-3">{plan.description}</p>
+                  <p className="plan-desc mb-3">{plan.description}</p>
 
-                  <div className="rate">
-                    {plan.rate}
+                  <div className="rate-container">
+                    <span className="rate-val">{plan.rate}</span>
                     <span className="note">{plan.note}</span>
                   </div>
 
-                  <div className="mt-3 mb-4">
+                  <div className="features-container">
                     {plan.features.map((feature, i) => (
                       <div
-                        className={`plan-feature ${
-                          feature.included ? "included" : "excluded"
-                        }`}
+                        className={`plan-feature ${feature.included ? "included" : "excluded"
+                          }`}
                         key={i}
                       >
                         <span className="icon">
@@ -238,9 +321,8 @@ const Pricing = () => {
                   </div>
 
                   <button
-                    className={`mt-3 w-100 plan-btn ${
-                      plan.style === "pro" ? "pro-btn" : ""
-                    }`}
+                    className={`mt-3 w-100 plan-btn ${plan.style === "pro" ? "pro-btn" : ""
+                      }`}
                   >
                     <i className="mdi mdi-cart me-2"></i>
                     {plan.btnText}

@@ -56,7 +56,6 @@ const DashboardLayout = () => {
               }}
             >
               <i className="fas fa-bars text-white fs-4 fs-lg-2"></i>
-
             </button>
 
             {/* ✅ Username + Logout button */}

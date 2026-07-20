@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bitsfar from '../assets/Image/binaxpay.png';
-import { FaRocket,   FaHandHoldingUsd } from 'react-icons/fa';  
+import { FaRocket,   FaHandHoldingUsd, FaArrowLeft } from 'react-icons/fa';  
 import { FcHeadset} from 'react-icons/fc';  
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
@@ -82,6 +82,9 @@ const Signup = () => {
         </div>
         <div className="auth-right">
             <div className="auth-form-container" data-aos="fade-left">
+                <Link to="/" className="btn btn-sm btn-outline-secondary mb-4 d-inline-flex align-items-center gap-2" style={{ border: 'none', color: '#a0a0b0' }}>
+                    <FaArrowLeft /> Back to Home
+                </Link>
                 <h2>Create Account</h2>
                 <p className="form-subtitle">Fill in your details to get started</p>
                 

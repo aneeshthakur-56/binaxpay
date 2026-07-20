@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import bitsfar from "../assets/Image/binaxpay.png";
 import { Link } from "react-router-dom";
-import Sidebar from "../pages/Sidebar";
+import LandingSidebar from "../pages/Landingsidebar";
+import Offcanvas from "bootstrap/js/dist/offcanvas";
 
-const navItems = [
+const navItems2 = [
   "Home",
   "Features",
   "Benefits",
@@ -14,72 +15,81 @@ const navItems = [
 ];
 
 const Navbar = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 120; // offset to trigger active state slightly before reaching top
+      for (const item of navItems2) {
+        const el = document.getElementById(item.toLowerCase());
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(item.toLowerCase());
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // run on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleShowSidebar = () => {
+    const el = document.getElementById("landingSidebar");
+    const instance = Offcanvas.getOrCreateInstance(el);
+    instance.show();
+  };
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-custom px-3 py-3">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3 py-3 fixed-top">
         <div className="container">
-          <a
-            className="navbar-brand d-flex align-items-center fw-bold"
-            href="#"
-          >
-            <img
-              src={bitsfar}
-              alt="logo"
-              height="40"
-              width="auto"
-              className="me-2"
-            />
+          <a className="navbar-brand" href="#">
+            <img src={bitsfar} alt="logo" height="40" />
           </a>
 
           <button
-            className="navbar-toggler bg-light"
+            className="navbar-toggler border-0 shadow-none px-0"
             type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#sidebarCollapse"
-            aria-controls="sidebarCollapse"
+            onClick={handleShowSidebar}
           >
-            <span className="navbar-toggler-icon"></span>
+            <i className="fas fa-bars text-white fs-2"></i>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav mx-auto text-center">
-              {navItems.map((item) => (
-                <li className="nav-item" key={item}>
-                  <a className="nav-link" href="#">
+          <div className="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
+            <ul className="navbar-nav mx-auto">
+              {navItems2.map((item) => (
+                <li key={item} className="nav-item">
+                  <a
+                    className={`nav-link text-white ${activeSection === item.toLowerCase() ? "active" : ""}`}
+                    href={`#${item.toLowerCase()}`}
+                  >
                     {item}
                   </a>
                 </li>
               ))}
             </ul>
 
-            <div className="navbar-buttons d-lg-flex d-block text-center mt-3 mt-lg-0">
-              <Link
-                to="/Signup"
-                className="btn btn-outline-info rounded-pill fw-semibold d-inline-flex align-items-center justify-content-center px-3 py-2 me-lg-2 mb-2 mb-lg-0"
-              >
-                <i className="mdi mdi-account-plus"></i>
-                <span className="ms-2">Sign Up</span>
+            <div className="d-flex gap-2">
+              <Link to="/Signup" className="btn btn-outline-info">
+                Sign Up
               </Link>
-
-              <Link
-                to="/Signin"
-                className="btn btn-signin rounded-pill fw-semibold d-inline-flex align-items-center justify-content-center px-3 py-2 "
-              >
-                <i className="mdi mdi-login"></i>
-                <span className="ms-2">Sign In</span>
+              <Link to="/Signin" className="btn btn-primary btn-signin">
+                Sign In
               </Link>
             </div>
           </div>
         </div>
       </nav>
-      <Sidebar
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
 
+      {/* ✅ Landing Sidebar is back */}
+      <LandingSidebar />
 
-      <style>{`
+       <style>{`
         .navbar-custom {
           background-color: rgba(0, 0, 0, 0.7) !important;
           z-index: 1111;
@@ -112,26 +122,26 @@ const Navbar = () => {
         }
 
         .btn-outline-info {
-          color: #00ffff !important;
-          border: 2px solid #00ffff !important;
+          color: #2DD9A8 !important;
+          border: 2px solid #2DD9A8 !important;
           background-color: transparent !important;
         }
 
         .btn-outline-info:hover {
-          background-color: #00ffff !important;
+          background-color: #2DD9A8 !important;
           color: #000 !important;
         }
 
         .btn-signin {
-          background-color: #04009a !important;
+          background-color: #12896B !important;
           color: white !important;
           border: 2px solid transparent;
           transition: all 0.3s ease;
         }
 
         .btn-signin:hover {
-         color: #00ffff !important;
-          border: 2px solid #00ffff !important;
+          color: #12896B !important;
+          border: 2px solid #12896B !important;
           background-color: transparent !important;
         }
 
@@ -141,7 +151,7 @@ const Navbar = () => {
           vertical-align: middle;
         }
 
-        .nav-link {
+        .navbar .nav-link {
           font-weight: 500;
           margin: 0 10px;
           position: relative;
@@ -149,32 +159,30 @@ const Navbar = () => {
           color: white !important;
         }
 
-        .nav-link::after {
+        .navbar .nav-link::after {
           content: "";
           position: absolute;
-          width: 0;
-          height: 2px;
-          background-color: #00f0ff;
+          width: 100%;
+          height: 2.5px;
+          background: linear-gradient(160deg, #2E9F97 0%, #6FE6B8 50%, #EAE9F8 100%);
           left: 0;
           bottom: 0;
-          transition: width 0.3s ease-in-out;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-link:hover {
+        .navbar .nav-link:hover {
           color: white !important;
         }
 
-        .nav-link:hover::after {
-          width: 100%;
-          background-color: #00f0ff;
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+          transform: scaleX(1);
         }
 
         .navbar-buttons {
           gap: 10px;
-        }
-
-        .navbar-toggler-icon {
-          background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280,0,0,0.8%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
         }
 
         @media (max-width: 991px) {

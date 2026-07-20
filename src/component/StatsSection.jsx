@@ -29,7 +29,7 @@ const StatsSection = () => {
 
           <div className="row justify-content-center">
             {stats.map((stat, index) => (
-              <div key={index} className="col-6 col-md-3 mb-4">
+              <div key={index} className="col-6 col-lg-3 mb-4">
                 <div className="stat-number">
                   <CountUp end={stat.value} duration={3} separator="," />
                 </div>
@@ -53,7 +53,7 @@ const StatsSection = () => {
         }
 
         .highlight {
-          color: #00e5ff;
+          color: #12896B;
         }
 
         .by-text {
@@ -67,7 +67,7 @@ const StatsSection = () => {
           position: absolute;
           width: 60px;
           height: 3px;
-          background-color: #00e5ff;
+          background-color: #12896B;
           left: 0;
           bottom: -8px;
         }
@@ -80,24 +80,25 @@ const StatsSection = () => {
         }
 
         .stat-number {
-          font-size: 2.8rem;
+          font-size: clamp(2rem, 3.5vw, 2.8rem);
           font-weight: bold;
-          color: #00e5ff;
+          color: #1FBF8F;
+          transition: font-size 0.2s ease;
         }
 
         .stat-label {
-          font-size: 1.15rem;
+          font-size: clamp(1rem, 1.5vw, 1.15rem);
           color: #ccc;
           margin-top: 8px;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 991px) {
           .stats-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
           }
 
           .stat-number {
-            font-size: 2rem;
+            font-size: clamp(1.6rem, 5.5vw, 2.2rem);
           }
 
           .stat-label {

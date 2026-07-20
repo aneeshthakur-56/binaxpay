@@ -14,7 +14,7 @@
   --validation: "Elephix_Infotech_Validation_Key";
   --primary: #000066;
   --secondary: #1a1a2e;
-  --accent: #00f0ff;
+  --accent: #1FBF8F;
   --light: #ffffff;
   --dark: #0a0a0a;
   --gray: #0f0f1f;
@@ -262,7 +262,7 @@ section {
     box-shadow 0.3s ease;
 }
 
-/* 🔥 Hover Effect */
+/* ðŸ”¥ Hover Effect */
 .btn2:hover {
   background-color: transparent;
   color: #00f0ff;
@@ -271,13 +271,13 @@ section {
   box-shadow: 0 8px 20px rgba(0, 240, 255, 0.35);
 }
 
-/* 🖱 Active (Click) Effect */
+/* ðŸ–± Active (Click) Effect */
 .btn2:active {
   transform: translateY(0);
   box-shadow: 0 4px 10px rgba(0, 240, 255, 0.25);
 }
 
-/* 🚫 Disabled */
+/* ðŸš« Disabled */
 .btn2:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -299,15 +299,15 @@ section {
 
 .btn-outline {
   background-color: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: #2DD9A8 !important;
+  color: #2DD9A8 !important;
 }
 
 .btn-outline:hover {
-  background-color: var(--accent);
-  color: var(--dark);
+  background-color: #2DD9A8 !important;
+  color: var(--dark) !important;
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2);
+  box-shadow: 0 10px 20px rgba(45, 217, 168, 0.2);
 }
 
 .btn-light {
@@ -387,7 +387,7 @@ section {
   left: 0;
   width: 50px;
   height: 3px;
-  background-color: var(--accent);
+  background:linear-gradient(160deg, #2E9F97  0%, #6FE6B8 50%,  #EAE9F8 100%);
 }
 
 .light-section .section-title::after {

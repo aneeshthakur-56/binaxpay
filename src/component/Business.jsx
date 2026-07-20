@@ -60,12 +60,12 @@ const Business = () => {
           left: 0;
           width: 100%;
           height: 4px;
-          background-color: #00e5ff;
+          background-color: #12896B;
           border-radius: 5px;
         }
 
         .text-accent {
-          color: #00f0ff !important;
+          color: #2DD9A8 !important;
         }
 
         .benefit-grid {
@@ -82,12 +82,20 @@ const Business = () => {
           text-align: left;
           color: white;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-          transition: transform 0.3s ease;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
         }
 
         .benefit-box:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 0 14px #00e5ff88;
+          border-color: #1FBF8F;
+          box-shadow: 0 0 12px rgba(31, 191, 143, 0.38);
+          animation: floatUpDown 1.2s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+          100% { transform: translateY(0); }
         }
 
         .benefit-icon {

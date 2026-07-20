@@ -33,15 +33,15 @@ import SelfTransactions from './pages/selfTransactions.jsx'
 // 👇 Home component without Signin/Signup
 const Home = () => (
   <>
-    <HeroSection />
+    <div id="home"><HeroSection /></div>
     <StatsSection />
-    <FeaturesSection />
-    <Business />
-    <Pricing />
-    <Testimonials />
+    <div id="features"><FeaturesSection /></div>
+    <div id="benefits"><Business /></div>
+    <div id="pricing"><Pricing /></div>
+    <div id="testimonials"><Testimonials /></div>
     <CallToAction />
     <FaqSection />
-    <ContactSection />
+    <div id="contact"><ContactSection /></div>
     <Footer />
   </>
 );
@@ -61,7 +61,6 @@ const App = () => (
       <Route path="/signup" element={<Signup />} />
       <Route path="/VerifySignup" element={<VerifySignup />} />
       <Route path="/verify-signin" element={<VerifySignin />} />
-
       <Route path="/register-success" element={<RegisterSuccess />} />
       <Route path="/forgot" element={<Forgot />} />
       <Route element={<AuthGuard />}>
@@ -77,8 +76,6 @@ const App = () => (
           <Route path="/whitelist_ip" element={<WhiteListIp  />} />
           <Route path="/self_addresses" element={<SelfAddresses  />} />
            <Route path="/self_transactions/:address" element={<SelfTransactions />} />
-
-          
         </Route>
       </Route>
     </Routes>

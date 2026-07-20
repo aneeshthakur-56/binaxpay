@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash, FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaArrowLeft } from "react-icons/fa";
 import { SiFsecure } from "react-icons/si";
 import { FaBoltLightning } from "react-icons/fa6";
 import { RiGlobalLine } from "react-icons/ri";
@@ -86,6 +86,9 @@ const Signin = () => {
         <div className="auth-right">
           <div className="auth-form-container" data-aos="fade-left">
             <ToastContainer position="bottom-right" autoClose={3000} />
+            <Link to="/" className="btn btn-sm btn-outline-secondary mb-4 d-inline-flex align-items-center gap-2" style={{ border: 'none', color: '#a0a0b0' }}>
+              <FaArrowLeft /> Back to Home
+            </Link>
             <h2>Sign In</h2>
             <p className="form-subtitle">
               Enter your credentials to access your account

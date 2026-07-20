@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body .text-info {
+  color: #12896B !important;
+}
+
+body .btn-outline-info {
+  border-color: #2DD9A8 !important;
+  color: #2DD9A8 !important;
+  background-color: transparent !important;
+}
+
+body .btn-outline-info:hover {
+  background-color: #2DD9A8 !important;
+  color: #000 !important;
+}
+
+.text-heading-green {
+  color: #12896B !important;
+}

@@ -22,25 +22,36 @@ const ContactSection = () => {
         }
 
         .text-accent {
-          color: #00eaff!important;
+          color:#2DD9A8 !important;
         }
 
-        .form-control,
+        .form-control {
+          background-color: #1a1a1a !important;
+          border: 1px solid #333 !important;
+          color: #fff !important;
+          transition: all 0.3s ease;
+        }
+
         .form-control:focus {
-          background-color: #1a1a1a;
-          border: 1px solid #333;
-          color: #fff;
+          border-color: #12896B !important;
+          box-shadow: 0 0 0 0.25rem rgba(18, 137, 107, 0.25) !important;
+          outline: none !important;
+          background-color: #1a1a1a !important;
+          color: #fff !important;
         }
 
         .btn-primary {
-          background-color: #000066;
-          border: none;
+          background-color: #12896B !important;
+          border: 2px solid transparent !important;
+          color: #fff !important;
+          font-weight: 600;
+          transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-          background-color: #000;
-          border: 1px solid aqua;
-          color: aqua;
+          background-color: transparent !important;
+          border: 2px solid #12896B !important;
+          color: #12896B !important;
         }
 
         .feature-card {
@@ -59,7 +70,7 @@ const ContactSection = () => {
 
         .info-icon {
           font-size: 1.8rem;
-          color: #00eaff;
+          color: #12896B !important;
         }
           .section-title{
           color:white!important;
@@ -80,8 +91,8 @@ const ContactSection = () => {
         }
 
         .social-icon:hover {
-          background-color: #00eaff;
-          color: #000;
+          background-color: #1FBF8F !important;
+          color: #000 !important;
         }
       `}</style>
 
@@ -99,13 +110,13 @@ const ContactSection = () => {
                       left: 0,
                       width: "100%",
                       height: "4px",
-                      backgroundColor: "#00f0ff",
+                      backgroundColor: "#12896B",
                       borderRadius: "2px",
                     }}
                   />
                 </span>
                 <span style={{ color: "#fffff" }}>t In</span>
-                <span style={{ color: "#00f0ff", marginLeft: "6px" }}>
+                <span style={{ color: "#12896B", marginLeft: "6px" }}>
                   Touch
                 </span>
               </h2>

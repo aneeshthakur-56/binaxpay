@@ -97,15 +97,15 @@ const HeroSection = () => {
         }
 
         .btn-start {
-          background-color: #000066;
+          background-color: #12896B !important;
           color: white !important;
           border: 2px solid transparent;
           transition: all 0.3s ease;
         }
 
         .btn-start:hover {
-          color: #00ffff !important;
-          border: 2px solid #00ffff !important;
+          color: #12896B !important;
+          border: 2px solid #12896B !important;
           background-color: transparent !important;
         }
 

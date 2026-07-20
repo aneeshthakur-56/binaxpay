@@ -54,34 +54,43 @@ const Testimonials = () => {
           left: 0;
           width: 100%;
           height: 4px;
-          background-color: #00eaff !important;
+          background-color: #12896B !important;
           border-radius: 4px;
         }
 
         .highlight {
-          color: #00eaff !important;
+          color: #2DD9A8 !important;
         }
 
         .testimonial-card {
           background-color: #111;
-          border: 1px solid #333;
+          border: 2px solid transparent;
           border-radius: 20px;
           padding: 30px;
           transition: all 0.3s ease;
           height: 100%;
           text-align: left;
+          display: flex;
+          flex-direction: column;
         }
 
         .testimonial-card:hover {
-          border: 1px solid #00eaff;
-          box-shadow: 0 0 15px #00eaff88;
-          transform: scale(1.02);
+          border-color: #1FBF8F !important;
+          box-shadow: 0 0 12px rgba(31, 191, 143, 0.38) !important;
+          animation: floatUpDown 1.2s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+          100% { transform: translateY(0); }
         }
 
         .testimonial-text {
           font-size: 0.95rem;
           line-height: 1.6;
           color: #e0e0e0;
+          flex-grow: 1;
         }
 
         .testimonial-name {
@@ -93,8 +102,15 @@ const Testimonials = () => {
           color: #bbb;
         }
 
+        .profile-ring {
+          border: 2px solid #12896B !important;
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+        }
+
         .star {
-          color: #00eaff;
+          color: #12896B !important;
           font-size: 1rem;
         }
       `}</style>
@@ -116,14 +132,13 @@ const Testimonials = () => {
         <div className="container mt-5">
           <div className="row g-4">
             {testimonials.map((t, index) => (
-              <div className="col-md-4" key={index}>
+              <div className="col-12 col-md-6 col-lg-4 mb-4" key={index}>
                 <div className="testimonial-card h-100">
                   <div className="d-flex align-items-center mb-3">
                     <img
                       src={t.img}
                       alt={t.name}
-                      className="rounded-circle border border-info"
-                      style={{ width: "50px", height: "50px" }}
+                      className="rounded-circle profile-ring"
                     />
                     <div className="ms-3">
                       <p className="mb-0 testimonial-name">{t.name}</p>

@@ -99,7 +99,7 @@ const FeaturesSection = () => {
           left: 0;
           width: 50px;
           height: 4px;
-          background-color: #000066;
+          background-color: #12896B;
         }
 
         .section-subtext {
@@ -117,7 +117,7 @@ const FeaturesSection = () => {
         }
 
         .feature-card {
-          background: #fff;
+          background: #222234 !important;
           border-radius: 16px;
           padding: 30px;
           position: relative;
@@ -127,8 +127,8 @@ const FeaturesSection = () => {
         }
 
         .feature-card:hover {
-          border-color: #00e5ff;
-          box-shadow: 0 0 12px #00e5ff60;
+          border-color: #1FBF8F;
+          box-shadow: 0 0 12px rgba(31, 191, 143, 0.38);
           animation: floatUpDown 1.2s ease-in-out infinite;
         }
 
@@ -155,8 +155,14 @@ const FeaturesSection = () => {
         }
 
         .learn-link {
-          color: #0033cc;
+          color: #0E7C63;
           font-weight: 500;
+          text-decoration: none;
+          transition: color 0.2s ease-in-out;
+        }
+
+        .learn-link:hover {
+          color: #1FBF8F;
         }
 
         @media (max-width: 992px) {
@@ -190,7 +196,7 @@ const FeaturesSection = () => {
         <div className="container">
           <h2 className="section-title fw-bold">
             <span className="underlined powerful">Powerful</span>{" "}
-            <span className="highlight">Features</span>
+            <span className="text-heading-green">Features</span>
           </h2>
           <p className="section-subtext mt-4">
             Our cutting-edge technology and innovative approach make us the

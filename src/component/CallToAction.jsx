@@ -31,6 +31,21 @@ const CallToAction = () => {
             color: #fff !important;
           }
 
+          .form-control {
+            background-color: #0b0b0b !important;
+            border: 1px solid #222 !important;
+            color: #fff !important;
+            padding: 12px !important;
+          }
+
+          .form-control:focus {
+            border-color: #12896B !important;
+            box-shadow: 0 0 0 0.25rem rgba(18, 137, 107, 0.25) !important;
+            outline: none !important;
+            background-color: #0b0b0b !important;
+            color: #fff !important;
+          }
+
           .custom-btn {
             color: #03045e !important;
             background-color: #fff !important;
@@ -40,7 +55,7 @@ const CallToAction = () => {
 
           .custom-btn:hover {
             color: #fff !important;
-            background-color: #03045e !important;
+            background-color: #12896B !important;
           }
 
           .highlight-text {
@@ -89,21 +104,11 @@ const CallToAction = () => {
                 type="email"
                 className="form-control mb-2 text-white"
                 placeholder="Your Email Address"
-                style={{
-                  backgroundColor: "#0b0b0b",
-                  border: "1px solid #222",
-                  padding: "12px",
-                }}
               />
               <input
                 type="password"
                 className="form-control mb-3 text-white"
                 placeholder="Create Password"
-                style={{
-                  backgroundColor: "#0b0b0b",
-                  border: "1px solid #222",
-                  padding: "12px",
-                }}
               />
               <button
                 className="btn custom-btn w-100 fw-semibold py-2 rounded-pill d-flex align-items-center justify-content-center mb-2"

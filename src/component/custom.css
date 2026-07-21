@@ -12,7 +12,7 @@
 
 :root {
   --validation: "Elephix_Infotech_Validation_Key";
-  --primary: #000066;
+  --primary: #126955;
   --secondary: #1a1a2e;
   --accent: #1FBF8F;
   --light: #ffffff;
@@ -89,6 +89,24 @@ img {
   height: auto;
 }
 
+/* Heading Underline Utility */
+.underline-span {
+  position: relative;
+  display: inline-block;
+  margin-right: 0px;
+}
+
+.underline-span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #12896B;
+  border-radius: 5px;
+}
+
 /* Layout */
 .container {
   width: 100%;
@@ -135,7 +153,7 @@ section {
 }
 
 .hero-section {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+background: linear-gradient(135deg, #0A0A0A 0%, #12352E 50%, #0A0A0A 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -597,19 +615,20 @@ section {
 
 /* Form Controls */
 .form-control {
-  background-color: rgba(10, 10, 10, 0.7);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: var(--text);
-  padding: 12px 15px;
+  background-color: #225750 !important;
+  border: 1px solid #2A2A2A !important;
+  color: #fff !important;
+  padding: 14px 16px !important;
+  border-radius: 14px !important;
   transition: all 0.3s ease;
 }
 
 .form-control:focus {
-  outline: none;
-  background-color: rgba(10, 10, 10, 0.9);
-  border-color: #2DD9A8;
-  color: var(--text);
-  box-shadow: 0 0 0 0.25rem rgba(45, 217, 168, 0.25);
+  outline: none !important;
+  border-color: #6FE6B8 !important;
+  box-shadow: 0 0 0 0.35rem rgba(111, 230, 184, 0.16) !important;
+  background-color: #225750 !important;
+  color: #fff !important;
 }
 
 .light-section .form-control {
@@ -1027,6 +1046,40 @@ section {
 }
 
 /* Auth Pages Styles */
+.back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(34, 87, 80, 0.3);
+  border: 1px solid rgba(111, 230, 184, 0.3);
+  border-radius: 50px;
+  color: #6FE6B8 !important;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+}
+
+.back-home-btn:hover {
+  background: #12896B;
+  color: #ffffff !important;
+  border-color: #6FE6B8;
+  box-shadow: 0 0 15px rgba(111, 230, 184, 0.35);
+  transform: translateX(-4px);
+}
+
+.back-home-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.back-home-btn:hover svg {
+  transform: translateX(-3px);
+}
+
 .auth-container {
   display: flex;
   min-height: 100vh;
@@ -1040,9 +1093,7 @@ section {
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: linear-gradient(135deg,
-      rgba(0, 0, 102, 0.9) 0%,
-      rgba(26, 26, 46, 0.9) 100%);
+ background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 45%, #0A0A0A 100%);
   position: relative;
   overflow: hidden;
 }
@@ -1070,7 +1121,9 @@ section {
   margin-bottom: 20px;
   color: var(--light);
 }
-
+.auth-content h1 .accent {
+  color: var(--primary);
+}
 .auth-content p {
   font-size: 1.1rem;
   margin-bottom: 30px;
@@ -1101,7 +1154,7 @@ section {
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background-color: rgba(10, 10, 10, 0.9);
+  background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 50%, #0A0A0A 100%);
 }
 
 .auth-form-container {
@@ -1112,7 +1165,7 @@ section {
 .auth-form-container h2 {
   font-size: 2rem;
   margin-bottom: 10px;
-  color: var(--light);
+  color: var(--primary);
 }
 
 .form-subtitle {
@@ -1157,6 +1210,10 @@ section {
   left: -15px !important;
 }
 
+.custom-input {
+  padding-left: 35px !important;
+}
+
 .input-with-icon input {
   width: 100%;
   padding: 12px 15px 12px 45px;
@@ -1181,10 +1238,12 @@ section {
   transform: translateY(-50%);
   cursor: pointer;
   color: var(--text);
-  opacity: 0.7;
+  opacity: 0.9;
+  transition: all 0.2s ease;
 }
 
 .toggle-password:hover {
+  color: #ffffff !important;
   opacity: 1;
 }
 

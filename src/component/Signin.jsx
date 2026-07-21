@@ -57,7 +57,7 @@ const Signin = () => {
                 <img src={bitsfar} alt="Bitsfar Logo" />
               </Link>
             </div>
-            <h1>Welcome Back</h1>
+            <h1><span className="accent">Welcome</span> Back</h1>
             <p>
               Sign in to access your Bitsfars account and manage your crypto
               payment gateway services.
@@ -92,9 +92,11 @@ const Signin = () => {
         <div className="auth-right">
           <div className="auth-form-container" data-aos="fade-left">
             <ToastContainer position="bottom-right" autoClose={3000} />
-            <Link to="/" className="btn btn-sm btn-outline-secondary mb-4 d-inline-flex align-items-center gap-2" style={{ border: 'none', color: '#a0a0b0' }}>
-              <FaArrowLeft /> Back to Home
-            </Link>
+            <div className="d-flex justify-content-end">
+              <Link to="/" className="back-home-btn">
+                <FaArrowLeft /> Back to Home
+              </Link>
+            </div>
             <h2>Sign In</h2>
             <p className="form-subtitle">
               Enter your credentials to access your account
@@ -125,7 +127,7 @@ const Signin = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="form-control"
+                    className="form-control custom-input"
                   />
                 </div>
               </div>
@@ -155,7 +157,7 @@ const Signin = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="form-control"
+                    className="form-control custom-input"
                     style={{ paddingRight: "45px" }}
                   />
                   {/* Right toggle icon */}
@@ -164,11 +166,11 @@ const Signin = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     style={{
                       position: "absolute",
-                      right: "10px",
+                      right: "15px",
                       top: "50%",
                       transform: "translateY(-50%)",
                       cursor: "pointer",
-                      color: "#aaa",
+                      color: "#fff",
                     }}
                   >
                     {showPassword ? <FaEye /> : <FaEyeSlash />}

@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bitsfar from '../assets/Image/binaxpay.png';
-import { FaRocket,   FaHandHoldingUsd, FaArrowLeft } from 'react-icons/fa';  
+import { FaRocket, FaHandHoldingUsd, FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';  
 import { FcHeadset} from 'react-icons/fc';  
 import { registerUser } from "../api/api";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ const Signup = () => {
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [phone, setPhone] = useState('');
     const [name, setName] = useState('');
     const [error, setError] = useState('');
@@ -60,7 +61,7 @@ const Signup = () => {
                 <div className="logo">
                         <Link to="/"><img src={bitsfar}/></Link>
                 </div>
-                <h1>Join Us</h1>
+                <h1> <span className='accent'>Join </span> Us</h1>
                 <p>Create your Bitsfars account to start using our crypto payment gateway services today.</p>
                 <div className="auth-features">
                         <div className="feature-item"> 
@@ -89,9 +90,11 @@ const Signup = () => {
         </div>
         <div className="auth-right">
             <div className="auth-form-container" data-aos="fade-left">
-                <Link to="/" className="btn btn-sm btn-outline-secondary mb-4 d-inline-flex align-items-center gap-2" style={{ border: 'none', color: '#a0a0b0' }}>
-                    <FaArrowLeft /> Back to Home
-                </Link>
+                <div className="d-flex justify-content-end">
+                    <Link to="/" className="back-home-btn">
+                        <FaArrowLeft /> Back to Home
+                    </Link>
+                </div>
                 <h2>Create Account</h2>
                 <p className="form-subtitle">Fill in your details to get started</p>
                 
@@ -150,24 +153,28 @@ const Signup = () => {
                         <label>Password</label>
                         <div className="input-with-icon">
                             <i className="fas fa-lock"></i>
-                            {/* <input type="password" id="password" name="password" placeholder="" required/> */}
                             <input 
-                                type="text"
+                                type={showPassword ? "text" : "password"}
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 className="form-control custom-input"
+                                style={{ paddingRight: "45px" }}
                             />
-                            <span className="toggle-password" >
-                                <i className="fas fa-eye"></i>
+                            <span 
+                                className="toggle-password" 
+                                onClick={() => setShowPassword(!showPassword)}
+                                style={{ cursor: "pointer" }}
+                            >
+                                {showPassword ? <FaEye /> : <FaEyeSlash />}
                             </span>
                         </div> 
                     </div> 
                     
                     <div className="form-group terms">
                         <input type="checkbox" id="terms" name="terms" required />
-                        <label>I agree to the <Link to="/">Terms of Service</Link>and <Link to="/">Privacy Policy</Link></label>
+                        <label>I agree to the <Link to="/">Terms of Service </Link>and <Link to="/">Privacy Policy</Link></label>
                     </div>
                     
                     <button type="submit" className="btn btn-primary btn-block">Create Account</button> 

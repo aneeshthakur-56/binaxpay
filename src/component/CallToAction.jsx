@@ -64,23 +64,6 @@ const CallToAction = () => {
             mask-composite: exclude;
             pointer-events: none;
           }
-
-          .cta-section .form-control {
-            background-color: #225750 !important;
-            border: 1px solid #2A2A2A !important;
-            color: #fff !important;
-            padding: 14px 16px !important;
-            border-radius: 14px !important;
-          }
-
-          .cta-section .form-control:focus {
-            outline: none !important;
-            border-color: #6FE6B8 !important;
-            box-shadow: 0 0 0 0.35rem rgba(111, 230, 184, 0.16) !important;
-            background-color: #225750 !important;
-            color: #fff !important;
-          }
-
           .custom-btn {
             color: #0A0A0A !important;
             background: linear-gradient(90deg, #6FE6B8 0%, #2E9F97 100%) !important;

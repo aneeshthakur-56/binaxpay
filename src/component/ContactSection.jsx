@@ -16,7 +16,7 @@ const ContactSection = () => {
     <>
       <style>{`
         .contact-section {
-          background-color: #000000;
+            background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 50%, #0A0A0A 100%);
           color: #fff;
           padding: 80px 0;
         }
@@ -26,18 +26,18 @@ const ContactSection = () => {
         }
 
         .form-control {
-          background-color: #222234 !important;
-          border: 1px solid #333 !important;
+          background-color: #225750 !important;
+            border: 1px solid #BCB9B9 !important;
           color: #fff !important;
           transition: all 0.3s ease;
         }
 
         .form-control:focus {
-          border-color: #12896B !important;
-          box-shadow: 0 0 0 0.25rem rgba(18, 137, 107, 0.25) !important;
-          outline: none !important;
-          background-color: #222234 !important;
-          color: #fff !important;
+       outline: none !important;
+            border-color: #6FE6B8 !important;
+            box-shadow: 0 0 0 0.35rem rgba(111, 230, 184, 0.16) !important;
+            background-color: #225750 !important;
+            color: #fff !important;
         }
 
         .btn-primary {
@@ -55,7 +55,7 @@ const ContactSection = () => {
         }
 
         .feature-card {
-          background-color: #000000;
+          background-color:#225750 !important;
           border-radius: 15px;
           padding: 30px;
           height: 100%;
@@ -68,13 +68,46 @@ const ContactSection = () => {
           margin-bottom: 25px;
         }
 
-        .info-icon {
-          font-size: 1.8rem;
-          color: #12896B !important;
+        .info-icon-box {
+          width: 48px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #ffffff;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+          cursor: pointer;
         }
-          .section-title{
-          color:white!important;
+
+        .info-icon-svg {
+          font-size: 1.4rem;
+          color: #12896B !important;
+          transition: all 0.3s ease;
+        }
+
+        .info-icon-box:hover {
+          border-color: var(--primary) !important;
+          box-shadow: 0 0 12px rgba(18, 105, 85, 0.4);
+        }
+
+        .info-icon-box:hover .info-icon-svg {
+          color: var(--primary) !important;
+          animation: iconInsideFloat 1.4s ease-in-out infinite;
+        }
+
+        @keyframes iconInsideFloat {
+          0%, 100% {
+            transform: translateY(0px);
           }
+          50% {
+            transform: translateY(-4px);
+          }
+        }
+
+        .section-title {
+          color: white !important;
+        }
 
         .social-icon {
           display: inline-flex;
@@ -101,21 +134,9 @@ const ContactSection = () => {
           <div className="row justify-content-center">
             <div className="col-lg-8 text-center">
               <h2 className="fw-bold d-flex justify-content-center flex-wrap">
-                <span style={{ position: "relative", display: "inline-block" }}>
-                  <span style={{ color: "#fffff" }}>Ge</span>
-                  <span
-                    style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "4px",
-                      backgroundColor: "#12896B",
-                      borderRadius: "2px",
-                    }}
-                  />
+                <span>
+                  <span className="underline-span">Ge</span>t In
                 </span>
-                <span style={{ color: "#fffff" }}>t In</span>
                 <span style={{ color: "#12896B", marginLeft: "6px" }}>
                   Touch
                 </span>
@@ -170,14 +191,16 @@ const ContactSection = () => {
             </div>
 
             {/* Info Column */}
-            <div className="col-lg-6 mt-5 mt-md-0">
+            <div className="col-lg-6 mt-5 mt-lg-0">
               <div className="feature-card">
                 <div className="row g-4">
                   {/* Email */}
                   <div className="col-md-6">
                     <div className="d-flex">
                       <div className="me-3">
-                        <FaEnvelope className="info-icon" />
+                        <div className="info-icon-box">
+                          <FaEnvelope className="info-icon-svg" />
+                        </div>
                       </div>
                       <div>
                         <h5 className="mb-2">Email</h5>
@@ -204,7 +227,7 @@ const ContactSection = () => {
                   {/* Social Icons */}
                   <div className="col-12 mt-4">
                     <h5 className="mb-3">Follow Us</h5>
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex">
                       <a href="#" className="social-icon">
                         <FaTwitter />
                       </a>

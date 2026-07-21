@@ -51,24 +51,6 @@ const Business = () => {
         .benefit-heading .text-accent {
           color: #12896B !important;
         }
-
-        .underline-span {
-          position: relative;
-          display: inline-block;
-          margin-right: 6px;
-        }
-
-        .underline-span::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 4px;
-          background-color: #12896B;
-          border-radius: 5px;
-        }
-
         .text-accent {
           color: #2DD9A8 !important;
         }
@@ -132,7 +114,7 @@ const Business = () => {
 
       <div className="benefit-section">
         <h2 className="benefit-heading">
-          <span className="underline fw-bold">Bu</span>siness 
+          <span className="underline-span">Bu</span>siness 
           {" "}<span className="text-accent">Benefits</span>
         </h2>
         <p className="mb-5 mt-2 fs-5" style={{ color: "#A3A3A3" }}>

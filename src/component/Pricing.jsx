@@ -303,10 +303,10 @@ const Pricing = () => {
       <section className="pricing-section">
         <div className="text-center">
           <h2 className="pricing-heading">
-            <span className="">Simple, Transparent</span>{" "}
+            <span className="underline-span">Si</span>mple, Transparent{" "}
             <span className="text-heading-green">Pricing</span>
           </h2>
-          <p className="pricing-subtext mt-5">
+          <p className="pricing-subtext mb-5">
             Choose the plan that fits your business needs. Scale up or down as
             you grow.
           </p>

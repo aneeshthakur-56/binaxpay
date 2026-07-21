@@ -142,21 +142,9 @@ const FaqSection = () => {
         {/* Heading */}
         <div className="text-center mb-5">
           <h2 className="fw-bold d-flex justify-content-center flex-wrap">
-            <span style={{ position: "relative", display: "inline-block" }}>
-              <span className="faq-title-main">Fr</span>
-              <span
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "4px",
-                  backgroundColor: "#12896B",
-                  borderRadius: "2px",
-                }}
-              />
+            <span className="faq-title-main">
+              <span className="underline-span">Fr</span>equently Asked
             </span>
-            <span className="faq-title-main">equently Asked</span>
             <span className="faq-title-accent" style={{ marginLeft: "6px" }}>Questions</span>
           </h2>
           <p className="mt-3 fs-5" style={{ color: "rgb(115, 114, 114)" }}>

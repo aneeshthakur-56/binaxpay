@@ -79,7 +79,7 @@ const FeaturesSection = () => {
           padding: 100px 20px 80px;
         }
 
-        .section-title {
+       .features-heading-section .section-title {
           font-size: 2.5rem;
           color: #2b2b2b !important;
         }
@@ -134,6 +134,23 @@ const FeaturesSection = () => {
           flex-direction: column;
         }
 
+        .feature-card:hover {
+          animation: floatUpDown 2s ease-in-out infinite;
+          box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.35),
+            0 0 0 1px rgba(111, 230, 184, 0.08),
+            0 0 24px rgba(111, 230, 184, 0.25);
+        }
+
+        @keyframes floatUpDown {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
         .feature-card::before {
           content: "";
           position: absolute;
@@ -147,14 +164,6 @@ const FeaturesSection = () => {
           opacity: 0;
           transition: opacity 0.35s ease;
           pointer-events: none;
-        }
-
-        .feature-card:hover {
-          transform: translateY(-6px);
-          box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.35),
-            0 0 0 1px rgba(111, 230, 184, 0.08),
-            0 0 24px rgba(111, 230, 184, 0.25);
         }
 
         .feature-card:hover::before {
@@ -224,10 +233,10 @@ const FeaturesSection = () => {
       <section className="features-heading-section text-center">
         <div className="container">
           <h2 className="section-title fw-bold">
-            <span className="underlined powerful">Powerful</span>{" "}
+            <span className="underline-span">Po</span>werful{" "}
             <span className="text-heading-green">Features</span>
           </h2>
-          <p className="section-subtext mt-4">
+          <p className="section-subtext">
             Our cutting-edge technology and innovative approach make us the
             preferred choice for crypto payment solutions worldwide.
           </p>

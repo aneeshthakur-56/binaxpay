@@ -53,6 +53,7 @@ const Footer = () => {
           justify-content: center;
           transition: 0.3s ease;
           color: #ffffff;
+          cursor:pointer;
         }
 
         .social-icon:hover {
@@ -69,53 +70,67 @@ const Footer = () => {
 
         .subscribe-wrapper {
           display: flex;
+          align-items: stretch;
           max-width: 500px;
+          width: 100%;
           margin-left: auto;
-          background: transparent;
+          background-color: transparent;
           border-radius: 50px;
           overflow: hidden;
-          border: 1px solid #333;
-          transition: border-color 0.3s ease;
+          border: 1px solid #2A2A2A;
+          padding: 0;
+          transition: all 0.3s ease;
         }
 
         .subscribe-wrapper:focus-within {
-          border-color: #12896B;
+          border-color: #6FE6B8 !important;
+          box-shadow: 0 0 0 0.35rem rgba(111, 230, 184, 0.16) !important;
         }
 
         .subscribe-input {
           flex: 1;
-          border: none;
-          background-color: #0b100f;
-          color: #fff;
-          padding: 16px 20px;
+          min-width: 0;
+          border: none !important;
+          background-color: #225750 !important;
+          color: #fff !important;
+          padding: 14px 20px !important;
           font-size: 16px;
           border-radius: 50px 0 0 50px;
         }
 
         .subscribe-input:focus {
           outline: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          background-color: #225750 !important;
+          color: #fff !important;
         }
 
         .subscribe-input::placeholder {
-          color: #888;
+          color: rgba(255, 255, 255, 0.6);
         }
 
         .subscribe-button {
+          flex-shrink: 0;
           background-color: #12896B;
           color: white;
-          border: 2px solid transparent;
-          padding: 0 30px;
+          border: none;
+          padding: 14px 28px;
           font-size: 16px;
           font-weight: 600;
           border-radius: 0 50px 50px 0;
-          transition: all 0.3s ease;
           cursor: pointer;
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease-in-out;
         }
 
         .subscribe-button:hover {
-          background-color: transparent !important;
-          color: #12896B !important;
-          box-shadow: inset 0 0 0 2px #12896B !important;
+          background-color: #acacb5;
+          color: #12896B;
+          box-shadow: 0 0 10px rgba(3, 42, 32, 0.4);
         }
 
         .footer-bottom {
@@ -127,24 +142,26 @@ const Footer = () => {
           color: #fffff;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 770px) {
           .subscribe-wrapper {
-            flex-direction: column;
-            border-radius: 20px;
+            margin-left: 0;
+            margin-right: auto;
           }
+          
+          .footer-subscribe-title {
+            text-align: left;
+          }
+        }
 
+        @media (max-width: 480px) {
           .subscribe-input {
-            border-radius: 20px 20px 0 0;
+            padding: 12px 14px !important;
+            font-size: 14px;
           }
 
           .subscribe-button {
-            border-radius: 0 0 20px 20px;
-            width: 100%;
-            margin-top: 10px;
-          }
-
-          .footer-subscribe-title {
-            text-align: left;
+            padding: 12px 18px;
+            font-size: 14px;
           }
         }
       `}</style>

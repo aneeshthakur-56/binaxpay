@@ -6,7 +6,7 @@ const features = [
     icon: (
       <i
         className="mdi mdi-shield-lock-outline"
-        style={{ fontSize: "28px", color: "#00e5ff" }}
+        style={{ fontSize: "28px", color: "#6FE6B8" }}
       ></i>
     ),
     title: "Military-Grade Security",
@@ -17,7 +17,7 @@ const features = [
     icon: (
       <i
         className="mdi mdi-speedometer"
-        style={{ fontSize: "28px", color: "#00e5ff" }}
+        style={{ fontSize: "28px", color: "#6FE6B8" }}
       ></i>
     ),
     title: "Lightning Fast Transactions",
@@ -25,6 +25,12 @@ const features = [
       "Our optimized blockchain routing ensures your payments are processed in seconds, not minutes. Avg. confirmation under 30 seconds.",
   },
   {
+    icon: (
+      <i
+        className="mdi mdi-tag-outline"
+        style={{ fontSize: "28px", color: "#6FE6B8" }}
+      ></i>
+    ),
     title: "Lowest Fees in Industry",
     description:
       "Enjoy transaction fees up to 70% lower than competitors. Volume discounts available with our efficient infrastructure.",
@@ -33,7 +39,7 @@ const features = [
     icon: (
       <i
         className="mdi mdi-cube-outline"
-        style={{ fontSize: "28px", color: "#00e5ff" }}
+        style={{ fontSize: "28px", color: "#6FE6B8" }}
       ></i>
     ),
     title: "Global Reach",
@@ -44,7 +50,7 @@ const features = [
     icon: (
       <i
         className="mdi mdi-chart-areaspline"
-        style={{ fontSize: "28px", color: "#00e5ff" }}
+        style={{ fontSize: "28px", color: "#6FE6B8" }}
       ></i>
     ),
     title: "Easy Integration",
@@ -55,7 +61,7 @@ const features = [
     icon: (
       <i
         className="mdi mdi-code-braces"
-        style={{ fontSize: "28px", color: "#00e5ff" }}
+        style={{ fontSize: "28px", color: "#6FE6B8" }}
       ></i>
     ),
     title: "Real-time Analytics",
@@ -117,25 +123,42 @@ const FeaturesSection = () => {
         }
 
         .feature-card {
-          background: #222234 !important;
+          background: #1e6057 !important;
           border-radius: 16px;
           padding: 30px;
           position: relative;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-          transition: all 0.3s ease;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          transition: transform 0.35s ease, box-shadow 0.35s ease;
           border: 2px solid transparent;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .feature-card::before {
+          content: "";
+          position: absolute;
+          inset: -2px;
+          border-radius: 18px;
+          padding: 2px;
+          background: linear-gradient(160deg, #6FE6B8 0%, #2E9F97 50%, #EAE9F8 100%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          opacity: 0;
+          transition: opacity 0.35s ease;
+          pointer-events: none;
         }
 
         .feature-card:hover {
-          border-color: #1FBF8F;
-          box-shadow: 0 0 12px rgba(31, 191, 143, 0.38);
-          animation: floatUpDown 1.2s ease-in-out infinite;
+          transform: translateY(-6px);
+          box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.35),
+            0 0 0 1px rgba(111, 230, 184, 0.08),
+            0 0 24px rgba(111, 230, 184, 0.25);
         }
 
-        @keyframes floatUpDown {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-          100% { transform: translateY(0); }
+        .feature-card:hover::before {
+          opacity: 1;
         }
 
         .icon-circle {
@@ -155,14 +178,21 @@ const FeaturesSection = () => {
         }
 
         .learn-link {
-          color: #0E7C63;
+          color: #66f9d7 !important;
           font-weight: 500;
           text-decoration: none;
           transition: color 0.2s ease-in-out;
         }
 
         .learn-link:hover {
-          color: #1FBF8F;
+          color: #DAECE8 !important;
+          text-decoration:underline;
+        }
+
+        .feature-description {
+          color: #fff;
+          margin-bottom: 20px;
+          flex-grow: 1;
         }
 
         @media (max-width: 992px) {
@@ -181,13 +211,12 @@ const FeaturesSection = () => {
           }
 
           .feature-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (max-width: 500px) {
-          .feature-grid {
             grid-template-columns: 1fr;
+            gap: 20px;
+          }
+
+          .feature-card {
+            padding: 24px 20px;
           }
         }
       `}</style>
@@ -206,9 +235,11 @@ const FeaturesSection = () => {
           <div className="feature-grid mt-5">
             {features.map((feature, index) => (
               <div key={index} className="feature-card text-start h-100">
-                <div className="icon-circle">{feature.icon}</div>
-                <h5 className="feature-title">{feature.title}</h5>
-                <p style={{ color: "#fff" }}>{feature.description}</p>
+                <div className="d-flex align-items-center mb-3">
+                  <div className="icon-circle mb-0">{feature.icon}</div>
+                  <h5 className="feature-title mb-0">{feature.title}</h5>
+                </div>
+                <p className="feature-description">{feature.description}</p>
                 <a href="#" className="learn-link">
                   Learn more →
                 </a>

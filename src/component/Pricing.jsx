@@ -104,12 +104,13 @@ const Pricing = () => {
         }
 
         .pricing-box {
-          background: #222234 !important;
+          background: #1e6057 !important;
           border-radius: 20px;
           padding: 40px;
           height: 100%;
           display: flex;
           flex-direction: column;
+          transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
         }
 
         .pricing-box h5 {
@@ -117,29 +118,55 @@ const Pricing = () => {
         }
 
         .plan-desc {
-          color: #A3A3A3 !important;
+          color: #B8D9CF !important;
           min-height: 48px;
         }
 
         .plan-starter,
         .plan-enterprise {
-          border: 1px solid #2A2A2A !important;
-          transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+          border: 1px solid rgba(255, 255, 255, 0.12) !important;
         }
 
         .plan-starter:hover,
         .plan-enterprise:hover {
-          border-color: #2E9F97 !important;
-          transform: translateY(-4px) !important;
-          box-shadow: 0 8px 30px rgba(46, 159, 151, 0.15) !important;
+          border-color: rgba(111, 230, 184, 0.6) !important;
+          transform: translateY(-6px) !important;
+          box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.35),
+            0 0 0 1px rgba(111, 230, 184, 0.15),
+            0 0 26px rgba(111, 230, 184, 0.3) !important;
         }
 
         .plan-pro {
-          border: 1px solid #2E9F97 !important; /* solid fallback */
-          background: linear-gradient(#222234, #222234) padding-box,
-                      linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) border-box !important;
-          box-shadow: 0 8px 25px rgba(111, 230, 184, 0.1) !important;
-          transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+          background-color: #12896B !important;
+          border: 1px solid #12896B !important;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28) !important;
+          color: #FFFFFF !important;
+        }
+
+        .plan-pro h5,
+        .plan-pro .plan-desc,
+        .plan-pro .rate-val,
+        .plan-pro .note,
+        .plan-pro .plan-feature,
+        .plan-pro .plan-feature .icon {
+          color: #FFFFFF !important;
+        }
+
+        .plan-pro .plan-desc {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .plan-pro .note {
+          color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        .plan-pro .plan-feature.included .icon {
+          color: #E3F8EC !important;
+        }
+
+        .plan-pro .plan-feature.excluded .icon {
+          color: #FFB6B6 !important;
         }
 
         @media (min-width: 992px) {
@@ -147,12 +174,14 @@ const Pricing = () => {
             transform: translateY(-15px) !important;
           }
           .plan-pro:hover {
-            transform: translateY(-19px) !important;
+            transform: translateY(-21px) !important;
           }
         }
 
         .plan-pro:hover {
-          box-shadow: 0 12px 30px rgba(111, 230, 184, 0.25) !important;
+          box-shadow:
+            0 24px 50px rgba(0, 0, 0, 0.45),
+            0 0 0 1px rgba(255, 255, 255, 0.12) !important;
         }
 
         .rate-container {
@@ -164,7 +193,7 @@ const Pricing = () => {
         .rate-val {
           font-size: 2.5rem;
           font-weight: bold;
-          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+          background: #fff;
           -webkit-background-clip: text;
           background-clip: text;
           color: #6FE6B8; /* fallback solid color */
@@ -173,7 +202,7 @@ const Pricing = () => {
 
         .note {
           font-size: 0.9rem;
-          color: #A3A3A3 !important;
+          color: #B8D9CF !important;
           font-weight: 400;
           margin-left: 4px;
         }
@@ -183,7 +212,7 @@ const Pricing = () => {
           display: flex;
           align-items: center;
           font-size: 0.95rem;
-          color: #E0E0E0 !important;
+          color: #EAF5F0 !important;
         }
 
         .plan-feature .icon {
@@ -196,11 +225,11 @@ const Pricing = () => {
         }
 
         .plan-feature.excluded {
-          color: #8A8A8A !important;
+          color: #9DBDB3 !important;
         }
 
         .plan-feature.excluded .icon {
-          color: #C24545 !important;
+          color: #FF8080 !important;
         }
 
         .features-container {
@@ -228,14 +257,14 @@ const Pricing = () => {
 
         .plan-starter .plan-btn:hover,
         .plan-enterprise .plan-btn:hover {
-          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+          background: #fff !important;
           color: #0A0A0A !important;
           border-color: transparent !important;
           box-shadow: 0 4px 15px rgba(111, 230, 184, 0.25) !important;
         }
 
         .plan-pro .plan-btn {
-          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+          background: #fff !important;
           color: #0A0A0A !important;
           border: none !important;
           font-weight: bold !important;
@@ -245,10 +274,10 @@ const Pricing = () => {
         }
 
         .plan-pro .plan-btn:hover {
-        background: transparent !important;
-          border: 2px solid #6FE6B8 !important;
-          color: #6FE6B8 !important;
-          box-shadow: 0 4px 20px rgba(111, 230, 184, 0.35) !important;
+          background: #1e6057 !important;
+          border: 2px solid #fff !important;
+          color: #fff !important;
+          box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45) !important;
           transform: translateY(-2px) !important;
         }
 

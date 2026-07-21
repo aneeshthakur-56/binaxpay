@@ -85,7 +85,7 @@ const Footer = () => {
         .subscribe-input {
           flex: 1;
           border: none;
-          background-color: #111;
+          background-color: #0b100f;
           color: #fff;
           padding: 16px 20px;
           font-size: 16px;

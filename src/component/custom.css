@@ -363,6 +363,19 @@ section {
   margin-bottom: 20px;
 }
 
+.feature-icon-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 6px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  border: 2px solid #2DD9A8;
+}
+
 /* Section Titles */
 .section-title {
   position: relative;
@@ -592,10 +605,11 @@ section {
 }
 
 .form-control:focus {
+  outline: none;
   background-color: rgba(10, 10, 10, 0.9);
-  border-color: var(--accent);
+  border-color: #2DD9A8;
   color: var(--text);
-  box-shadow: 0 0 0 0.25rem rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(45, 217, 168, 0.25);
 }
 
 .light-section .form-control {
@@ -866,6 +880,18 @@ section {
 .mb-5 {
   margin-bottom: 3rem !important;
 }
+
+/* Responsive overrides for Bootstrap-like utility classes to ensure
+   responsive margin utilities (e.g., mt-md-0) win when used in markup.
+   This is needed because global utility rules above use !important
+   and can override Bootstrap's responsive utilities. */
+@media (min-width: 768px) {
+  .mt-md-0 { margin-top: 0 !important; }
+}
+@media (min-width: 992px) {
+  .mt-lg-0 { margin-top: 0 !important; }
+}
+
 
 .pt-0 {
   padding-top: 0 !important;
@@ -1176,6 +1202,7 @@ section {
 
 .remember-me input {
   margin-right: 8px;
+  accent-color: #12896B;
 }
 
 .forgot-password {

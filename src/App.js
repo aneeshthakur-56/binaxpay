@@ -7,8 +7,7 @@ import StatsSection from './component/StatsSection';
 import FeaturesSection from './component/FeaturesSection';
 import Business from './component/Business';
 import Pricing from './component/Pricing';
-import Testimonials from './component/Testimonials';
-import CallToAction from './component/CallToAction';
+import TestimonialsAndCTA from './component/TestimonialsAndCTA';
 import FaqSection from './component/FaqSection';
 import ContactSection from './component/ContactSection';
 import Footer from './component/Footer';
@@ -38,8 +37,7 @@ const Home = () => (
     <div id="features"><FeaturesSection /></div>
     <div id="benefits"><Business /></div>
     <div id="pricing"><Pricing /></div>
-    <div id="testimonials"><Testimonials /></div>
-    <CallToAction />
+    <TestimonialsAndCTA />
     <FaqSection />
     <div id="contact"><ContactSection /></div>
     <Footer />

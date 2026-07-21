@@ -64,17 +64,23 @@ const Signin = () => {
             </p>
             <div className="auth-features">
               <div className="feature-item">
-                <SiFsecure size={24} color="#00E8F8" />
+                <span className="feature-icon-ring">
+                  <SiFsecure size={24} color="#12896B" />
+                </span>
                 &nbsp;
                 <span>Secure & Encrypted</span>
               </div>
               <div className="feature-item">
-                <FaBoltLightning size={24} color="#00E8F8" />
+                <span className="feature-icon-ring">
+                  <FaBoltLightning size={24} color="#12896B" />
+                </span>
                 &nbsp;
                 <span>Lightning Fast</span>
               </div>
               <div className="feature-item">
-                <RiGlobalLine size={24} color="#00E8F8" />
+                <span className="feature-icon-ring">
+                  <RiGlobalLine size={24} color="#12896B" />
+                </span>
                 &nbsp;
                 <span>Global Access</span>
               </div>
@@ -119,9 +125,7 @@ const Signin = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    style={{
-                      paddingLeft: "35px",
-                    }}
+                    className="form-control"
                   />
                 </div>
               </div>
@@ -151,10 +155,8 @@ const Signin = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    style={{
-                      paddingLeft: "35px",
-                      paddingRight: "35px",
-                    }}
+                    className="form-control"
+                    style={{ paddingRight: "45px" }}
                   />
                   {/* Right toggle icon */}
                   <span

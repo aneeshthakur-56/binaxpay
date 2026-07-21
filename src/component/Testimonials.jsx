@@ -30,8 +30,8 @@ const Testimonials = () => {
     <>
       <style>{`
         .testimonial-section {
-          background-color: #0a0a0a;
-          padding: 100px 20px;
+          background: transparent !important;
+          padding: 100px 20px 40px;
           text-align: center;
         }
 
@@ -70,8 +70,6 @@ const Testimonials = () => {
           transition: all 0.3s ease;
           height: 100%;
           text-align: left;
-          display: flex;
-          flex-direction: column;
         }
 
         .testimonial-card:hover {
@@ -90,7 +88,6 @@ const Testimonials = () => {
           font-size: 0.95rem;
           line-height: 1.6;
           color: #e0e0e0;
-          flex-grow: 1;
         }
 
         .testimonial-name {
@@ -132,7 +129,7 @@ const Testimonials = () => {
         <div className="container mt-5">
           <div className="row g-4">
             {testimonials.map((t, index) => (
-              <div className="col-12 col-md-6 col-lg-4 mb-4" key={index}>
+              <div className="col-md-4" key={index}>
                 <div className="testimonial-card h-100">
                   <div className="d-flex align-items-center mb-3">
                     <img

@@ -49,8 +49,7 @@ const HeroSection = () => {
               <img
                 src={hero}
                 alt="Crypto Safe"
-                className="img-fluid float-animation"
-                // style={{ maxWidth: "460px" }}
+                className="img-fluid float-animation hero-img"
               />
             </div>
           </div>
@@ -161,6 +160,21 @@ const HeroSection = () => {
             max-width: 90%;
             margin-bottom: 1rem;
             margin-top: 2rem;
+          }
+        }
+
+        .hero-img {
+          width: 472px !important;
+          height: 324px !important;
+          max-width: 100%;
+          object-fit: contain !important;
+        }
+
+        @media (min-width: 768px) {
+          .hero-img {
+            width: 400px !important;
+            height: 582px !important;
+            object-fit: contain !important;
           }
         }
       `}</style>

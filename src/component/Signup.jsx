@@ -63,18 +63,25 @@ const Signup = () => {
                 <h1>Join Us</h1>
                 <p>Create your Bitsfars account to start using our crypto payment gateway services today.</p>
                 <div className="auth-features">
-                    <div className="feature-item"> 
-                        <FaRocket size={24} color="#00E8F8"  /> &nbsp;
+                        <div className="feature-item"> 
+                        <span className="feature-icon-ring">
+                            <FaRocket size={24} color="#12896B" />
+                        </span>
+                        &nbsp;
                         <span>Quick Setup</span>
                     </div>
                     <div className="feature-item">
-                        {/* <i className="fas fa-hand-holding-usd"></i> */}
-                        <FaHandHoldingUsd size={24} color="#00E8F8"  /> &nbsp; 
+                        <span className="feature-icon-ring">
+                            <FaHandHoldingUsd size={24} color="#12896B" />
+                        </span>
+                        &nbsp;
                         <span>Low Fees</span>
                     </div>
                     <div className="feature-item">
-                        {/* <i className="fas fa-headset"></i> */}
-                        <FcHeadset size={24} color="#00E8F8"/>&nbsp; 
+                        <span className="feature-icon-ring">
+                            <FcHeadset size={24} color="#12896B" />
+                        </span>
+                        &nbsp;
                         <span>24/7 Support</span>
                     </div>
                 </div>
@@ -92,7 +99,7 @@ const Signup = () => {
                     <div className="form-group">
                         <label >Full Name</label>
                         <div className="input-with-icon">
-                            {/* <i className="fas fa-user"></i> */}
+                            <i className="fas fa-user"></i>
                             {/* <span class="input-group-text bg-info text-white">
                                     <FaUser size={24} color="#00E8F8"  />
                             </span> */}

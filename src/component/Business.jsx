@@ -34,7 +34,7 @@ const Business = () => {
     <>
       <style>{`
         .benefit-section {
-          background: linear-gradient(to bottom right, #05052e, #0d0d4f);
+          background: radial-gradient(circle at 50% 50%, #0a1f18 0%, #0A0A0A 100%);
           padding: 100px 20px;
           color: white;
           text-align: center;
@@ -45,6 +45,11 @@ const Business = () => {
           font-weight: 700;
           display: inline-block;
           position: relative;
+          color: #ffffff !important;
+        }
+
+        .benefit-heading .text-accent {
+          color: #12896B !important;
         }
 
         .underline-span {
@@ -76,14 +81,14 @@ const Business = () => {
         }
 
         .benefit-box {
-          background-color: #0c0c21;
+          background-color: #3fd8c463;
           border-radius: 16px;
           padding: 30px;
           text-align: left;
           color: white;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
           transition: all 0.3s ease;
-          border: 2px solid transparent;
+          border: 1px solid rgba(111, 230, 184, 0.15);
         }
 
         .benefit-box:hover {
@@ -100,7 +105,7 @@ const Business = () => {
 
         .benefit-icon {
           font-size: 36px;
-          color: #00e5ff;
+          color: #6FE6B8;
           margin-bottom: 15px;
         }
 
@@ -111,7 +116,7 @@ const Business = () => {
 
         .benefit-description {
           margin-top: 10px;
-          color: #cccccc;
+          color: #cac8c8;
         }
 
         @media (max-width: 768px) {
@@ -127,10 +132,10 @@ const Business = () => {
 
       <div className="benefit-section">
         <h2 className="benefit-heading">
-          <span className="underline-span fw-bold">Bu</span>siness{" "}
-          <span className="text-accent">Benefits</span>
+          <span className="underline fw-bold">Bu</span>siness 
+          {" "}<span className="text-accent">Benefits</span>
         </h2>
-        <p className="mb-5 mt-2 fs-5 text-white">
+        <p className="mb-5 mt-2 fs-5" style={{ color: "#A3A3A3" }}>
           Discover how Binaxpay can transform your payment processing and grow
           your business.
         </p>
@@ -146,10 +151,12 @@ const Business = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <div className="benefit-icon">
-                  <i className={`mdi ${benefit.icon}`}></i>
+                <div className="d-flex align-items-center mb-3">
+                  <div className="benefit-icon mb-0 me-3" style={{ display: "inline-flex" }}>
+                    <i className={`mdi ${benefit.icon}`}></i>
+                  </div>
+                  <h5 className="benefit-title mb-0">{benefit.title}</h5>
                 </div>
-                <h5 className="benefit-title">{benefit.title}</h5>
                 <p className="benefit-description">{benefit.description}</p>
               </motion.div>
             ))}

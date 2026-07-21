@@ -26,7 +26,7 @@ const ContactSection = () => {
         }
 
         .form-control {
-          background-color: #1a1a1a !important;
+          background-color: #222234 !important;
           border: 1px solid #333 !important;
           color: #fff !important;
           transition: all 0.3s ease;
@@ -36,7 +36,7 @@ const ContactSection = () => {
           border-color: #12896B !important;
           box-shadow: 0 0 0 0.25rem rgba(18, 137, 107, 0.25) !important;
           outline: none !important;
-          background-color: #1a1a1a !important;
+          background-color: #222234 !important;
           color: #fff !important;
         }
 
@@ -126,7 +126,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <div className="row mt-5">
+          <div className="row mt-5 align-items-start">
             {/* Contact Form */}
             <div className="col-lg-6">
               <form>
@@ -141,7 +141,7 @@ const ContactSection = () => {
                   <div className="col-md-6">
                     <input
                       type="email"
-                      className="form-control bg-black border-dark text-light"
+                      className="form-control border-dark text-light"
                       placeholder="Your Email"
                     />
                   </div>
@@ -170,7 +170,7 @@ const ContactSection = () => {
             </div>
 
             {/* Info Column */}
-            <div className="col-lg-6 mt-5 mt-lg-0">
+            <div className="col-lg-6 mt-5 mt-md-0">
               <div className="feature-card">
                 <div className="row g-4">
                   {/* Email */}
@@ -204,7 +204,7 @@ const ContactSection = () => {
                   {/* Social Icons */}
                   <div className="col-12 mt-4">
                     <h5 className="mb-3">Follow Us</h5>
-                    <div className="d-flex">
+                    <div className="d-flex justify-content-center">
                       <a href="#" className="social-icon">
                         <FaTwitter />
                       </a>

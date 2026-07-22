@@ -16,10 +16,11 @@ const navItems2 = [
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 120; // offset to trigger active state slightly before reaching top
+      const scrollPosition = window.scrollY + 120;
       for (const item of navItems2) {
         const el = document.getElementById(item.toLowerCase());
         if (el) {
@@ -34,31 +35,62 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // run on mount
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleShowSidebar = () => {
+  useEffect(() => {
     const el = document.getElementById("landingSidebar");
+    if (!el) return;
+
+    const onShown = () => setIsSidebarOpen(true);
+    const onHidden = () => setIsSidebarOpen(false);
+
+    el.addEventListener("shown.bs.offcanvas", onShown);
+    el.addEventListener("hidden.bs.offcanvas", onHidden);
+
+    return () => {
+      el.removeEventListener("shown.bs.offcanvas", onShown);
+      el.removeEventListener("hidden.bs.offcanvas", onHidden);
+    };
+  }, []);
+
+  const handleToggleSidebar = (e) => {
+    const checked = e.target.checked;
+    setIsSidebarOpen(checked);
+    const el = document.getElementById("landingSidebar");
+    if (!el) return;
     const instance = Offcanvas.getOrCreateInstance(el);
-    instance.show();
+    if (checked) {
+      instance.show();
+    } else {
+      instance.hide();
+    }
   };
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3 py-3 fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top px-3 py-3">
         <div className="container">
           <a className="navbar-brand" href="#">
             <img src={bitsfar} alt="logo" height="40" />
           </a>
 
-          <button
-            className="navbar-toggler border-0 shadow-none px-0"
-            type="button"
-            onClick={handleShowSidebar}
-          >
-            <i className="fas fa-bars text-white fs-2"></i>
-          </button>
+          {/* SVG Animated Hamburger Checkbox Toggle */}
+          <label className="hamburger d-lg-none">
+            <input
+              type="checkbox"
+              checked={isSidebarOpen}
+              onChange={handleToggleSidebar}
+            />
+            <svg viewBox="0 0 32 32">
+              <path
+                className="line line-top-bottom"
+                d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+              />
+              <path className="line" d="M7 16 27 16" />
+            </svg>
+          </label>
 
           <div className="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
             <ul className="navbar-nav mx-auto">
@@ -86,26 +118,24 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ✅ Landing Sidebar is back */}
+      {/* Landing Sidebar */}
       <LandingSidebar />
 
-       <style>{`
-        .navbar-custom {
-          background-color: rgba(0, 0, 0, 0.7) !important;
-          z-index: 1111;
-          height: 97px;
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          backdrop-filter: blur(10px);
+      <style>{`
+        .navbar {
+          background: linear-gradient(135deg, rgba(10, 10, 10, 0.92) 0%, rgba(18, 53, 46, 0.92) 50%, rgba(10, 10, 10, 0.92) 100%) !important;
+          backdrop-filter: blur(16px) !important;
+          -webkit-backdrop-filter: blur(16px) !important;
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+          transition: all 0.3s ease;
+          z-index: 1030 !important;
         }
 
         .navbar-brand,
         .nav-link,
         .btn {
-          color: var(--bs-navbar-active-color);
+          color: #ffffff !important;
         }
 
         .btn {
@@ -122,101 +152,106 @@ const Navbar = () => {
         }
 
         .btn-outline-info {
-          color: #2DD9A8 !important;
           border: 2px solid #2DD9A8 !important;
-          background-color: transparent !important;
+          color: #2DD9A8 !important;
+          background: transparent !important;
         }
 
         .btn-outline-info:hover {
-          background-color: #2DD9A8 !important;
-          color: #000 !important;
+          background: rgba(45, 217, 168, 0.15) !important;
+          color: #ffffff !important;
+          border-color: #6FE6B8 !important;
         }
 
         .btn-signin {
-          background-color: #12896B !important;
-          color: white !important;
-          border: 2px solid transparent;
-          transition: all 0.3s ease;
+          background: linear-gradient(135deg, #12896B 0%, #2E9F97 100%) !important;
+          border: none !important;
+          color: #ffffff !important;
+          box-shadow: 0 4px 15px rgba(18, 137, 107, 0.3);
         }
 
         .btn-signin:hover {
-          color: #12896B !important;
-          border: 2px solid #12896B !important;
-          background-color: transparent !important;
+          background: linear-gradient(135deg, #2E9F97 0%, #6FE6B8 100%) !important;
+          box-shadow: 0 6px 20px rgba(111, 230, 184, 0.4);
+          transform: translateY(-2px);
         }
 
-        .btn i {
-          font-size: 18px;
-          margin: 0;
-          vertical-align: middle;
-        }
-
-        .navbar .nav-link {
-          font-weight: 500;
-          margin: 0 10px;
+        .nav-link {
           position: relative;
-          font-size: 1rem;
-          color: white !important;
+          opacity: 0.85;
+          padding: 8px 16px !important;
+          transition: opacity 0.3s ease, color 0.3s ease;
         }
 
-        .navbar .nav-link::after {
-          content: "";
+        .nav-link:hover,
+        .nav-link.active {
+          opacity: 1;
+          color: #6FE6B8 !important;
+        }
+
+        .nav-link::after {
+          content: '';
           position: absolute;
-          width: 100%;
-          height: 2.5px;
-          background: linear-gradient(160deg, #2E9F97 0%, #6FE6B8 50%, #EAE9F8 100%);
-          left: 0;
-          bottom: 0;
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          width: 0;
+          height: 2px;
+          bottom: 2px;
+          left: 50%;
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+          border-radius: 2px;
         }
 
-        .navbar .nav-link:hover {
-          color: white !important;
+        .nav-link:hover::after,
+        .nav-link.active::after {
+          width: 60%;
         }
 
-        .navbar .nav-link:hover::after,
-        .navbar .nav-link.active::after {
-          transform: scaleX(1);
-        }
-
-        .navbar-buttons {
-          gap: 10px;
-        }
-
-        @media (max-width: 991px) {
-          .navbar-buttons {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            background-color: black;
-          }
-
-          .navbar-buttons .btn {
-            width: 100%;
-          }
-
-          .navbar-nav {
-            text-align: center;
-            margin-top: 1rem;
-          }
-        }
-
-        @media (min-width: 992px) {
-          .navbar-buttons {
-            margin-right: 4rem;
-          }
-
-          .navbar-nav {
-            padding-left: 3rem;
-          }
-        }
-
-        .navbar-collapse {
-          flex-grow: 1;
-          flex-basis: 100%;
+        /* SVG Animated Hamburger Checkbox Toggle */
+        .hamburger {
+          cursor: pointer;
+          display: inline-flex;
           align-items: center;
+          justify-content: center;
+          z-index: 1040;
+        }
+
+        .hamburger input {
+          display: none;
+        }
+
+        .hamburger svg {
+          height: 2.6em;
+          transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .line {
+          fill: none;
+          stroke: #ffffff;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-width: 3;
+          transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .line-top-bottom {
+          stroke-dasharray: 12 63;
+        }
+
+        .hamburger input:checked + svg {
+          transform: rotate(-45deg);
+        }
+
+        .hamburger input:checked + svg .line-top-bottom {
+          stroke-dasharray: 20 300;
+          stroke-dashoffset: -32.42;
+        }
+
+        @media (max-width: 991.98px) {
+          .navbar {
+            padding: 12px 20px !important;
+          }
         }
       `}</style>
     </>

@@ -52,7 +52,11 @@ const Sidebar = () => {
         tabIndex="-1"
         id="sidebarCollapse"
         style={{
-          backgroundColor: "#0f0f1f",
+          background: "linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(18, 53, 46, 0.95) 50%, rgba(10, 10, 10, 0.95) 100%)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          borderRight: "1px solid rgba(255, 255, 255, 0.08)",
+          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
           width: "260px",
           padding: "20px 10px",
           color: "#fff",
@@ -65,17 +69,18 @@ const Sidebar = () => {
 
         <ul className="nav flex-column">
           {/* Dashboard */}
-          <li className="nav-item mb-3">
+          <li className="nav-item mb-1">
             <Link
               className="nav-link d-flex align-items-center gap-2"
               to="/dashboard"
               onClick={closeSidebar}
               style={{
-                backgroundColor: "#00D5C0",
-                color: "#00E1FF",
+                backgroundColor: "#225750",
+                border: "1px solid #2A2A2A",
+                color: "#fff",
                 borderRadius: "10px",
-                padding: "12px 16px",
-                // color:"black",
+                padding: "10px 14px",
+                transition: "all 0.3s ease",
               }}
             >
               📊 Dashboard
@@ -83,11 +88,18 @@ const Sidebar = () => {
           </li>
 
           {/* Transactions Dropdown */}
-          <li className="nav-item mb-2">
+          <li className="nav-item mb-1">
             <button
               className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
               onClick={() => toggleDropdown("transactions")}
-              style={{ padding: "10px 15px", fontWeight: 500 }}
+              style={{
+                backgroundColor: "#225750",
+                border: "1px solid #2A2A2A",
+                borderRadius: "10px",
+                padding: "10px 14px",
+                fontWeight: 500,
+                transition: "all 0.3s ease",
+              }}
             >
               <span className="d-flex align-items-center gap-2 ">
                 🔄 Transactions
@@ -98,13 +110,15 @@ const Sidebar = () => {
               ref={transactionsRef}
               className="overflow-hidden "
               style={{
-                backgroundColor: "#00D5C0",
+                backgroundColor: "#163f39",
+                border: "1px solid #2A2A2A",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
                 paddingRight: "15px",
                 textAlign: "center",
                 marginLeft: "15px",
+                marginTop: "4px",
               }}
             >
               <Link
@@ -134,11 +148,18 @@ const Sidebar = () => {
             </div>
           </li>
 
-          <li className="nav-item mb-2">
+          <li className="nav-item mb-1">
             <button
               className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
               onClick={() => toggleDropdown("settings")}
-              style={{ padding: "10px 15px", fontWeight: 500 }}
+              style={{
+                backgroundColor: "#225750",
+                border: "1px solid #2A2A2A",
+                borderRadius: "10px",
+                padding: "10px 14px",
+                fontWeight: 500,
+                transition: "all 0.3s ease",
+              }}
             >
               <span className="d-flex align-items-center gap-2">
                 🔄 Settings
@@ -149,14 +170,15 @@ const Sidebar = () => {
               ref={settingsRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#00D5C0",
+                backgroundColor: "#163f39",
+                border: "1px solid #2A2A2A",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
-                // paddingRight: "15px",
                 paddingLeft: "60px",
                 textAlign: "center",
-                marginLeft: "15px"
+                marginLeft: "15px",
+                marginTop: "4px",
               }}
             >
               <Link
@@ -194,58 +216,18 @@ const Sidebar = () => {
             </div>
           </li>
 
-          {/* Support Dropdown */}
-          <li className="nav-item mb-2 d-none">
+          <li className="nav-item mb-1">
             <button
               className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
               onClick={() => toggleDropdown("support")}
-              style={{ padding: "10px 15px", fontWeight: 500 }}
-            >
-              <span className="d-flex align-items-center gap-2">
-                🎧 Support
-              </span>
-              <span>▼</span>
-            </button>
-            <div
-              ref={supportRef}
-              className="overflow-hidden"
               style={{
-                backgroundColor: "#00D5C0",
-                borderRadius: "8px",
-                maxHeight: "0px",
-                transition: "max-height 0.4s ease",
-                paddingRight: "15px",
-                textAlign: "center",
+                backgroundColor: "#225750",
+                border: "1px solid #2A2A2A",
+                borderRadius: "10px",
+                padding: "10px 14px",
+                fontWeight: 500,
+                transition: "all 0.3s ease",
               }}
-            >
-              <Link
-                className="text-white d-block py-1"
-                to="#"
-                onClick={closeSidebar}
-              >
-                Create Ticket
-              </Link>
-              <Link
-                className="text-white d-block py-1"
-                to="#"
-                onClick={closeSidebar}
-              >
-                Inbox
-              </Link>
-              <Link
-                className="text-white d-block py-1"
-                to="#"
-                onClick={closeSidebar}
-              >
-                Outbox
-              </Link>
-            </div>
-          </li>
-          <li className="nav-item mb-2">
-            <button
-              className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
-              onClick={() => toggleDropdown("support")}
-              style={{ padding: "10px 15px", fontWeight: 500 }}
             >
               <span className="d-flex align-items-center gap-2">🔄 Withdraw</span>
               <span>▼</span>
@@ -254,14 +236,15 @@ const Sidebar = () => {
               ref={supportRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#00D5C0",
+                backgroundColor: "#163f39",
+                border: "1px solid #2A2A2A",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
-                // paddingRight: "15px",
                 paddingLeft: "44px",
                 textAlign: "center",
-                marginLeft: "15px"
+                marginLeft: "15px",
+                marginTop: "4px",
               }}
             >
               <Link
@@ -284,11 +267,18 @@ const Sidebar = () => {
           </li>
 
           {/* ✅ More Dropdown */}
-          <li className="nav-item mb-2">
+          <li className="nav-item mb-1">
             <button
               className="nav-link d-flex justify-content-between align-items-center w-100 text-start btn btn-link text-white"
               onClick={() => toggleDropdown("more")}
-              style={{ padding: "10px 15px", fontWeight: 500 }}
+              style={{
+                backgroundColor: "#225750",
+                border: "1px solid #2A2A2A",
+                borderRadius: "10px",
+                padding: "10px 14px",
+                fontWeight: 500,
+                transition: "all 0.3s ease",
+              }}
             >
               <span className="d-flex align-items-center gap-2">⋯ More</span>
               <span>▼</span>
@@ -297,14 +287,16 @@ const Sidebar = () => {
               ref={moreRef}
               className="overflow-hidden"
               style={{
-                backgroundColor: "#00D5C0",
+                backgroundColor: "#163f39",
+                border: "1px solid #2A2A2A",
                 borderRadius: "8px",
                 maxHeight: "0px",
                 transition: "max-height 0.4s ease",
                 paddingRight: "15px",
                 paddingLeft: "48px",
                 textAlign: "center",
-                marginLeft: "15px"
+                marginLeft: "15px",
+                marginTop: "4px",
               }}
             >
               <Link
@@ -338,7 +330,6 @@ const Sidebar = () => {
               >
                 Blog
               </Link>
-
             </div>
           </li>
         </ul>

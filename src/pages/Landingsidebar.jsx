@@ -30,7 +30,11 @@ const LandingSidebar = () => {
       tabIndex="-1"
       id="landingSidebar"
       style={{
-        backgroundColor: "#0f0f1f",
+        background: "linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(18, 53, 46, 0.95) 50%, rgba(10, 10, 10, 0.95) 100%)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderRight: "1px solid rgba(255, 255, 255, 0.08)",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
         width: "260px",
         padding: "20px 10px",
         color: "#fff",
@@ -44,15 +48,18 @@ const LandingSidebar = () => {
       {/* Nav Links */}
       <ul className="nav flex-column mb-auto">
         {navItems.map((item) => (
-          <li className="nav-item mb-2" key={item}>
+          <li className="nav-item mb-1" key={item}>
             <a
               href={`#${item.toLowerCase()}`}
               className="nav-link text-white"
               onClick={closeSidebar}
               style={{
-                padding: "10px 15px",
-                borderRadius: "8px",
-                transition: "0.3s",
+                backgroundColor: "#225750",
+                border: "1px solid #2A2A2A",
+                padding: "8px 14px",
+                borderRadius: "10px",
+                transition: "all 0.3s ease",
+                color: "#fff",
               }}
             >
               {item}

@@ -113,11 +113,10 @@ const Business = () => {
       `}</style>
 
       <div className="benefit-section">
-        <h2 className="benefit-heading">
-          <span className="underline-span">Bu</span>siness 
-          {" "}<span className="text-accent">Benefits</span>
+        <h2 className="benefit-heading" data-aos="fade-up">
+          Why Your Business Needs <span className="text-accent">Crypto Payments</span>
         </h2>
-        <p className="mb-5 mt-2 fs-5" style={{ color: "#A3A3A3" }}>
+        <p className="mb-5 mt-2 fs-5" style={{ color: "#A3A3A3" }} data-aos="fade-up" data-aos-delay="100">
           Discover how Binaxpay can transform your payment processing and grow
           your business.
         </p>

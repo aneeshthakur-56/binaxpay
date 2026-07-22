@@ -54,12 +54,31 @@ const ContactSection = () => {
           color: #12896B !important;
         }
 
-        .feature-card {
-          background-color:#225750 !important;
+        .contact-info-card {
+          background-color: #225750 !important;
           border-radius: 15px;
           padding: 30px;
           height: 100%;
-          border:1px solid #1a1a1a;
+          border: 1px solid #1a1a1a;
+          animation: contactCardFloat 4s ease-in-out infinite;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+          will-change: transform;
+        }
+
+        .contact-info-card:hover {
+          animation-play-state: paused;
+          transform: translateY(-10px) scale(1.01) !important;
+          border-color: #6FE6B8 !important;
+          box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 25px rgba(111, 230, 184, 0.25) !important;
+        }
+
+        @keyframes contactCardFloat {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
         }
 
         .info-block {
@@ -132,7 +151,7 @@ const ContactSection = () => {
       <section className="contact-section" id="contact">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-8 text-center">
+            <div className="col-lg-8 text-center" data-aos="fade-up">
               <h2 className="fw-bold d-flex justify-content-center flex-wrap">
                 <span>
                   <span className="underline-span">Ge</span>t In
@@ -149,7 +168,7 @@ const ContactSection = () => {
 
           <div className="row mt-5 align-items-start">
             {/* Contact Form */}
-            <div className="col-lg-6">
+            <div className="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
               <form>
                 <div className="row g-3">
                   <div className="col-md-6">
@@ -191,8 +210,8 @@ const ContactSection = () => {
             </div>
 
             {/* Info Column */}
-            <div className="col-lg-6 mt-5 mt-lg-0">
-              <div className="feature-card">
+            <div className="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
+              <div className="contact-info-card">
                 <div className="row g-4">
                   {/* Email */}
                   <div className="col-md-6">

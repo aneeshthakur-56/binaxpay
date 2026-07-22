@@ -43,6 +43,7 @@ const Forgot = () => {
   }, [otpTimer]);
   return (
     <div className="forgot-wrapper d-flex flex-column flex-md-row text-white ">
+      <ToastContainer position="top-right" autoClose={3000} theme="dark" />
       {/* Left Side */}
 
       <div className="forgot-left animate-left d-flex flex-column justify-content-center align-items-center text-center p-4">

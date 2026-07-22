@@ -13,7 +13,7 @@ const Footer = () => {
     <>
       <style>{`
         .footer {
-          background-color: #1a1a2e;
+          background-color: #060706;
           color: #ffffff;
           padding: 80px 0 30px;
           font-family: 'Segoe UI', sans-serif;
@@ -47,7 +47,6 @@ const Footer = () => {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background-color: #1d1d3a;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -136,10 +135,13 @@ const Footer = () => {
         .footer-bottom {
           margin-top: 60px;
           padding-top: 20px;
-          border-top: 1px solid #2a2a44;
+          border-top: 1px solid rgba(111, 230, 184, 0.12);
           text-align: center;
-          font-size: 20px;
-          color: #fffff;
+          font-size: clamp(0.75rem, 1.8vw, 1rem);
+          color: #A3A3A3;
+          line-height: 1.5;
+          padding-left: 16px;
+          padding-right: 16px;
         }
 
         @media (max-width: 770px) {
@@ -214,8 +216,8 @@ const Footer = () => {
             </Col>
           </Row>
 
-          <div className="footer-bottom mt-5">
-            © 2022-2025 Binaxpay. All rights reserved. Wallet services and other virtual asset services provided by Hodltech OÜ or its partners.
+          <div className="footer-bottom">
+            © 2025-2026 Binaxpay. All rights reserved. Wallet services and other virtual asset services provided by Hodltech OÜ or its partners.
           </div>
         </Container>
       </footer>

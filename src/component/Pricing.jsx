@@ -302,11 +302,11 @@ const Pricing = () => {
 
       <section className="pricing-section">
         <div className="text-center">
-          <h2 className="pricing-heading">
+          <h2 className="pricing-heading" data-aos="fade-up">
             <span className="underline-span">Si</span>mple, Transparent{" "}
             <span className="text-heading-green">Pricing</span>
           </h2>
-          <p className="pricing-subtext mb-5">
+          <p className="pricing-subtext mb-5" data-aos="fade-up" data-aos-delay="100">
             Choose the plan that fits your business needs. Scale up or down as
             you grow.
           </p>

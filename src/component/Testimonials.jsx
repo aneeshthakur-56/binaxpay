@@ -128,13 +128,13 @@ const Testimonials = () => {
 
       <div className="testimonial-section">
         {/* Heading */}
-        <h2 className="custom-heading ">
+        <h2 className="custom-heading" data-aos="fade-up">
           <span className="underline-span">Wh</span>at Our{" "}
           <span className="highlight">Clients</span> Say
         </h2>
 
         {/* Subtext */}
-        <p className="text-white mt-3 fs-6">
+        <p className="text-white mt-3 fs-6" data-aos="fade-up" data-aos-delay="100">
           Don't just take our word for it. Here's what our customers have to say
           about Binaxpay.
         </p>
@@ -143,7 +143,12 @@ const Testimonials = () => {
         <div className="container mt-5">
           <div className="row g-4 justify-content-center">
             {testimonials.map((t, index) => (
-              <div className="col-lg-4 col-md-6 col-12" key={index}>
+              <div
+                className="col-lg-4 col-md-6 col-12"
+                key={index}
+                data-aos="fade-up"
+                data-aos-delay={150 + index * 100}
+              >
                 <div className="testimonial-card">
                   <div>
                     <div className="d-flex align-items-center mb-3">

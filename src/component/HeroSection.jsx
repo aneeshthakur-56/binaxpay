@@ -8,18 +8,18 @@ import photo2 from "../assets/Image/photo2.jpg";
 const HeroSection = () => {
   return (
     <>
-      <div className="bg-gradient-dark hero-section">
-        <div className="container text-white py-5 px-3 px-lg-4 min-vh-100 d-flex align-items-center">
+      <div className="hero-section">
+        <div className="container text-white py-7 py-lg-5 px-3 px-lg-4 d-flex align-items-center">
           <div className="row align-items-center justify-content-center w-100">
             {/* Text Column */}
-            <div className="col-lg-6 order-2 order-lg-1 mt-5 mt-lg-0 text-slide">
-              <h1 className="display-4 fw-bold mb-3 mt-5">
-                CRYPTO  <br />
-                <span className="text-info">PAYMENTS</span> <br />
+            <div className="col-lg-6 order-2 order-lg-1 text-slide" data-aos="fade-right">
+              <h1 className="display-4 fw-bold mb-3">
+                CRYPTO <br />
+                <span className="text-brand">PAYMENTS</span> <br />
                 MADE EASY
               </h1>
 
-              <p className="fs-5 mb-4">
+              <p className="hero-subtext mb-4">
                 Seamlessly accept and send crypto payments with our cutting-edge platform, built for businesses, traders, and everyday users alike. Whether you're an entrepreneur looking to expand your payment options, a crypto investor managing digital assets, or even an explorer from another world —our gateway makes transactions fast, secure, and borderless.
               </p>
 
@@ -27,7 +27,7 @@ const HeroSection = () => {
                 <button className="btn btn-start btn-lg rounded-pill fw-semibold">
                   <i className="mdi mdi-rocket me-1"></i> Start Free Trial
                 </button>
-                <button className="btn btn-outline-info btn-lg rounded-pill fw-semibold">
+                <button className="btn btn-outline-brand btn-lg rounded-pill fw-semibold">
                   <i className="mdi mdi-play-circle me-1"></i> Request Demo
                 </button>
               </div>
@@ -45,7 +45,7 @@ const HeroSection = () => {
             </div>
 
             {/* Image Column */}
-            <div className="col-lg-6 order-1 order-lg-2 text-center image-slide">
+            <div className="col-lg-6 order-1 order-lg-2 text-center image-slide" data-aos="fade-left">
               <img
                 src={hero}
                 alt="Crypto Safe"
@@ -57,110 +57,135 @@ const HeroSection = () => {
       </div>
 
       <style>{`
-        .bg-gradient-dark {
-          background-color: rgb(7, 13, 70);
-        }
-
         .hero-section {
-          margin-top: -10px;
-          z-index: 0;
-        }
-
-        .float-animation {
-          animation: floatUpDown 3s ease-in-out infinite;
-          transition: all 0.3s ease;
-        }
-
-        @keyframes floatUpDown {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-35px); }
-          100% { transform: translateY(0); }
-        }
-
-        @keyframes slideInLeft {
-          0% { transform: translateX(-50px); opacity: 0; }
-          100% { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes slideInRight {
-          0% { transform: translateX(50px); opacity: 0; }
-          100% { transform: translateX(0); opacity: 1; }
+          padding: 180px 20px 80px;
+          position: relative;
+          background: linear-gradient(135deg, #0A0A0A 0%, #12352E 50%, #0A0A0A 100%);
+          min-height: 80vh;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
         }
 
         .text-slide {
-          animation: slideInLeft 1s ease-out forwards;
+          text-align: left;
+          padding-right: 40px;
         }
 
-        .image-slide {
-          animation: slideInRight 1s ease-out forwards;
+        .text-slide h1 {
+          letter-spacing: 1px;
+          line-height: 1.1;
+          text-align: left;
         }
 
-        .btn-start {
-          background-color: #12896B !important;
-          color: white !important;
-          border: 2px solid transparent;
-          transition: all 0.3s ease;
+        .text-brand {
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: #6FE6B8;
+          -webkit-text-fill-color: transparent;
         }
 
-        .btn-start:hover {
-          color: #12896B !important;
-          border: 2px solid #12896B !important;
-          background-color: transparent !important;
+        .hero-subtext {
+          font-size: clamp(0.85rem, 0.75rem + 1vw, 1.25rem);
+          line-height: 1.6;
+          color: #A3A3A3;
         }
 
-        .avatar-stack {
-          position: relative;
-          width: 100px;
-          height: 40px;
+        .cta-buttons {
+          justify-content: flex-start;
         }
 
-        .avatar-stack .avatar {
-          position: absolute;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 2px solid white;
-        }
-
-        .avatar-1 { left: 0; z-index: 3; }
-        .avatar-2 { left: 25px; z-index: 2; }
-        .avatar-3 { left: 50px; z-index: 1; }
-
-        .trust-text {
-          font-size: 0.875rem;
-           
+        .trust-info {
+          justify-content: flex-start;
         }
 
         @media (max-width: 768px) {
+          .hero-section {
+            padding: 150px 20px 60px;
+          }
+
           .text-slide {
+            text-align: center;
+            padding-right: 0;
+            margin-bottom: 30px;
+          }
+
+          .text-slide h1 {
             text-align: center;
           }
 
           .cta-buttons {
-            justify-content: center !important;
+            justify-content: center;
           }
 
           .trust-info {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            justify-content: center;
           }
 
-          .trust-text {
-            margin-left: 0;
-            margin-top: 10px;
+          .image-slide {
+            margin-top: 30px;
           }
+        }
 
-          .avatar-stack {
-            margin-bottom: 10px;
-          }
+        .avatar-stack {
+          display: flex;
+          align-items: center;
+        }
 
-          .float-animation {
-            max-width: 90%;
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-          }
+        .avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: 2px solid #0A0A0A;
+          object-fit: cover;
+        }
+
+        .avatar-2,
+        .avatar-3 {
+          margin-left: -12px;
+        }
+
+        .btn-start {
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+          color: #0A0A0A !important;
+          border: none;
+          padding: 12px 28px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(111, 230, 184, 0.3);
+        }
+
+        .btn-start:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(111, 230, 184, 0.4);
+          background: linear-gradient(135deg, #2E9F97 0%, #6FE6B8 100%);
+        }
+
+        .btn-outline-brand {
+          background: transparent;
+          border: 2px solid #6FE6B8;
+          color: #6FE6B8;
+          padding: 12px 28px;
+          transition: all 0.3s ease;
+        }
+
+        .btn-outline-brand:hover {
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+          color: #0A0A0A;
+          border-color: transparent;
+        }
+
+        .float-animation {
+          animation: float 4s ease-in-out infinite;
+          max-width: 100%;
+          height: auto;
+          max-height: 600px;
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+          100% { transform: translateY(0px); }
         }
       `}</style>
     </>

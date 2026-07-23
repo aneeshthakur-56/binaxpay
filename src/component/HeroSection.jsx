@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <>
       <div className="hero-section">
-        <div className="container text-white py-7 py-lg-5 px-3 px-lg-4 d-flex align-items-center">
+        <div className="container text-white py-7  d-flex align-items-center">
           <div className="row align-items-center justify-content-center w-100">
             {/* Text Column */}
             <div className="col-lg-6 order-2 order-lg-1 text-slide" data-aos="fade-right">
@@ -24,11 +24,11 @@ const HeroSection = () => {
               </p>
 
               <div className="d-flex gap-3 flex-wrap cta-buttons mb-4">
-                <button className="btn btn-start btn-lg rounded-pill fw-semibold">
-                  <i className="mdi mdi-rocket me-1"></i> Start Free Trial
+                <button className="btn btn-hero-primary fw-bold">
+                  <i className="mdi mdi-rocket me-2"></i> Start Free Trial
                 </button>
-                <button className="btn btn-outline-brand btn-lg rounded-pill fw-semibold">
-                  <i className="mdi mdi-play-circle me-1"></i> Request Demo
+                <button className="btn btn-hero-secondary fw-semibold">
+                  <i className="mdi mdi-play-circle me-2"></i> Request Demo
                 </button>
               </div>
 
@@ -58,7 +58,7 @@ const HeroSection = () => {
 
       <style>{`
         .hero-section {
-          padding: 180px 20px 80px;
+          padding: 150px 20px 80px;
           position: relative;
           background: linear-gradient(135deg, #0A0A0A 0%, #12352E 50%, #0A0A0A 100%);
           min-height: 80vh;
@@ -146,33 +146,62 @@ const HeroSection = () => {
           margin-left: -12px;
         }
 
-        .btn-start {
-          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+        .btn-hero-primary {
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
           color: #0A0A0A !important;
-          border: none;
-          padding: 12px 28px;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(111, 230, 184, 0.3);
+          font-weight: 700 !important;
+          font-size: 1.05rem !important;
+          border: none !important;
+          padding: 14px 34px !important;
+          border-radius: 50px !important;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          box-shadow: 0 8px 25px rgba(111, 230, 184, 0.3) !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          cursor: pointer;
         }
 
-        .btn-start:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(111, 230, 184, 0.4);
-          background: linear-gradient(135deg, #2E9F97 0%, #6FE6B8 100%);
+        .btn-hero-primary:hover {
+          transform: translateY(-3px) scale(1.03) !important;
+          box-shadow: 0 14px 35px rgba(111, 230, 184, 0.5) !important;
+          background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%) !important;
+          color: #0A0A0A !important;
         }
 
-        .btn-outline-brand {
-          background: transparent;
-          border: 2px solid #6FE6B8;
-          color: #6FE6B8;
-          padding: 12px 28px;
-          transition: all 0.3s ease;
+        .btn-hero-primary:active {
+          transform: translateY(-1px) scale(0.98) !important;
+          box-shadow: 0 4px 15px rgba(111, 230, 184, 0.25) !important;
         }
 
-        .btn-outline-brand:hover {
-          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
-          color: #0A0A0A;
-          border-color: transparent;
+        .btn-hero-secondary {
+          background: rgba(20, 35, 30, 0.5) !important;
+          backdrop-filter: blur(12px) !important;
+          -webkit-backdrop-filter: blur(12px) !important;
+          border: 1.5px solid rgba(111, 230, 184, 0.4) !important;
+          color: #6FE6B8 !important;
+          font-weight: 600 !important;
+          font-size: 1.05rem !important;
+          padding: 14px 34px !important;
+          border-radius: 50px !important;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          cursor: pointer;
+        }
+
+        .btn-hero-secondary:hover {
+          background: rgba(111, 230, 184, 0.15) !important;
+          border-color: #6FE6B8 !important;
+          color: #ffffff !important;
+          transform: translateY(-3px) scale(1.03) !important;
+          box-shadow: 0 10px 30px rgba(111, 230, 184, 0.25) !important;
+        }
+
+        .btn-hero-secondary:active {
+          transform: translateY(-1px) scale(0.98) !important;
         }
 
         .float-animation {

@@ -29,6 +29,27 @@ const benefits = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94], // smooth cubic-bezier
+    },
+  },
+};
+
 const Business = () => {
   return (
     <>
@@ -69,20 +90,15 @@ const Business = () => {
           text-align: left;
           color: white;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-          transition: all 0.3s ease;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
           border: 1px solid rgba(111, 230, 184, 0.15);
+          will-change: transform, opacity;
+          transform: translateZ(0);
         }
 
         .benefit-box:hover {
           border-color: #1FBF8F;
-          box-shadow: 0 0 12px rgba(31, 191, 143, 0.38);
-          animation: floatUpDown 1.2s ease-in-out infinite;
-        }
-
-        @keyframes floatUpDown {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-          100% { transform: translateY(0); }
+          box-shadow: 0 0 20px rgba(31, 191, 143, 0.38);
         }
 
         .benefit-icon {
@@ -110,6 +126,13 @@ const Business = () => {
             font-size: 2.2rem;
           }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+          .benefit-box {
+            transition: none;
+            will-change: auto;
+          }
+        }
       `}</style>
 
       <div className="benefit-section">
@@ -122,15 +145,22 @@ const Business = () => {
         </p>
 
         <div className="container">
-          <div className="benefit-grid">
+          <motion.div
+            className="benefit-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
                 className="benefit-box h-100"
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -6,
+                  transition: { duration: 0.25, ease: "easeOut" }
+                }}
               >
                 <div className="d-flex align-items-center mb-3">
                   <div className="benefit-icon mb-0 me-3" style={{ display: "inline-flex" }}>
@@ -141,7 +171,7 @@ const Business = () => {
                 <p className="benefit-description">{benefit.description}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </>

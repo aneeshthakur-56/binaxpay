@@ -8,14 +8,10 @@ const CallToAction = () => {
     setTimeout(() => setAnimate(true), 100);
   }, []);
 
-  const animationStyle = (from) => ({
-    transform: animate
-      ? "translateX(0)"
-      : from === "left"
-      ? "translateX(-100px)"
-      : "translateX(100px)",
+  const animationStyle = () => ({
+    transform: animate ? "translateY(0)" : "translateY(30px)",
     opacity: animate ? 1 : 0,
-    transition: "all 0.8s ease",
+    transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
   });
 
   return (
@@ -31,38 +27,39 @@ const CallToAction = () => {
             background: transparent !important;
             position: relative;
             overflow: hidden;
-            color:#cac8c8 !important;
+            color: #cac8c8 !important;
+            width: 100%;
+            max-width: 100%;
           }
 
-          .cta-section::before {
-            content: "";
-            position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(111, 230, 184, 0.12) 0%, transparent 70%);
-            pointer-events: none;
+          @keyframes ctaFloat {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-12px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
           }
 
           .cta-card {
             position: relative;
-            background: #3fd8c463;
+            background: rgba(20, 45, 40, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(111, 230, 184, 0.35);
             border-radius: 28px;
             z-index: 1;
+            overflow: hidden;
+            animation: ctaFloat 4.5s ease-in-out infinite;
+            will-change: transform;
+            transition: transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
           }
 
-          .cta-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 28px;
-            padding: 1.5px;
-            background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 50%, rgba(111,230,184,0.1) 100%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
+          .cta-card:focus-within {
+            animation-play-state: paused;
           }
           .custom-btn {
             color: #0A0A0A !important;
@@ -108,58 +105,60 @@ const CallToAction = () => {
         }}
       >
         <div
-          className="cta-card row shadow-lg w-100 mx-auto py-5 px-4"
+          className="cta-card shadow-lg w-100 mx-auto py-5 px-4"
           style={{
             maxWidth: "1200px",
             boxShadow: "0 24px 70px rgba(0, 0, 0, 0.5)",
           }}
         >
-          {/* Left: Text Section */}
-          <div
-            className="col-md-6 d-flex flex-column justify-content-center mb-4 mb-md-0"
-            style={animationStyle("left")}
-          >
-            <span className="cta-badge">GET STARTED TODAY</span>
-            <h1 className="fw-bold display-5 text-white">
-              Ready to Start <br />
-              Accepting Crypto Payments?
-            </h1>
-            <p className="mt-3 fs-5 cta-description">
-              Join thousands of businesses using Binaxpay to streamline their
-              payment processing and unlock new revenue opportunities in the
-              growing cryptocurrency market.
-            </p>
-          </div>
-
-          {/* Right: Form Section */}
-          <div
-            className="col-md-6 d-flex align-items-center justify-content-center"
-            style={animationStyle("right")}
-          >
-            <form style={{ width: "100%", maxWidth: "400px" }}>
-              <input
-                type="email"
-                className="form-control mb-2 text-white"
-                placeholder="Your Email Address"
-              />
-              <input
-                type="password"
-                className="form-control mb-3 text-white"
-                placeholder="Create Password"
-              />
-              <button
-                className="btn custom-btn w-100 fw-semibold py-2 rounded-pill d-flex align-items-center justify-content-center mb-2"
-                type="submit"
-              >
-                <i className="bi bi-person-plus-fill me-2 py-3"></i> Start Free
-                Trial
-              </button>
-              <p className="mt-2 text-center small cta-description mb-0">
-                By signing up, you agree to our{" "}
-                <span className="term-link">Terms of Service</span> and{" "}
-                <span className="term-link">Privacy Policy</span>.
+          <div className="row align-items-center m-0">
+            {/* Left: Text Section */}
+            <div
+              className="col-md-6 d-flex flex-column justify-content-center mb-4 mb-md-0"
+              style={animationStyle("left")}
+            >
+              <span className="cta-badge">GET STARTED TODAY</span>
+              <h1 className="fw-bold display-5 text-white">
+                Ready to Start <br />
+                Accepting Crypto Payments?
+              </h1>
+              <p className="mt-3 fs-5 cta-description">
+                Join thousands of businesses using Binaxpay to streamline their
+                payment processing and unlock new revenue opportunities in the
+                growing cryptocurrency market.
               </p>
-            </form>
+            </div>
+
+            {/* Right: Form Section */}
+            <div
+              className="col-md-6 d-flex align-items-center justify-content-center"
+              style={animationStyle("right")}
+            >
+              <form style={{ width: "100%", maxWidth: "400px" }}>
+                <input
+                  type="email"
+                  className="form-control mb-2 text-white"
+                  placeholder="Your Email Address"
+                />
+                <input
+                  type="password"
+                  className="form-control mb-3 text-white"
+                  placeholder="Create Password"
+                />
+                <button
+                  className="btn custom-btn w-100 fw-semibold py-2 rounded-pill d-flex align-items-center justify-content-center mb-2"
+                  type="submit"
+                >
+                  <i className="bi bi-person-plus-fill me-2 py-3"></i> Start Free
+                  Trial
+                </button>
+                <p className="mt-2 text-center small cta-description mb-0">
+                  By signing up, you agree to our{" "}
+                  <span className="term-link">Terms of Service</span> and{" "}
+                  <span className="term-link">Privacy Policy</span>.
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>

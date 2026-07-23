@@ -43,6 +43,15 @@ const Footer = () => {
           gap: 16px;
         }
 
+        @keyframes socialIconInsideFloat {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-4px);
+          }
+        }
+
         .social-icon {
           width: 40px;
           height: 40px;
@@ -50,14 +59,25 @@ const Footer = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: 0.3s ease;
+          transition: all 0.3s ease;
           color: #ffffff;
-          cursor:pointer;
+          cursor: pointer;
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon svg {
+          transition: transform 0.3s ease;
         }
 
         .social-icon:hover {
-          background-color:#00f0ff;
+          background-color: #1FBF8F;
+          color: #000000;
+          box-shadow: 0 6px 18px rgba(31, 191, 143, 0.35);
           transform: translateY(-2px);
+        }
+
+        .social-icon:hover svg {
+          animation: socialIconInsideFloat 1.2s ease-in-out infinite;
         }
 
         .footer-subscribe-title {

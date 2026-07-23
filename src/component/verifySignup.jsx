@@ -112,7 +112,7 @@ const VerifySignup = () => {
     <>
       <h2>Verify Account</h2>
       <p className="form-subtitle">
-        OTP sent to: <strong className="text-info">{email || "your email"}</strong>
+        OTP sent to: <strong style={{ color: "#6FE6B8" }}>{email || "your email"}</strong>
       </p>
 
       <form className="auth-form" onSubmit={handleOtpSubmit}>
@@ -150,12 +150,12 @@ const VerifySignup = () => {
         <div className="d-flex gap-3">
           <button
             type="submit"
-            className="btn btn-primary btn-signin flex-grow-1"
+            className="btn btn-signin flex-grow-1"
             disabled={loading}
             style={{
               borderRadius: "30px",
               padding: "12px 20px",
-              fontWeight: "600",
+              fontWeight: "700",
             }}
           >
             {loading ? "Verifying..." : "Continue"}

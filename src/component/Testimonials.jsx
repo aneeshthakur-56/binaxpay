@@ -33,6 +33,9 @@ const Testimonials = () => {
           background: transparent !important;
           padding: 100px 20px 40px;
           text-align: center;
+          position: relative;
+          overflow: hidden;
+          width: 100%;
         }
 
         .custom-heading {

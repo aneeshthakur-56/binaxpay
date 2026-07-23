@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bitsfar from "../assets/Image/binaxpay.png";
-import { FaRocket, FaHandHoldingUsd, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaRocket, FaHandHoldingUsd, FaEye, FaEyeSlash, FaUser, FaEnvelope, FaPhone, FaLock } from "react-icons/fa";
 import { FcHeadset } from "react-icons/fc";
 import { registerUser } from "../api/api";
 import { toast } from "react-toastify";
@@ -87,10 +87,13 @@ const Signup = () => {
       <p className="form-subtitle">Fill in your details to get started</p>
 
       <form className="auth-form" id="signupForm" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Full Name</label>
-          <div className="input-with-icon">
-            <i className="fas fa-user"></i>
+        {/* Full Name */}
+        <div className="form-group mb-3">
+          <label htmlFor="name">Full Name</label>
+          <div className="input-with-icon" style={{ position: "relative" }}>
+            <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#aaa" }}>
+              <FaUser />
+            </span>
             <input
               type="text"
               placeholder="Name"
@@ -102,10 +105,13 @@ const Signup = () => {
           </div>
         </div>
 
-        <div className="form-group">
-          <label>Email</label>
-          <div className="input-with-icon">
-            <i className="fas fa-envelope"></i>
+        {/* Email */}
+        <div className="form-group mb-3">
+          <label htmlFor="email">Email</label>
+          <div className="input-with-icon" style={{ position: "relative" }}>
+            <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#aaa" }}>
+              <FaEnvelope />
+            </span>
             <input
               type="email"
               placeholder="Email"
@@ -117,10 +123,13 @@ const Signup = () => {
           </div>
         </div>
 
-        <div className="form-group">
-          <label>Phone</label>
-          <div className="input-with-icon">
-            <i className="fas fa-phone"></i>
+        {/* Phone */}
+        <div className="form-group mb-3">
+          <label htmlFor="phone">Phone</label>
+          <div className="input-with-icon" style={{ position: "relative" }}>
+            <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#aaa" }}>
+              <FaPhone />
+            </span>
             <input
               type="text"
               placeholder="Phone"
@@ -132,10 +141,13 @@ const Signup = () => {
           </div>
         </div>
 
-        <div className="form-group">
-          <label>Password</label>
-          <div className="input-with-icon">
-            <i className="fas fa-lock"></i>
+        {/* Password */}
+        <div className="form-group mb-3">
+          <label htmlFor="password">Password</label>
+          <div className="input-with-icon" style={{ position: "relative" }}>
+            <span style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#aaa" }}>
+              <FaLock />
+            </span>
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
@@ -148,28 +160,35 @@ const Signup = () => {
             <span
               className="toggle-password"
               onClick={() => setShowPassword(!showPassword)}
-              style={{ cursor: "pointer" }}
+              style={{ position: "absolute", right: "15px", top: "50%", transform: "translateY(-50%)", cursor: "pointer", color: "#fff" }}
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </span>
           </div>
         </div>
 
-        <div className="form-group terms">
+        {/* Terms */}
+        <div className="form-group terms mb-3">
           <input type="checkbox" id="terms" name="terms" required />
-          <label>
+          <label htmlFor="terms">
             I agree to the <Link to="/">Terms of Service </Link>and{" "}
             <Link to="/">Privacy Policy</Link>
           </label>
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="btn btn-primary btn-block"
+          className="btn btn-signin btn-block"
           disabled={loading}
         >
           {loading ? "Creating..." : "Create Account"}
         </button>
+
+        {/* Footer */}
+        <div className="auth-footer mt-3">
+          Already have an account? <Link to="/Signin">Sign In</Link>
+        </div>
       </form>
     </>
   );

@@ -118,7 +118,7 @@ const Signin = () => {
         </div>
 
         {/* Password */}
-        <div className="form-group">
+        <div className="form-group mb-2">
           <label htmlFor="password">Password</label>
           <div
             className="input-with-icon"
@@ -159,6 +159,12 @@ const Signin = () => {
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </span>
           </div>
+          {/* Forgot Password Link */}
+          <div className="text-end mt-1 mb-2">
+            <Link to="/forgot" className="forgot-password-link">
+              Forgot password?
+            </Link>
+          </div>
         </div>
 
         {/* Remember Me */}
@@ -172,7 +178,7 @@ const Signin = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="btn btn-primary btn-block"
+          className="btn btn-signin btn-block"
           disabled={loading}
         >
           {loading ? "Signing In..." : "Sign In"}

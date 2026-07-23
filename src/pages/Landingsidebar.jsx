@@ -74,18 +74,18 @@ const LandingSidebar = () => {
           Get Started
         </h6>
         <Link
-          to="/Signup"
-          className="btn btn-outline-info w-100 mb-3"
-          onClick={closeSidebar}
-        >
-          Sign Up
-        </Link>
-        <Link
           to="/Signin"
-          className="btn btn-primary btn-signin w-100"
+          className="btn btn-signin-glass w-100 mb-2"
           onClick={closeSidebar}
         >
           Sign In
+        </Link>
+        <Link
+          to="/Signup"
+          className="btn btn-signup-primary w-100"
+          onClick={closeSidebar}
+        >
+          Sign Up
         </Link>
       </div>
     </div>

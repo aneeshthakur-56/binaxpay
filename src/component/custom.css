@@ -445,15 +445,19 @@ section {
   padding: 14px 16px !important;
   border-radius: 14px !important;
   border: none !important;
-  transition: all 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform, box-shadow, border-color;
+  transform: translateZ(0);
 }
 
 .stat-card:hover {
-  animation: float 3s ease-in-out infinite;
+  animation: none !important;
+  transform: translateY(-8px) scale(1.02) !important;
   border-color: #6FE6B8 !important;
-  box-shadow: 0 0 0 0.35rem rgba(111, 230, 184, 0.16) !important;
-  background-color: #225750 !important;
-  color: #fff !important;
+  box-shadow: 0 16px 36px rgba(111, 230, 184, 0.25) !important;
 }
 
 @keyframes float {
@@ -633,6 +637,15 @@ section {
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
+@keyframes socialIconInsideFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 .social-icon {
   display: inline-flex;
   align-items: center;
@@ -644,12 +657,24 @@ section {
   color: var(--text);
   margin-right: 10px;
   transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icon svg,
+.social-icon i {
+  transition: transform 0.3s ease;
 }
 
 .social-icon:hover {
   background-color: var(--accent);
   color: var(--dark);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(31, 191, 143, 0.35);
+}
+
+.social-icon:hover svg,
+.social-icon:hover i {
+  animation: socialIconInsideFloat 1.2s ease-in-out infinite;
 }
 
 .copyright {
@@ -1135,17 +1160,69 @@ section {
   min-height: 100vh;
   background-color: var(--dark);
   color: var(--text);
+  overflow: hidden;
 }
 
-.auth-left {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 45%, #0A0A0A 100%);
-  position: relative;
-  overflow: hidden;
+@media (min-width: 992px) {
+  .auth-container {
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  .auth-left {
+    flex: 1;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 45%, #0A0A0A 100%);
+    overflow: hidden;
+  }
+
+  .auth-right {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px 60px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 50%, #0A0A0A 100%);
+    scroll-behavior: smooth;
+  }
+
+  /* Custom sleek scrollbar for auth-right */
+  .auth-right::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .auth-right::-webkit-scrollbar-track {
+    background: rgba(10, 10, 10, 0.4);
+  }
+
+  .auth-right::-webkit-scrollbar-thumb {
+    background: rgba(111, 230, 184, 0.3);
+    border-radius: 4px;
+  }
+
+  .auth-right::-webkit-scrollbar-thumb:hover {
+    background: rgba(111, 230, 184, 0.6);
+  }
+}
+
+@media (max-width: 991px) {
+  .auth-left, .auth-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 50%, #0A0A0A 100%);
+  }
 }
 
 .auth-left::before {
@@ -1200,18 +1277,10 @@ section {
   text-align: center;
 }
 
-.auth-right {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 50%, #0A0A0A 100%);
-}
-
 .auth-form-container {
   max-width: 400px;
   width: 100%;
+  margin: auto 0;
 }
 
 .auth-form-container h2 {
@@ -1716,4 +1785,146 @@ section.Toastify,
 [data-aos].aos-animate {
   transform: translate3d(0, 0, 0) !important;
   opacity: 1 !important;
+}
+
+/* Brand Color Overrides for Buttons, Focus, Active, Disabled & Text Info */
+.text-info {
+  color: #6FE6B8 !important;
+}
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:disabled,
+.btn-primary.disabled,
+.btn-info,
+.btn-info:focus,
+.btn-info:active,
+.btn-info:disabled {
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+  border: none !important;
+  color: #0A0A0A !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 18px rgba(111, 230, 184, 0.25) !important;
+  opacity: 1 !important;
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-info:hover:not(:disabled) {
+  background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%) !important;
+  color: #0A0A0A !important;
+  box-shadow: 0 8px 25px rgba(111, 230, 184, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+.btn-signin,
+.btn-signin:focus,
+.btn-signin:active,
+.btn-signin:disabled {
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+  border: none !important;
+  color: #0A0A0A !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 18px rgba(111, 230, 184, 0.25) !important;
+  opacity: 1 !important;
+}
+
+.btn-signin:hover:not(:disabled) {
+  background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%) !important;
+  color: #0A0A0A !important;
+  box-shadow: 0 8px 25px rgba(111, 230, 184, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+.btn-outline-info,
+.btn-outline-info:focus,
+.btn-outline-info:active,
+.btn-outline-info:disabled {
+  border: 1.5px solid #2DD9A8 !important;
+  color: #2DD9A8 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.btn-outline-info:hover:not(:disabled) {
+  background: rgba(45, 217, 168, 0.15) !important;
+  color: #6FE6B8 !important;
+  border-color: #6FE6B8 !important;
+}
+
+/* Modern Forgot Password Link */
+.forgot-password-link {
+  color: #6FE6B8 !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  opacity: 0.9;
+}
+
+.forgot-password-link:hover {
+  color: #82f5c9 !important;
+  opacity: 1;
+  text-decoration: none !important;
+  text-shadow: 0 0 10px rgba(111, 230, 184, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-hero-primary {
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+  color: #0A0A0A !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  border: none !important;
+  padding: 14px 34px !important;
+  border-radius: 50px !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 8px 25px rgba(111, 230, 184, 0.3) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 14px 35px rgba(111, 230, 184, 0.5) !important;
+  background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%) !important;
+  color: #0A0A0A !important;
+}
+
+.btn-hero-primary:active {
+  transform: translateY(-1px) scale(0.98) !important;
+  box-shadow: 0 4px 15px rgba(111, 230, 184, 0.25) !important;
+}
+
+.btn-hero-secondary {
+  background: rgba(20, 35, 30, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(111, 230, 184, 0.4) !important;
+  color: #6FE6B8 !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  padding: 14px 34px !important;
+  border-radius: 50px !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(111, 230, 184, 0.15) !important;
+  border-color: #6FE6B8 !important;
+  color: #ffffff !important;
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 10px 30px rgba(111, 230, 184, 0.25) !important;
+}
+
+.btn-hero-secondary:active {
+  transform: translateY(-1px) scale(0.98) !important;
 }

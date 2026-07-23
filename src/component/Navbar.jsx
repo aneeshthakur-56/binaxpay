@@ -106,12 +106,12 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <div className="d-flex gap-2">
-              <Link to="/Signup" className="btn btn-outline-info">
-                Sign Up
-              </Link>
-              <Link to="/Signin" className="btn btn-primary btn-signin">
+            <div className="d-flex gap-2 align-items-center">
+              <Link to="/Signin" className="btn btn-signin-glass">
                 Sign In
+              </Link>
+              <Link to="/Signup" className="btn btn-signup-primary">
+                Sign Up
               </Link>
             </div>
           </div>
@@ -133,47 +133,67 @@ const Navbar = () => {
         }
 
         .navbar-brand,
-        .nav-link,
-        .btn {
+        .nav-link {
           color: #ffffff !important;
         }
 
-        .btn {
-          display: inline-flex !important;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          padding: 5px 20px !important;
-          border-radius: 30px;
-          transition: all 0.3s ease;
-          letter-spacing: 0.5px;
-          gap: 8px;
-          white-space: nowrap;
-        }
-
-        .btn-outline-info {
-          border: 2px solid #2DD9A8 !important;
-          color: #2DD9A8 !important;
-          background: transparent !important;
-        }
-
-        .btn-outline-info:hover {
-          background: rgba(45, 217, 168, 0.15) !important;
-          color: #ffffff !important;
-          border-color: #6FE6B8 !important;
-        }
-
-        .btn-signin {
-          background: linear-gradient(135deg, #12896B 0%, #2E9F97 100%) !important;
+        .btn-signup-primary {
+          background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
           border: none !important;
-          color: #ffffff !important;
-          box-shadow: 0 4px 15px rgba(18, 137, 107, 0.3);
+          color: #0A0A0A !important;
+          font-weight: 700 !important;
+          padding: 8px 24px !important;
+          border-radius: 50px !important;
+          letter-spacing: 0.3px;
+          box-shadow: 0 4px 18px rgba(111, 230, 184, 0.25) !important;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          text-decoration: none !important;
+          white-space: nowrap !important;
         }
 
-        .btn-signin:hover {
-          background: linear-gradient(135deg, #2E9F97 0%, #6FE6B8 100%) !important;
-          box-shadow: 0 6px 20px rgba(111, 230, 184, 0.4);
-          transform: translateY(-2px);
+        .btn-signup-primary:hover {
+          background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%) !important;
+          color: #0A0A0A !important;
+          transform: translateY(-2px) scale(1.02) !important;
+          box-shadow: 0 8px 25px rgba(111, 230, 184, 0.45) !important;
+        }
+
+        .btn-signup-primary:active {
+          transform: translateY(0) scale(0.98) !important;
+          box-shadow: 0 3px 12px rgba(111, 230, 184, 0.2) !important;
+        }
+
+        .btn-signin-glass {
+          background: rgba(255, 255, 255, 0.06) !important;
+          border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+          color: #ffffff !important;
+          font-weight: 600 !important;
+          padding: 8px 22px !important;
+          border-radius: 50px !important;
+          letter-spacing: 0.3px;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          text-decoration: none !important;
+          white-space: nowrap !important;
+        }
+
+        .btn-signin-glass:hover {
+          background: rgba(111, 230, 184, 0.12) !important;
+          border-color: #6FE6B8 !important;
+          color: #6FE6B8 !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 6px 20px rgba(111, 230, 184, 0.18) !important;
+        }
+
+        .btn-signin-glass:active {
+          transform: translateY(0) scale(0.98) !important;
         }
 
         .nav-link {

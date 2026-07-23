@@ -1,0 +1,8 @@
+.profileContainer {
+  background-color: #1b1c2a;
+  min-height: 100vh;
+}
+
+.profileCard {
+  max-width: 500px;
+}

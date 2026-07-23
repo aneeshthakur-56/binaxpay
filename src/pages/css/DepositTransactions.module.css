@@ -1,0 +1,29 @@
+.pageContainer {
+  background-color: #1b1c2a;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.cardBody {
+  background-color: #1b1c2a;
+  color: #ffffff;
+}
+
+.tableHeaderTh {
+  color: #ffffff;
+  background-color: #00f0ff;
+}
+
+.tableLink {
+  color: #00ccff;
+  text-decoration: none;
+}
+
+.tableLink:hover {
+  text-decoration: underline;
+}
+
+.noTrxTd {
+  color: #ffffff;
+  text-align: center;
+}

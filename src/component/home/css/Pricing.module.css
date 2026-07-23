@@ -1,0 +1,235 @@
+.pricingSection {
+  padding: clamp(60px, 10vw, 100px) 16px;
+  background-color: #f8f9fa;
+}
+
+.pricingHeading {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  display: inline-block;
+  position: relative;
+  color: #2b2b2b !important;
+}
+
+.textHeadingGreen {
+  color: #12896B !important;
+}
+
+.underlineSpan {
+  position: relative;
+  display: inline-block;
+}
+
+.underlineSpan::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  background-color: #12896B;
+  border-radius: 2px;
+}
+
+.pricingSubtext {
+  font-size: 1.25rem;
+  color: #444444;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 60px;
+}
+
+.pricingBox {
+  background: #1e6057 !important;
+  border-radius: 20px;
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.pricingBox h5 {
+  color: #FFFFFF !important;
+  font-size: 1.35rem;
+}
+
+.planDesc {
+  color: #B8D9CF !important;
+  min-height: 48px;
+  font-size: 0.95rem;
+}
+
+.planStarter,
+.planEnterprise {
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.planStarter:hover,
+.planEnterprise:hover {
+  border-color: rgba(111, 230, 184, 0.6) !important;
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(111, 230, 184, 0.15),
+    0 0 26px rgba(111, 230, 184, 0.3) !important;
+}
+
+.planPro {
+  background-color: #12896B !important;
+  border: 1px solid #12896B !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28) !important;
+  color: #FFFFFF !important;
+}
+
+.planPro h5,
+.planPro .planDesc,
+.planPro .rateVal,
+.planPro .note,
+.planPro .planFeature,
+.planPro .planFeature .icon {
+  color: #FFFFFF !important;
+}
+
+.planPro .planDesc {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.planPro .note {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.planPro .planFeature.included .icon {
+  color: #E3F8EC !important;
+}
+
+.planPro .planFeature.excluded .icon {
+  color: #FFB6B6 !important;
+}
+
+@media (min-width: 992px) {
+  .planPro {
+    transform: translateY(-15px) !important;
+  }
+  .planPro:hover {
+    transform: translateY(-21px) !important;
+  }
+}
+
+.planPro:hover {
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+}
+
+.rateContainer {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.rateVal {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: #fff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #6FE6B8;
+  -webkit-text-fill-color: transparent;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #B8D9CF !important;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.planFeature {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #EAF5F0 !important;
+}
+
+.planFeature .icon {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.planFeature.included .icon {
+  color: #6FE6B8 !important;
+}
+
+.planFeature.excluded {
+  color: #9DBDB3 !important;
+}
+
+.planFeature.excluded .icon {
+  color: #FF8080 !important;
+}
+
+.featuresContainer {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.planBtn {
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.planStarter .planBtn,
+.planEnterprise .planBtn {
+  background: transparent !important;
+  border: 2px solid #6FE6B8 !important;
+  color: #6FE6B8 !important;
+  font-weight: bold !important;
+  border-radius: 30px !important;
+  transition: all 0.3s ease !important;
+}
+
+.planStarter .planBtn:hover,
+.planEnterprise .planBtn:hover {
+  background: #fff !important;
+  color: #0A0A0A !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 15px rgba(111, 230, 184, 0.25) !important;
+}
+
+.planPro .planBtn {
+  background: #fff !important;
+  color: #0A0A0A !important;
+  border: none !important;
+  font-weight: bold !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 15px rgba(111, 230, 184, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+
+.planPro .planBtn:hover {
+  background: #1e6057 !important;
+  border: 2px solid #fff !important;
+  color: #fff !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+.popularTag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+  color: #0A0A0A !important;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(111, 230, 184, 0.2);
+}

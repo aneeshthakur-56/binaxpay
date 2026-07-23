@@ -1,0 +1,9 @@
+.pageContainer {
+  background-color: #1b1c2a;
+  min-height: 100vh;
+}
+
+.tableHeaderTh {
+  color: #ffffff !important;
+  background-color: #00f0ff !important;
+}

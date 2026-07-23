@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getData, postData } from "../api/protectedApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import styles from "./css/Withdraw.module.css";
 
 const Withdraw = () => {
   const [balance, setBalance] = useState(0);
@@ -12,6 +13,7 @@ const Withdraw = () => {
   const [loading, setLoading] = useState(false);
   const [otpLoading, setOtpLoading] = useState(false);
   const [otpTimer, setOtpTimer] = useState(0);
+
   const getBalance = () => {
     postData("/user/wallet_sum", {})
       .then((res) => {
@@ -19,18 +21,18 @@ const Withdraw = () => {
       })
       .catch((err) => console.error(err));
   };
+
   useEffect(() => {
     getBalance();
   }, []);
+
   const handleGetOtp = async () => {
     try {
       setOtpLoading(true);
-
-      const response = await getData("/user/withrawOtp", {}); //{data : {success : true} }// await axios.post('https://api.example.com/send-otp', {});
-      console.log(" withdraw response ", response);
+      const response = await getData("/user/withrawOtp", {});
       if (response.data.success) {
         toast.success("OTP Sent Successfully!");
-        setOtpTimer(120); // Start 2 minute countdown
+        setOtpTimer(120);
       } else {
         toast.error(response.data.message || "Failed to send OTP");
       }
@@ -60,7 +62,6 @@ const Withdraw = () => {
       amount: amount,
       walletAddress: address,
       otp: otp,
-      // token: token
     };
 
     try {
@@ -70,7 +71,6 @@ const Withdraw = () => {
       if (response.data.success) {
         toast.success("Withdraw Request Submitted Successfully");
         getBalance();
-        // Optionally reset form
         setAmount("");
         setAddress("");
         setOtp("");
@@ -88,8 +88,7 @@ const Withdraw = () => {
 
   return (
     <div
-      className="bg-dark text-white rounded p-4 shadow-lg mx-auto"
-      style={{ maxWidth: "100%", backgroundColor: "#1b1c2a" }}
+      className={`bg-dark text-white rounded p-4 shadow-lg mx-auto ${styles.withdrawCard}`}
     >
       <h5 className="mb-3 fw-semibold">Withdraw</h5>
       <ToastContainer position="bottom-right" autoClose={3000} />
@@ -97,14 +96,14 @@ const Withdraw = () => {
         <p className="mb-1 small">
           Minimum Withdraw: <span className="text-white fw-bold">10 USDT</span>
         </p>
-        <p className="mb-0  small">
+        <p className="mb-0 small">
           Current Balance:{" "}
           <span className="text-white fw-bold">${balance.toFixed(3)}</span>
         </p>
       </div>
 
       <div className="mb-3">
-        <label className="form-label small ">Withdraw Amount </label>
+        <label className="form-label small">Withdraw Amount</label>
         <input
           type="number"
           min="0"
@@ -140,14 +139,10 @@ const Withdraw = () => {
           onChange={(e) => setOtp(e.target.value)}
         />
         <button
-          className="btn btn-info text-dark fw-semibold"
-          style={{
-            background: "#00f0ff",
-          }}
+          className={`btn btn-info text-dark fw-semibold ${styles.actionBtn}`}
           onClick={handleGetOtp}
           disabled={otpLoading || otpTimer > 0}
         >
-
           {otpLoading
             ? "Sending..."
             : otpTimer > 0
@@ -159,25 +154,17 @@ const Withdraw = () => {
         </button>
       </div>
 
-      <div className="mb-3 small ">
-        {/* Transaction Fee (est.): <span className="text-white">0.5% deduction as per transactions</span> */}
-      </div>
+      <div className="mb-3 small"></div>
 
       <div className="mb-3">
         <label className="form-label small">Token Name</label>
         <select className="form-select bg-secondary text-white border-0">
-          {/* <option>-- Select Coin --</option> */}
           <option>USDT</option>
-          {/* <option>BTC</option>
-          <option>ETH</option> */}
         </select>
       </div>
 
       <button
-        className="btn btn-info text-dark fw-semibold w-100"
-        style={{
-            background: "#00f0ff",
-          }}
+        className={`btn btn-info text-dark fw-semibold w-100 ${styles.actionBtn}`}
         onClick={handleWithdraw}
         disabled={loading}
       >

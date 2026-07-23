@@ -1,0 +1,178 @@
+.authHeader {
+  margin-bottom: 24px;
+}
+
+.authHeader h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6FE6B8;
+  margin-bottom: 8px;
+}
+
+.formSubtitle {
+  color: #A3A3A3;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.authForm {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #FFFFFF;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.inputWithIcon input:focus {
+  border-color: #6FE6B8;
+  box-shadow: 0 0 0 2px rgba(111, 230, 184, 0.2);
+  background-color: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #A3A3A3;
+  pointer-events: none;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #A3A3A3;
+  transition: all 0.2s ease;
+}
+
+.togglePassword:hover {
+  color: #FFFFFF;
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+}
+
+.rememberMe input {
+  margin-right: 8px;
+  accent-color: #12896B;
+  cursor: pointer;
+}
+
+.forgotPassword {
+  color: #6FE6B8;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+  color: #82f5c9;
+}
+
+.btnSignin {
+  width: 100%;
+  display: block;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+  border: none;
+  color: #0A0A0A;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(111, 230, 184, 0.25);
+}
+
+.btnSignin:hover {
+  background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%);
+  color: #0A0A0A;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(111, 230, 184, 0.45);
+}
+
+.btnSignin:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btnSignin:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.authFooter {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 24px;
+  color: #A3A3A3;
+}
+
+.authFooter a {
+  color: #6FE6B8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.authFooter a:hover {
+  text-decoration: underline;
+}
+
+.authContent {
+  max-width: 500px;
+  z-index: 1;
+}
+
+.authContent h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #FFFFFF;
+}
+
+.accent {
+  color: #6FE6B8;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #E2F7F1;
+}

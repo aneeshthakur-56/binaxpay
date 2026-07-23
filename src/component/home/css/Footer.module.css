@@ -1,0 +1,189 @@
+.footer {
+  background-color: #0A0A0A;
+  color: #ffffff;
+  padding: 80px 0 30px;
+  font-family: 'Segoe UI', sans-serif;
+  border-top: 1px solid rgba(111, 230, 184, 0.12);
+}
+
+.footerLogo {
+  font-size: 32px;
+  font-weight: 800;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.footerLogoImage {
+  display: block;
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footerLogo .highlight {
+  color: #6FE6B8;
+}
+
+.footerDescription {
+  color: #A3A3A3;
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+.socialIcons {
+  margin-top: 30px;
+  display: flex;
+  gap: 16px;
+}
+
+@keyframes socialIconInsideFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.socialIcon svg {
+  transition: transform 0.3s ease;
+}
+
+.socialIcon:hover {
+  background-color: #6FE6B8;
+  color: #0A0A0A;
+  box-shadow: 0 6px 18px rgba(111, 230, 184, 0.35);
+  transform: translateY(-2px);
+}
+
+.socialIcon:hover svg {
+  animation: socialIconInsideFloat 1.2s ease-in-out infinite;
+}
+
+.footerSubscribeTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.subscribeWrapper {
+  display: flex;
+  align-items: stretch;
+  max-width: 500px;
+  width: 100%;
+  margin-left: auto;
+  background-color: transparent;
+  border-radius: 50px;
+  overflow: hidden;
+  border: 1px solid rgba(111, 230, 184, 0.2);
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.subscribeWrapper:focus-within {
+  border-color: #6FE6B8 !important;
+  box-shadow: 0 0 0 0.35rem rgba(111, 230, 184, 0.16) !important;
+}
+
+.subscribeInput {
+  flex: 1;
+  min-width: 0;
+  border: none !important;
+  background-color: #141414 !important;
+  color: #fff !important;
+  padding: 14px 20px !important;
+  font-size: 16px;
+  border-radius: 50px 0 0 50px;
+}
+
+.subscribeInput:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #141414 !important;
+  color: #fff !important;
+}
+
+.subscribeInput::placeholder {
+  color: #A3A3A3;
+}
+
+.subscribeButton {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+  color: #0A0A0A;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.subscribeButton:hover {
+  background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%);
+  color: #0A0A0A;
+  box-shadow: 0 0 16px rgba(111, 230, 184, 0.3);
+}
+
+.footerBottom {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(111, 230, 184, 0.12);
+  text-align: center;
+  font-size: clamp(0.75rem, 1.8vw, 1rem);
+  color: #A3A3A3;
+  line-height: 1.5;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (max-width: 770px) {
+  .subscribeWrapper {
+    margin-left: 0;
+    margin-right: auto;
+  }
+  
+  .footerSubscribeTitle {
+    text-align: left;
+  }
+  .footerLogoImage {
+    width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .subscribeInput {
+    padding: 12px 14px !important;
+    font-size: 14px;
+  }
+
+  .subscribeButton {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+  .footerLogoImage {
+    width: 120px;
+  }
+}

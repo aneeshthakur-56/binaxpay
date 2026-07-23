@@ -1,0 +1,153 @@
+.navbar {
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.92) 0%, rgba(18, 53, 46, 0.92) 50%, rgba(10, 10, 10, 0.92) 100%) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.3s ease;
+  z-index: 1030 !important;
+}
+
+.navbarBrand,
+.navLink {
+  color: #ffffff !important;
+}
+
+.btnSignupPrimary {
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+  border: none !important;
+  color: #0A0A0A !important;
+  font-weight: 700 !important;
+  padding: 8px 24px !important;
+  border-radius: 50px !important;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 18px rgba(111, 230, 184, 0.25) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.btnSignupPrimary:hover {
+  background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%) !important;
+  color: #0A0A0A !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 25px rgba(111, 230, 184, 0.45) !important;
+}
+
+.btnSignupPrimary:active {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 3px 12px rgba(111, 230, 184, 0.2) !important;
+}
+
+.btnSigninGlass {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  padding: 8px 22px !important;
+  border-radius: 50px !important;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.btnSigninGlass:hover {
+  background: rgba(111, 230, 184, 0.12) !important;
+  border-color: #6FE6B8 !important;
+  color: #6FE6B8 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(111, 230, 184, 0.18) !important;
+}
+
+.btnSigninGlass:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+.navLink {
+  position: relative !important;
+  opacity: 0.85;
+  padding: 8px 16px !important;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.navLink:hover,
+.navLinkActive {
+  opacity: 1;
+  color: #6FE6B8 !important;
+}
+
+.navLink::after {
+  content: '' !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 3px !important;
+  bottom: 0px !important;
+  left: 50% !important;
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%) !important;
+  transition: width 0.3s ease, opacity 0.3s ease !important;
+  transform: translateX(-50%) !important;
+  border-radius: 2px !important;
+  opacity: 0 !important;
+}
+
+.navLink:hover::after,
+.navLinkActive::after {
+  width: 65% !important;
+  opacity: 1 !important;
+}
+
+/* SVG Animated Hamburger Checkbox Toggle */
+.hamburger {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1040;
+}
+
+.hamburger input {
+  display: none;
+}
+
+.hamburger svg {
+  height: 2.6em;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+  fill: none;
+  stroke: #ffffff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lineTopBottom {
+  stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked + svg {
+  transform: rotate(-45deg);
+}
+
+.hamburger input:checked + svg .lineTopBottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
+}
+
+@media (max-width: 991.98px) {
+  .navbar {
+    padding: 12px 20px !important;
+  }
+}

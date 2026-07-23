@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { getData, postData } from "../api/protectedApi";
+import { postData } from "../api/protectedApi";
 import moment from "moment";
+import styles from "./css/WithdrawHistory.module.css";
 
 const WithdrawHistory = () => {
   const [transactions, setTransactions] = useState([]);
@@ -21,11 +21,12 @@ const WithdrawHistory = () => {
       })
       .catch((err) => console.error("ee", err));
   };
+
   let fillApiData = async (data) => {
-    console.log("fll data ", data.data.data);
     setTransactions(data.data.data);
     setTotalCount(data.data.count);
   };
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -33,111 +34,82 @@ const WithdrawHistory = () => {
   useEffect(() => {
     callData(currentPage);
   }, [currentPage]);
+
   return (
-    <>
-      <div class="row" >
-        <div class="col-12" data-aos="fade-up">
-          <div class="card" style={{ maxWidth: "100%", backgroundColor: "#1b1c2a" }}>
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <h5 class="mb-0 text">Recent Transactions</h5>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table
-                  class="table table-responsive table-scroll table-hover transaction-table"
-                  id="transactionsTable"
-                >
-                  <thead>
+    <div className="row">
+      <div className="col-12" data-aos="fade-up">
+        <div className={`card ${styles.historyCard}`}>
+          <div className="card-header d-flex justify-content-between align-items-center">
+            <h5 className="mb-0 text">Recent Transactions</h5>
+          </div>
+          <div className="card-body">
+            <div className="table-responsive">
+              <table
+                className="table table-responsive table-scroll table-hover transaction-table"
+                id="transactionsTable"
+              >
+                <thead>
+                  <tr>
+                    <th className={styles.tableHeaderTh}>ID</th>
+                    <th className={styles.tableHeaderTh}>Amount</th>
+                    <th className={styles.tableHeaderTh}>Payable</th>
+                    <th className={styles.tableHeaderTh}>Remark</th>
+                    <th className={styles.tableHeaderTh}>Address</th>
+                    <th className={styles.tableHeaderTh}>Status</th>
+                    <th className={styles.tableHeaderTh}>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {transactions.length === 0 ? (
                     <tr>
-                      <th
-                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
-                      >
-                        ID
-                      </th>
-                      <th
-                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
-                      >
-                        Amount
-                      </th>
-                      <th
-                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
-                      >
-                        Payable
-                      </th>
-                      <th
-                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
-                      >
-                        Remark
-                      </th>
-                      <th
-                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
-                      >
-                        Address
-                      </th>
-                      <th
-                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
-                      >
-                        Status
-                      </th>
-                      <th
-                        style={{ color: "#ffffff", backgroundColor: "#00f0ff" }}
-                      >
-                        Date
-                      </th>
+                      <td colSpan="7" className="tdn">No Transaction found.</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {transactions.length === 0 ? (
-                      <tr>
-                        <td className="tdn">No Transaction found.</td>
+                  ) : (
+                    transactions.map((transaction, index) => (
+                      <tr key={index}>
+                        <td className="tdn">
+                          {index + (currentPage - 1) * limit + 1}
+                        </td>
+                        <td className="tdn">
+                          ${transaction.amount.toFixed(3)}
+                        </td>
+                        <td className="tdn"> {transaction.payAbleAmount}</td>
+                        <td className="tdn"> {transaction.remarks} </td>
+                        <td className="tdn"> {transaction.walletAddress} </td>
+                        <td className="tdn"> {transaction.status} </td>
+                        <td className="tdn text-nowrap">
+                          {moment(transaction.createdAt).format(
+                            "DD-MM-YYYY hh:mm A"
+                          )}
+                        </td>
                       </tr>
-                    ) : (
-                      transactions.map((transaction, index) => (
-                        <tr key={index}>
-                          <td className="tdn">
-                            {index + (currentPage - 1) * limit + 1}
-                          </td>
-                          <td className="tdn">
-                            ${transaction.amount.toFixed(3)}
-                          </td>
-                          <td className="tdn"> {transaction.payAbleAmount}</td>
-                          <td className="tdn"> {transaction.remarks} </td>
-                          <td className="tdn"> {transaction.walletAddress} </td>
-                          <td className="tdn"> {transaction.status} </td>
-                          <td className="tdn text-nowrap">
-                            {moment(transaction.createdAt).format(
-                              "DD-MM-YYYY hh:mm A"
-                            )}
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-                <div className="flex justify-center space-x-2">
-                  {[...Array(totalPages)].map((_, index) => {
-                    const page = index + 1;
-                    return (
-                      <button
-                        key={page}
-                        onClick={() => handlePageChange(page)}
-                        className={`px-3 py-1 rounded border ${
-                          currentPage === page
-                            ? "bg-blue-500 text-white"
-                            : "bg-gray-100"
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    );
-                  })}
-                </div>
+                    ))
+                  )}
+                </tbody>
+              </table>
+              <div className="flex justify-center space-x-2">
+                {[...Array(totalPages)].map((_, index) => {
+                  const page = index + 1;
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`px-3 py-1 rounded border ${
+                        currentPage === page
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-100"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

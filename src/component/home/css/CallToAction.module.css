@@ -1,0 +1,84 @@
+.ctaSection {
+  background: transparent !important;
+  position: relative;
+  overflow: hidden;
+  color: #cac8c8 !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+@keyframes ctaFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.ctaCard {
+  position: relative;
+  background: rgba(20, 45, 40, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(111, 230, 184, 0.35);
+  border-radius: 28px;
+  z-index: 1;
+  overflow: hidden;
+  animation: ctaFloat 4.5s ease-in-out infinite;
+  will-change: transform;
+  transition: transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ctaCard:focus-within {
+  animation-play-state: paused;
+}
+
+.customBtn {
+  color: #0A0A0A !important;
+  background: linear-gradient(90deg, #6FE6B8 0%, #2E9F97 100%) !important;
+  border: none !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 12px 32px rgba(46, 159, 151, 0.25);
+}
+
+.customBtn:hover {
+  color: #0A0A0A !important;
+  box-shadow: 0 0 24px rgba(111, 230, 184, 0.4);
+  transform: translateY(-2px);
+}
+
+.ctaDescription {
+  color: rgb(238, 231, 231);
+}
+
+.termLink {
+  color: #6FE6B8 !important;
+}
+
+.ctaBadge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(111, 230, 184, 0.1);
+  border: 1px solid rgba(111, 230, 184, 0.3);
+  color: #6FE6B8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.formControlInput {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(111, 230, 184, 0.25) !important;
+  color: #ffffff !important;
+}
+
+.formControlInput::placeholder {
+  color: #A3A3A3 !important;
+  opacity: 1;
+}

@@ -1,0 +1,412 @@
+.successPage {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.successPage::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(18, 137, 107, 0.08) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    circle at 70% 80%,
+    rgba(45, 217, 168, 0.06) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+  animation: gradientShift 15s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(2%, 2%) scale(1.02); }
+  66% { transform: translate(-1%, 1%) scale(0.98); }
+}
+
+.successCard {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 560px;
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(111, 230, 184, 0.12);
+  border-radius: 24px;
+  padding: 44px 36px;
+  text-align: center;
+  box-shadow:
+    0 0 0 1px rgba(111, 230, 184, 0.05),
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(18, 137, 107, 0.08);
+  box-sizing: border-box;
+  animation: floatGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(111, 230, 184, 0.05),
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 0 80px rgba(18, 137, 107, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(111, 230, 184, 0.15),
+      0 35px 65px rgba(0, 0, 0, 0.6),
+      0 0 105px rgba(45, 217, 168, 0.18);
+  }
+}
+
+.successLogo {
+  display: inline-block;
+  margin-bottom: 32px;
+}
+
+.successLogo img {
+  height: 48px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.successLogo:hover img {
+  opacity: 1;
+}
+
+.successBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 137, 107, 0.15);
+  border: 1px solid rgba(45, 217, 168, 0.25);
+  color: #2DD9A8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.successTitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.accent {
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.successMessage {
+  color: #A3A3A3;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.successDivider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(111, 230, 184, 0.2) 50%,
+    transparent 100%
+  );
+  margin: 28px 0;
+}
+
+.successTip {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(18, 137, 107, 0.08);
+  border: 1px solid rgba(45, 217, 168, 0.1);
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.successTipIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: rgba(18, 137, 107, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2DD9A8;
+  font-size: 16px;
+}
+
+.successTipText {
+  color: #cac8c8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.successTipText strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.successActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btnPrimaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: linear-gradient(135deg, #12896B 0%, #1FBF8F 100%);
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btnPrimaryAction:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(18, 137, 107, 0.4);
+}
+
+.btnPrimaryAction:active {
+  transform: translateY(0);
+}
+
+.btnSecondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: 1.5px solid rgba(111, 230, 184, 0.2);
+  color: #A3A3A3;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 12px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.btnSecondaryAction:hover {
+  border-color: rgba(45, 217, 168, 0.5);
+  color: #2DD9A8;
+  background: rgba(45, 217, 168, 0.05);
+}
+
+.featurePills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.featurePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #888;
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: 100px;
+  transition: all 0.25s ease;
+}
+
+.featurePill:hover {
+  background: rgba(18, 137, 107, 0.1);
+  border-color: rgba(45, 217, 168, 0.2);
+  color: #2DD9A8;
+}
+
+.featurePill svg {
+  width: 12px;
+  height: 12px;
+}
+
+.confettiParticle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .successCard {
+    max-width: 520px;
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .successPage {
+    padding: 20px 12px;
+  }
+
+  .successCard {
+    padding: 28px 18px;
+    border-radius: 20px;
+  }
+
+  .successLogo {
+    margin-bottom: 24px;
+  }
+
+  .successLogo img {
+    height: 40px;
+  }
+
+  .successBadge {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    margin-bottom: 18px;
+  }
+
+  .successTitle {
+    font-size: clamp(1.35rem, 5.5vw, 1.75rem);
+    margin-bottom: 10px;
+  }
+
+  .successMessage {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .successDivider {
+    margin: 20px 0;
+  }
+
+  .successTip {
+    padding: 12px 14px;
+    gap: 10px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+  }
+
+  .successTipIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .successTipText {
+    font-size: 0.83rem;
+    line-height: 1.5;
+  }
+
+  .btnPrimaryAction,
+  .btnSecondaryAction {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    min-height: 44px;
+  }
+
+  .featurePills {
+    gap: 8px 6px;
+    margin-top: 20px;
+    padding-top: 18px;
+  }
+
+  .featurePill {
+    font-size: 0.76rem;
+    padding: 5px 11px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 380px) {
+  .successPage {
+    padding: 14px 8px;
+  }
+
+  .successCard {
+    padding: 22px 14px;
+    border-radius: 16px;
+  }
+
+  .successLogo img {
+    height: 34px;
+  }
+
+  .successBadge {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    margin-bottom: 14px;
+  }
+
+  .successTitle {
+    font-size: 1.25rem;
+  }
+
+  .successMessage {
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+  }
+
+  .successTip {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .featurePill {
+    font-size: 0.72rem;
+    padding: 4px 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .successPage::before {
+    animation: none;
+  }
+  .btnPrimaryAction:hover {
+    transform: none;
+  }
+}

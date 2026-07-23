@@ -1,0 +1,480 @@
+.dashboardContainer {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(135deg, #0A0A0A 0%, #0D1F1A 50%, #0A0A0A 100%);
+  color: #FFFFFF;
+  padding: 1rem 1.25rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 0.75rem 0.75rem;
+  }
+}
+
+.dashboardHeader {
+  margin-bottom: 0.75rem;
+}
+
+.dashboardTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.15rem;
+}
+
+.dashboardSubtitle {
+  color: #A3A3A3;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* Stat Cards */
+.dashboardStatCard {
+  background-color: rgba(20, 45, 40, 0.75);
+  border: 1px solid rgba(111, 230, 184, 0.12);
+  border-radius: 16px;
+  padding: 0.85rem 1.15rem;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-sizing: border-box;
+}
+
+.dashboardStatCard:hover {
+  border-color: rgba(111, 230, 184, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(18, 137, 107, 0.08);
+  transform: translateY(-2px);
+}
+
+.statIconBadge {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0A0A0A;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(45, 217, 168, 0.25);
+}
+
+.statLabel {
+  color: #A3A3A3;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statValue {
+  color: #FFFFFF;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+.statTrend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 0.35rem;
+}
+
+.statTrendSuccess {
+  color: #6FE6B8;
+}
+
+.statTrendNeutral {
+  color: #A3A3A3;
+}
+
+/* Wealth / My Card Highlight Panel */
+.myCardPanel {
+  background: linear-gradient(135deg, rgba(22, 31, 28, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
+  border: 1px solid rgba(111, 230, 184, 0.2);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(111, 230, 184, 0.15);
+}
+
+.myCardPanel::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(111, 230, 184, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.myCardChip {
+  width: 36px;
+  height: 24px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, rgba(111, 230, 184, 0.4) 0%, rgba(46, 159, 151, 0.2) 100%);
+  border: 1px solid rgba(111, 230, 184, 0.4);
+}
+
+.myCardBalanceLabel {
+  color: #A3A3A3;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.myCardBalance {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+
+.quickActionsRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 0.85rem;
+}
+
+.btnActionPrimary {
+  flex: 1;
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+  color: #0A0A0A;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnActionPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(111, 230, 184, 0.35);
+  color: #0A0A0A;
+}
+
+.btnActionOutline {
+  flex: 1;
+  background: transparent;
+  color: #6FE6B8;
+  border: 1px solid rgba(111, 230, 184, 0.3);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 7px 10px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnActionOutline:hover {
+  background: rgba(111, 230, 184, 0.1);
+  border-color: #6FE6B8;
+  color: #6FE6B8;
+}
+
+/* Activity Summary Card */
+.activityCard {
+  background-color: #141414;
+  border: 1px solid rgba(111, 230, 184, 0.12);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  margin-top: 0.85rem;
+}
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.activityItem:last-child {
+  border-bottom: none;
+}
+
+.activityIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(111, 230, 184, 0.1);
+  color: #6FE6B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Table Card & Container */
+.tableCard {
+  background-color: #141414;
+  border: 1px solid rgba(111, 230, 184, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.tableCardHeader {
+  background-color: #161F1C;
+  padding: 0.6rem 1.15rem;
+  border-bottom: 1px solid rgba(111, 230, 184, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tableCardTitle {
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tableCardSubtitle {
+  color: #A3A3A3;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.btnViewAll {
+  background: transparent;
+  color: #6FE6B8;
+  border: 1px solid rgba(111, 230, 184, 0.3);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btnViewAll:hover {
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+  color: #0A0A0A;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(111, 230, 184, 0.3);
+}
+
+/* Custom Table Styling */
+.customTable {
+  width: 100%;
+  margin-bottom: 0;
+  color: #FFFFFF;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.customTable th {
+  background-color: #161F1C;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(111, 230, 184, 0.12);
+  border-top: none;
+}
+
+.customTable td {
+  padding: 5px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.customTable tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.customTable tbody tr:hover {
+  background-color: rgba(111, 230, 184, 0.05);
+}
+
+.hashLink {
+  color: #6FE6B8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.hashLink:hover {
+  color: #2E9F97;
+  text-decoration: underline;
+}
+
+/* Currency Badges */
+.badgeCustom {
+  padding: 2px 7px;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badgeUsdt {
+  background: rgba(111, 230, 184, 0.15);
+  color: #6FE6B8;
+  border: 1px solid rgba(111, 230, 184, 0.3);
+}
+
+.badgeBtc {
+  background: rgba(255, 200, 87, 0.15);
+  color: #FFC857;
+  border: 1px solid rgba(255, 200, 87, 0.3);
+}
+
+.badgeEth {
+  background: rgba(163, 163, 163, 0.15);
+  color: #E0E0E0;
+  border: 1px solid rgba(163, 163, 163, 0.3);
+}
+
+.badgeUsd {
+  background: rgba(46, 159, 151, 0.15);
+  color: #2E9F97;
+  border: 1px solid rgba(46, 159, 151, 0.3);
+}
+
+.badgeDefault {
+  background: rgba(255, 255, 255, 0.08);
+  color: #A3A3A3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statusCompleted {
+  background: rgba(111, 230, 184, 0.15);
+  color: #6FE6B8;
+}
+
+.statusPending {
+  background: rgba(255, 200, 87, 0.15);
+  color: #FFC857;
+}
+
+.statusFailed {
+  background: rgba(255, 107, 107, 0.15);
+  color: #FF6B6B;
+}
+
+.statusSecondary {
+  background: rgba(163, 163, 163, 0.15);
+  color: #A3A3A3;
+}
+
+/* Table Card Footer & Pagination */
+.tableCardFooter {
+  background-color: #161F1C;
+  padding: 0.5rem 1.15rem;
+  border-top: 1px solid rgba(111, 230, 184, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.paginationInfo {
+  color: #A3A3A3;
+  font-size: 0.78rem;
+}
+
+.paginationInfo span {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pageBtn {
+  background: transparent;
+  color: #6FE6B8;
+  border: 1px solid rgba(111, 230, 184, 0.3);
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: rgba(111, 230, 184, 0.15);
+  border-color: #6FE6B8;
+  color: #6FE6B8;
+}
+
+.pageBtn:disabled,
+.pageBtn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #A3A3A3;
+}
+
+.pageNumberBtn {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A3A3A3;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageNumberBtn:hover:not(.activePage) {
+  border-color: rgba(111, 230, 184, 0.4);
+  color: #FFFFFF;
+  background: rgba(111, 230, 184, 0.08);
+}
+
+.activePage {
+  background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
+  color: #0A0A0A;
+  border-color: transparent;
+  box-shadow: 0 3px 10px rgba(111, 230, 184, 0.25);
+  font-weight: 700;
+}
+
+

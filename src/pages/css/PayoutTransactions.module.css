@@ -1,0 +1,8 @@
+.tableHeaderTh {
+  color: #ffffff !important;
+  background-color: #00f0ff !important;
+}
+
+.tableCell {
+  white-space: nowrap;
+}

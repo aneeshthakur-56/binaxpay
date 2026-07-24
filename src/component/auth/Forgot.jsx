@@ -1,16 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import bitsfar from '../../assets/Image/binaxpay.png';
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaShieldAlt, FaBolt, FaKey } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import bitsfar from "../../assets/Image/binaxpay.png";
+import {
+  FaEnvelope,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+  FaShieldAlt,
+  FaBolt,
+  FaKey,
+} from "react-icons/fa";
+import { toast } from "react-toastify";
 import { resendVierifyOtpMail } from "../../api/api";
 import AuthLayout from "../layout/AuthLayout";
 import "../custom.css";
 
 const Forgot = () => {
-  const [otp, setOtp] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [otpLoading, setOtpLoading] = useState(false);
@@ -18,21 +26,30 @@ const Forgot = () => {
 
   const handleGetOtp = async () => {
     if (!email) {
-      toast.error('Please enter your email address first');
+      toast.error("Please enter your email address first");
       return;
     }
     try {
       setOtpLoading(true);
-      const response = await resendVierifyOtpMail({ email: email, type: "resendOtp" });
+      const response = await resendVierifyOtpMail({
+        email: email,
+        type: "resendOtp",
+      });
       if (response?.data?.success || response?.success) {
-        toast.success(response?.message || response?.data?.message || 'OTP Sent Successfully!');
+        toast.success(
+          response?.message ||
+            response?.data?.message ||
+            "OTP Sent Successfully!",
+        );
         setOtpTimer(120);
       } else {
-        toast.error(response?.data?.message || response?.message || 'Failed to send OTP');
+        toast.error(
+          response?.data?.message || response?.message || "Failed to send OTP",
+        );
       }
     } catch (error) {
       console.error(error);
-      toast.error('Error sending OTP');
+      toast.error("Error sending OTP");
     } finally {
       setOtpLoading(false);
     }
@@ -93,17 +110,27 @@ const Forgot = () => {
 
   const formPanel = (
     <>
-      <h2>Forgot Password</h2>
-      <p className="form-subtitle">
-        Enter your email to receive a password reset OTP
-      </p>
+      <div className="auth-heading">
+        <h2>Forgot Password</h2>
+        <p className="form-subtitle">
+          Enter your email to receive a password reset OTP
+        </p>
+      </div>
 
       <form className="auth-form" onSubmit={handleSubmit}>
         {/* Email */}
         <div className="form-group mb-3">
           <label htmlFor="email">Email Address</label>
           <div className="input-with-icon" style={{ position: "relative" }}>
-            <span style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)", color: "#A3A3A3" }}>
+            <span
+              style={{
+                position: "absolute",
+                left: "14px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#A3A3A3",
+              }}
+            >
               <FaEnvelope />
             </span>
             <input
@@ -130,7 +157,11 @@ const Forgot = () => {
                 borderRadius: "6px",
               }}
             >
-              {otpLoading ? "Sending..." : otpTimer > 0 ? `${otpTimer}s` : "Get OTP"}
+              {otpLoading
+                ? "Sending..."
+                : otpTimer > 0
+                  ? `${otpTimer}s`
+                  : "Get OTP"}
             </button>
           </div>
         </div>
@@ -139,7 +170,15 @@ const Forgot = () => {
         <div className="form-group mb-3">
           <label htmlFor="otp">Enter OTP</label>
           <div className="input-with-icon" style={{ position: "relative" }}>
-            <span style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)", color: "#A3A3A3" }}>
+            <span
+              style={{
+                position: "absolute",
+                left: "14px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#A3A3A3",
+              }}
+            >
               <FaKey />
             </span>
             <input
@@ -158,7 +197,15 @@ const Forgot = () => {
         <div className="form-group mb-3">
           <label htmlFor="password">New Password</label>
           <div className="input-with-icon" style={{ position: "relative" }}>
-            <span style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)", color: "#A3A3A3" }}>
+            <span
+              style={{
+                position: "absolute",
+                left: "14px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#A3A3A3",
+              }}
+            >
               <FaLock />
             </span>
             <input
@@ -173,7 +220,14 @@ const Forgot = () => {
             <span
               className="toggle-password"
               onClick={() => setShowPassword(!showPassword)}
-              style={{ position: "absolute", right: "15px", top: "50%", transform: "translateY(-50%)", cursor: "pointer", color: "#A3A3A3" }}
+              style={{
+                position: "absolute",
+                right: "15px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                color: "#A3A3A3",
+              }}
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </span>

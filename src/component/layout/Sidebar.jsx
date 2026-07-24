@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Offcanvas from "bootstrap/js/dist/offcanvas";
+import { motion, useReducedMotion } from "framer-motion";
 import binaxpay from "../../assets/Image/binaxpay.png";
 import {
   FaTachometerAlt,
@@ -28,6 +29,7 @@ import {
 const Sidebar = ({ user, handleLogout }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const location = useLocation();
+  const shouldReduceMotion = useReducedMotion();
 
   const transactionsRef = useRef(null);
   const withdrawRef = useRef(null);
@@ -83,6 +85,45 @@ const Sidebar = ({ user, handleLogout }) => {
 
   const isCurrent = (path) => location.pathname === path;
 
+  // ─── Smooth Animation Variants ───
+  const SMOOTH_EASE = [0.16, 1, 0.3, 1]; // Out-Expo fluid easing
+
+  const navContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.06,
+        delayChildren: shouldReduceMotion ? 0 : 0.04,
+      },
+    },
+  };
+
+  const navItemVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.45,
+        ease: SMOOTH_EASE,
+      },
+    },
+  };
+
+  const footerVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: shouldReduceMotion ? 0 : 0.2,
+        duration: shouldReduceMotion ? 0 : 0.5,
+        ease: SMOOTH_EASE,
+      },
+    },
+  };
+
   return (
     <div
       className="offcanvas-lg offcanvas-start sidebar_box"
@@ -95,20 +136,18 @@ const Sidebar = ({ user, handleLogout }) => {
         <Link to="/dashboard" onClick={closeSidebar}>
           <img src={binaxpay} alt="BinaXpay Logo" className="sidebar-logo" />
         </Link>
-        <button
-          className="sidebar-close-btn d-lg-none"
-          onClick={closeSidebar}
-          aria-label="Close Sidebar"
-        >
-          <FaTimes />
-        </button>
       </div>
 
       {/* Sidebar Navigation */}
       <div className="sidebar-nav-container">
-        <ul className="nav flex-column">
+        <motion.ul
+          className="nav flex-column"
+          variants={navContainerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Dashboard */}
-          <li className="nav-item mb-1">
+          <motion.li className="nav-item mb-1" variants={navItemVariants}>
             <Link
               className={`sidebar-nav-link ${isCurrent("/dashboard") ? "active" : ""}`}
               to="/dashboard"
@@ -119,10 +158,10 @@ const Sidebar = ({ user, handleLogout }) => {
                 <span>Dashboard</span>
               </div>
             </Link>
-          </li>
+          </motion.li>
 
           {/* Transactions Group */}
-          <li className="nav-item mb-1">
+          <motion.li className="nav-item mb-1" variants={navItemVariants}>
             <button
               className={`sidebar-dropdown-btn ${["/deposit_transactions", "/margin_transactions", "/payout_transactions"].includes(location.pathname)
                   ? "group-active"
@@ -164,10 +203,10 @@ const Sidebar = ({ user, handleLogout }) => {
                 <span>Payout</span>
               </Link>
             </div>
-          </li>
+          </motion.li>
 
           {/* Withdraw Group */}
-          <li className="nav-item mb-1">
+          <motion.li className="nav-item mb-1" variants={navItemVariants}>
             <button
               className={`sidebar-dropdown-btn ${["/withdraw", "/withdraw_history"].includes(location.pathname) ? "group-active" : ""
                 }`}
@@ -199,10 +238,10 @@ const Sidebar = ({ user, handleLogout }) => {
                 <span>Withdraw History</span>
               </Link>
             </div>
-          </li>
+          </motion.li>
 
           {/* Settings Group */}
-          <li className="nav-item mb-1">
+          <motion.li className="nav-item mb-1" variants={navItemVariants}>
             <button
               className={`sidebar-dropdown-btn ${["/whitelist_ip", "/api_keys", "/profile", "/self_addresses"].includes(location.pathname)
                   ? "group-active"
@@ -252,10 +291,10 @@ const Sidebar = ({ user, handleLogout }) => {
                 <span>Self Address</span>
               </Link>
             </div>
-          </li>
+          </motion.li>
 
           {/* More Group */}
-          <li className="nav-item mb-1">
+          <motion.li className="nav-item mb-1" variants={navItemVariants}>
             <button
               className={`sidebar-dropdown-btn ${["/supported_coins", "/fees", "/docs", "/blog"].includes(location.pathname)
                   ? "group-active"
@@ -305,12 +344,17 @@ const Sidebar = ({ user, handleLogout }) => {
                 <span>Blog</span>
               </Link>
             </div>
-          </li>
-        </ul>
+          </motion.li>
+        </motion.ul>
       </div>
 
       {/* Sidebar Footer: User Info + Logout */}
-      <div className="sidebar-footer">
+      <motion.div
+        className="sidebar-footer"
+        variants={footerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <div className="sidebar-user-card">
           <div className="user-avatar-badge">
             {(user?.name || user?.userId || "U").charAt(0).toUpperCase()}
@@ -324,7 +368,7 @@ const Sidebar = ({ user, handleLogout }) => {
           <FaSignOutAlt />
           <span>Logout</span>
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 };

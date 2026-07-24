@@ -109,10 +109,12 @@ const VerifySignin = () => {
 
   const formPanel = (
     <>
-      <h2>Verify Sign In</h2>
-      <p className="form-subtitle">
-        OTP sent to <span style={{ color: "#6FE6B8", fontWeight: 600 }}>{email || "your email"}</span>
-      </p>
+      <div className="auth-heading">
+        <h2>Verify Sign In</h2>
+        <p className="form-subtitle">
+          OTP sent to <span style={{ color: "#6FE6B8", fontWeight: 600 }}>{email || "your email"}</span>
+        </p>
+      </div>
 
       <form className="auth-form" onSubmit={handleOtpSubmit}>
         <div className="d-flex justify-content-between gap-2 mb-4">

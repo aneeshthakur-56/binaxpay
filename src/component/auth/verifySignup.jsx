@@ -73,12 +73,14 @@ const VerifySignup = () => {
           <img src={bitsfar} alt="Binaxpay Logo" />
         </Link>
       </div>
-      <h1>
-        <span className="accent">Account </span> Verification
-      </h1>
-      <p>
-        Enter the 6-digit OTP code sent to your registered email to complete your signup.
-      </p>
+      <div className="auth-heading">
+        <h1>
+          <span className="accent">Account </span> Verification
+        </h1>
+        <p>
+          Enter the 6-digit OTP code sent to your registered email to complete your signup.
+        </p>
+      </div>
       <div className="auth-features">
         <div className="feature-item">
           <span className="feature-icon-ring me-3">

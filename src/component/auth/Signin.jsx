@@ -44,16 +44,18 @@ const Signin = () => {
     <div className="auth-content">
       <div className="logo mb-4">
         <Link to="/">
-          <img src={bitsfar} alt="Binaxpay Logo"  />
+          <img src={bitsfar} alt="Binaxpay Logo" />
         </Link>
       </div>
-      <h1>
-        <span className="accent">Welcome</span> Back
-      </h1>
-      <p>
-        Sign in to access your Binaxpay account and manage your crypto
-        payment gateway services.
-      </p>
+      <div className="auth-heading">
+        <h1>
+          <span className="accent">Welcome</span> Back
+        </h1>
+        <p>
+          Sign in to access your Binaxpay account and manage your crypto payment
+          gateway services.
+        </p>
+      </div>
       <div className="auth-features">
         <div className="feature-item">
           <span className="feature-icon-ring me-3">
@@ -89,7 +91,15 @@ const Signin = () => {
         <div className="form-group mb-3">
           <label htmlFor="email">Email</label>
           <div className="input-with-icon" style={{ position: "relative" }}>
-            <span style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)", color: "#A3A3A3" }}>
+            <span
+              style={{
+                position: "absolute",
+                left: "14px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#A3A3A3",
+              }}
+            >
               <FaEnvelope />
             </span>
             <input
@@ -107,7 +117,15 @@ const Signin = () => {
         <div className="form-group mb-2">
           <label htmlFor="password">Password</label>
           <div className="input-with-icon" style={{ position: "relative" }}>
-            <span style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)", color: "#A3A3A3" }}>
+            <span
+              style={{
+                position: "absolute",
+                left: "14px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#A3A3A3",
+              }}
+            >
               <FaLock />
             </span>
             <input
@@ -122,7 +140,14 @@ const Signin = () => {
             <span
               className="toggle-password"
               onClick={() => setShowPassword(!showPassword)}
-              style={{ position: "absolute", right: "15px", top: "50%", transform: "translateY(-50%)", cursor: "pointer", color: "#A3A3A3" }}
+              style={{
+                position: "absolute",
+                right: "15px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                color: "#A3A3A3",
+              }}
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </span>

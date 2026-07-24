@@ -59,9 +59,9 @@ const LandingSidebar = ({ activeSection = "home" }) => {
         </ul>
       </div>
 
-      {/* Bottom Action Buttons */}
+      {/* Bottom Action Buttons (Sign In & Sign Up guaranteed visible) */}
       <div className={styles.footerSection}>
-        <h6 className={styles.footerTitle}>Get Started</h6>
+        <div className={styles.footerTitle}>Get Started</div>
         <Link
           to="/Signin"
           className={styles.btnSignin}

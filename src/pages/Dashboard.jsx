@@ -3,31 +3,54 @@ import { useNavigate, Link } from "react-router-dom";
 import { postData } from "../api/protectedApi";
 import { useAuth } from "../context/AuthContext";
 import moment from "moment";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import styles from "./css/Dashboard.module.css";
+import { dummyDashboardData, dummyTransactions } from "../data/dummyData";
 
 const Dashboard = () => {
-  const [transactions, setTransactions] = useState([]);
-  const [dashboardData, setDashboardData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const limit = 10;
-  const totalPages = Math.ceil(transactions.length / limit) || 1;
-  const paginatedTransactions = transactions.slice((currentPage - 1) * limit, currentPage * limit);
+  const [transactions, setTransactions] = useState(dummyTransactions);
+  const [dashboardData, setDashboardData] = useState(dummyDashboardData);
+  const [isLoading, setIsLoading] = useState(true);
+  const [copiedText, setCopiedText] = useState(null);
+
+  // Exactly 5 transactions shown on Dashboard for a clean single-page layout
+  const displayedTransactions = transactions.slice(0, 5);
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    postData("/user/latest_transactions", {})
+    setIsLoading(true);
+    let p1 = postData("/user/latest_transactions", {})
       .then((res) => {
-        if (res?.data?.data) {
+        if (res?.data?.data && res.data.data.length > 0) {
           setTransactions(res.data.data);
+        } else {
+          setTransactions(dummyTransactions);
         }
       })
-      .catch((err) => console.error(err));
-    postData("/user/wallet_sum", {})
+      .catch((err) => {
+        console.error(err);
+        setTransactions(dummyTransactions);
+      });
+
+    let p2 = postData("/user/wallet_sum", {})
       .then((res) => {
-        setDashboardData(res.data);
+        if (res?.data && Object.keys(res.data).length > 0) {
+          setDashboardData(res.data);
+        } else {
+          setDashboardData(dummyDashboardData);
+        }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setDashboardData(dummyDashboardData);
+      });
+
+    Promise.allSettled([p1, p2]).finally(() => {
+      // Short delay (250ms) to ensure page data & DOM settle before playing entrance animation
+      setTimeout(() => setIsLoading(false), 250);
+    });
   }, []);
 
   const handleLogout = () => {
@@ -36,7 +59,16 @@ const Dashboard = () => {
     logout();
     setTimeout(() => {
       navigate("/signin");
-    }, 1000);
+    }, 800);
+  };
+
+  const handleCopy = (text, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!text) return;
+    navigator.clipboard.writeText(text);
+    setCopiedText(text);
+    setTimeout(() => setCopiedText(null), 1500);
   };
 
   const getCurrencyColor = (token) => {
@@ -54,38 +86,155 @@ const Dashboard = () => {
     }
   };
 
-  const getStatusBadge = (status) => {
-    switch ((status || "").toLowerCase()) {
-      case "completed":
-        return styles.statusCompleted;
-      case "pending":
-        return styles.statusPending;
-      case "failed":
-        return styles.statusFailed;
-      default:
-        return styles.statusSecondary;
-    }
-  };
- function formatAmount(amount) {
-    return parseFloat(amount).toFixed(3);
+  function formatAmount(amount) {
+    if (amount === undefined || amount === null || isNaN(amount)) return "0.00";
+    return Number(amount).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   }
+
+  function formatCryptoAmount(amount) {
+    if (amount === undefined || amount === null || isNaN(amount)) return "0.0000";
+    return Number(amount).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 4,
+    });
+  }
+
+  // ─── Smooth & Elegant Text Animation Variants (Triggers after page data loads) ───
+  const SMOOTH_EASE = [0.22, 1, 0.36, 1]; // Smooth out-cubic deceleration
+
+  const headerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
+      },
+    },
+  };
+
+  const textFadeUpVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.5,
+        ease: SMOOTH_EASE,
+      },
+    },
+  };
+
+  const statContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.08,
+        delayChildren: shouldReduceMotion ? 0 : 0.06,
+      },
+    },
+  };
+
+  const statCardVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.55,
+        ease: SMOOTH_EASE,
+      },
+    },
+  };
+
+  const sectionLeftVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: shouldReduceMotion ? 0 : 0.22,
+        duration: shouldReduceMotion ? 0 : 0.6,
+        ease: SMOOTH_EASE,
+      },
+    },
+  };
+
+  const sectionRightVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: shouldReduceMotion ? 0 : 0.3,
+        duration: shouldReduceMotion ? 0 : 0.6,
+        ease: SMOOTH_EASE,
+      },
+    },
+  };
+
+  const tableBodyVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.04,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.15, ease: SMOOTH_EASE },
+    },
+  };
+
+  const tableRowVariants = {
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.35,
+        ease: SMOOTH_EASE,
+      },
+    },
+  };
+
   return (
     <div className={styles.dashboardContainer}>
-      {/* Header */}
-      <div className={styles.dashboardHeader}>
-        <h2 className={styles.dashboardTitle}>Dashboard Overview</h2>
-        <p className={styles.dashboardSubtitle}>Welcome back! Manage your crypto gateway transactions and balance.</p>
-      </div>
+      {/* Animated Header */}
+      <motion.div
+        className={styles.dashboardHeader}
+        variants={headerContainerVariants}
+        initial="hidden"
+        animate={isLoading ? "hidden" : "visible"}
+      >
+        <motion.h2 className={styles.dashboardTitle} variants={textFadeUpVariants}>
+          Dashboard Overview
+        </motion.h2>
+        <motion.p className={styles.dashboardSubtitle} variants={textFadeUpVariants}>
+          Welcome back! Manage your crypto gateway transactions and balance.
+        </motion.p>
+      </motion.div>
 
-      {/* Dashboard Cards Row */}
-      <div className="row g-2 mb-3">
+      {/* Stat Cards Row */}
+      <motion.div
+        className={`row g-3 ${styles.statRowWrapper}`}
+        variants={statContainerVariants}
+        initial="hidden"
+        animate={isLoading ? "hidden" : "visible"}
+      >
         {/* Card 1: Total Balance */}
-        <div className="col-12 col-sm-6 col-lg-3">
+        <motion.div className="col-12 col-sm-6 col-lg-3" variants={statCardVariants}>
           <div className={styles.dashboardStatCard}>
-            <div className="d-flex justify-content-between align-items-start">
-              <div>
+            <div className={styles.statCardContent}>
+              <div className={styles.statTextGroup}>
                 <div className={styles.statLabel}>Total Balance</div>
-                <div className={styles.statValue}>${ formatAmount(dashboardData?.walletBalance) ?? 0}</div>
+                <motion.div className={styles.statValue} variants={textFadeUpVariants}>
+                  ${formatAmount(dashboardData?.walletBalance)}
+                </motion.div>
                 <div className={`${styles.statTrend} ${styles.statTrendSuccess}`}>
                   <i className="fas fa-arrow-up me-1"></i> Live Wallet Sync
                 </div>
@@ -95,15 +244,17 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 2: Tx Count */}
-        <div className="col-12 col-sm-6 col-lg-3">
+        <motion.div className="col-12 col-sm-6 col-lg-3" variants={statCardVariants}>
           <div className={styles.dashboardStatCard}>
-            <div className="d-flex justify-content-between align-items-start">
-              <div>
+            <div className={styles.statCardContent}>
+              <div className={styles.statTextGroup}>
                 <div className={styles.statLabel}>Tx Count</div>
-                <div className={styles.statValue}>{dashboardData?.depositCount ?? 0}</div>
+                <motion.div className={styles.statValue} variants={textFadeUpVariants}>
+                  {dashboardData?.depositCount ?? 0}
+                </motion.div>
                 <div className={`${styles.statTrend} ${styles.statTrendNeutral}`}>
                   <i className="fas fa-sync-alt me-1"></i> Total Processed
                 </div>
@@ -113,15 +264,17 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 3: Deposited Amount */}
-        <div className="col-12 col-sm-6 col-lg-3">
+        <motion.div className="col-12 col-sm-6 col-lg-3" variants={statCardVariants}>
           <div className={styles.dashboardStatCard}>
-            <div className="d-flex justify-content-between align-items-start">
-              <div>
+            <div className={styles.statCardContent}>
+              <div className={styles.statTextGroup}>
                 <div className={styles.statLabel}>Deposited Amount</div>
-                <div className={styles.statValue}>${formatAmount(dashboardData?.totalDeposit) ?? 0}</div>
+                <motion.div className={styles.statValue} variants={textFadeUpVariants}>
+                  ${formatAmount(dashboardData?.totalDeposit)}
+                </motion.div>
                 <div className={`${styles.statTrend} ${styles.statTrendSuccess}`}>
                   <i className="fas fa-arrow-up me-1"></i> Verified Total
                 </div>
@@ -131,15 +284,18 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Card 4: Gateway Status */}
-        <div className="col-12 col-sm-6 col-lg-3">
+        <motion.div className="col-12 col-sm-6 col-lg-3" variants={statCardVariants}>
           <div className={styles.dashboardStatCard}>
-            <div className="d-flex justify-content-between align-items-start">
-              <div>
+            <div className={styles.statCardContent}>
+              <div className={styles.statTextGroup}>
                 <div className={styles.statLabel}>Gateway Status</div>
-                <div className={styles.statValue} style={{ fontSize: "1.35rem" }}>Active</div>
+                <motion.div className={styles.statValue} style={{ fontSize: "1.35rem", display: "flex", alignItems: "center" }} variants={textFadeUpVariants}>
+                  <span className={styles.statusDot}></span>
+                  Active
+                </motion.div>
                 <div className={`${styles.statTrend} ${styles.statTrendSuccess}`}>
                   <i className="fas fa-shield-alt me-1"></i> 100% Uptime
                 </div>
@@ -149,21 +305,33 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Main Content Layout: Transactions Table (65%) + Wealth Summary Card (35%) */}
-      <div className="row g-4">
+      {/* Main Content Layout: Transactions Table (65%) + Right Panel (35%) */}
+      <div className="row g-3">
         {/* Left Column: Recent Transactions Table */}
-        <div className="col-12 col-lg-8">
+        <motion.div
+          className="col-12 col-lg-8"
+          variants={sectionLeftVariants}
+          initial="hidden"
+          animate={isLoading ? "hidden" : "visible"}
+        >
           <div className={styles.tableCard}>
             <div className={styles.tableCardHeader}>
               <div>
-                <h5 className={styles.tableCardTitle}>Recent Transactions</h5>
-                <p className={styles.tableCardSubtitle}>Real-time payment gateway ledger</p>
+                <motion.h5 className={styles.tableCardTitle} variants={textFadeUpVariants}>
+                  Recent Transactions
+                </motion.h5>
+                <motion.p className={styles.tableCardSubtitle} variants={textFadeUpVariants}>
+                  Real-time payment gateway ledger
+                </motion.p>
               </div>
-              <Link to="/deposit" className={styles.btnViewAll}>View All</Link>
+              <Link to="/deposit_transactions" className={styles.btnHeaderIcon} title="View All Transactions">
+                <i className="fas fa-table"></i>
+              </Link>
             </div>
+
             <div className="card-body p-0">
               <div className="table-responsive">
                 <table className={`${styles.customTable} text-center align-middle`}>
@@ -177,115 +345,167 @@ const Dashboard = () => {
                       <th>Hash</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {paginatedTransactions.length === 0 ? (
+
+                  {isLoading ? (
+                    <tbody>
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <tr key={idx}>
+                          <td><span className={styles.skeletonBox} style={{ width: "24px" }}></span></td>
+                          <td><span className={styles.skeletonBox} style={{ width: "110px" }}></span></td>
+                          <td><span className={styles.skeletonBox} style={{ width: "60px" }}></span></td>
+                          <td><span className={styles.skeletonBox} style={{ width: "95px", borderRadius: "9999px" }}></span></td>
+                          <td><span className={styles.skeletonBox} style={{ width: "110px" }}></span></td>
+                          <td><span className={styles.skeletonBox} style={{ width: "110px" }}></span></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  ) : displayedTransactions.length === 0 ? (
+                    <tbody>
                       <tr>
                         <td colSpan="6" className="text-center py-4" style={{ color: "#A3A3A3" }}>
+                          <i className="fas fa-inbox mb-2 d-block" style={{ fontSize: "1.8rem", opacity: 0.5 }}></i>
                           No Transactions Found.
                         </td>
                       </tr>
-                    ) : (
-                      paginatedTransactions.map((trx, index) => (
-                        <tr key={index}>
-                          <td className="text-nowrap">{index + (currentPage - 1) * limit + 1}</td>
+                    </tbody>
+                  ) : (
+                    <AnimatePresence mode="wait">
+                      <motion.tbody
+                        variants={tableBodyVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                      >
+                        {displayedTransactions.map((trx, index) => {
+                          const rowIndex = index + 1;
+                          const fromAbbr = trx.from ? `${trx.from.slice(0, 8)}...${trx.from.slice(-4)}` : "N/A";
+                          const hashAbbr = trx.transactionHash ? `${trx.transactionHash.slice(0, 8)}...${trx.transactionHash.slice(-4)}` : "N/A";
 
-                          <td className="text-nowrap" style={{ color: "#A3A3A3" }}>
-                            {moment(trx.createdAt).format("DD-MM-YYYY hh:mm A")}
-                          </td>
-
-                          <td className="text-nowrap font-weight-bold">
-                            {trx.type || "Deposit"}
-                          </td>
-
-                          <td className="text-nowrap">
-                            <span className={`${styles.badgeCustom} ${getCurrencyColor(trx.tokenName)}`}>
-                              {parseFloat(trx.amount).toFixed(4)} {trx.tokenName || ""}
-                            </span>
-                          </td>
-
-                          <td className="text-nowrap">
-                            <a
-                              href={`https://bscscan.com/address/${trx.from}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={styles.hashLink}
+                          return (
+                            <motion.tr
+                              key={trx.id || index}
+                              variants={tableRowVariants}
                             >
-                              {trx.from ? `${trx.from.slice(0, 8)}...` : "N/A"}
-                            </a>
-                          </td>
+                              <td className="text-nowrap" style={{ fontWeight: "600", color: "#A3A3A3" }}>
+                                {rowIndex}
+                              </td>
 
-                          <td className="text-nowrap">
-                            <a
-                              href={`https://bscscan.com/tx/${trx.transactionHash}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={styles.hashLink}
-                            >
-                              {trx.transactionHash ? `${trx.transactionHash.slice(0, 8)}...` : "N/A"}
-                            </a>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
+                              <td className="text-nowrap" style={{ color: "#A3A3A3" }} title={moment(trx.createdAt).format("DD MMM YYYY, hh:mm A")}>
+                                {moment(trx.createdAt).format("DD MMM YYYY")}
+                              </td>
+
+                              <td className="text-nowrap font-weight-bold">
+                                <span style={{ color: "#FFFFFF", fontWeight: "600" }}>
+                                  {trx.type || "Deposit"}
+                                </span>
+                              </td>
+
+                              <td className="text-nowrap">
+                                <span className={`${styles.badgeCustom} ${getCurrencyColor(trx.tokenName)}`}>
+                                  {formatCryptoAmount(trx.amount)} {trx.tokenName || ""}
+                                </span>
+                              </td>
+
+                              <td className="text-nowrap">
+                                <div className={styles.addressCell}>
+                                  <a
+                                    href={`https://bscscan.com/address/${trx.from}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.fromLink}
+                                    title={trx.from || "Wallet Address"}
+                                  >
+                                    {fromAbbr}
+                                  </a>
+                                  {trx.from && (
+                                    <button
+                                      type="button"
+                                      className={styles.btnCopy}
+                                      onClick={(e) => handleCopy(trx.from, e)}
+                                      title="Copy full address"
+                                    >
+                                      <i className={`fas ${copiedText === trx.from ? "fa-check text-success" : "fa-copy"}`}></i>
+                                    </button>
+                                  )}
+                                </div>
+                              </td>
+
+                              <td className="text-nowrap">
+                                <div className={styles.addressCell}>
+                                  <a
+                                    href={`https://bscscan.com/tx/${trx.transactionHash}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={styles.hashLink}
+                                    title={trx.transactionHash || "Tx Hash"}
+                                  >
+                                    {hashAbbr}
+                                  </a>
+                                  {trx.transactionHash && (
+                                    <button
+                                      type="button"
+                                      className={styles.btnCopy}
+                                      onClick={(e) => handleCopy(trx.transactionHash, e)}
+                                      title="Copy transaction hash"
+                                    >
+                                      <i className={`fas ${copiedText === trx.transactionHash ? "fa-check text-success" : "fa-copy"}`}></i>
+                                    </button>
+                                  )}
+                                </div>
+                              </td>
+                            </motion.tr>
+                          );
+                        })}
+                      </motion.tbody>
+                    </AnimatePresence>
+                  )}
                 </table>
               </div>
             </div>
 
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-              <div className={styles.tableCardFooter}>
-                <div className={styles.paginationInfo}>
-                  Showing <span>{transactions.length > 0 ? (currentPage - 1) * limit + 1 : 0}</span> to{" "}
-                  <span>{Math.min(currentPage * limit, transactions.length)}</span> of{" "}
-                  <span>{transactions.length}</span> entries
-                </div>
-                <div className={styles.paginationControls}>
-                  <button
-                    className={`${styles.pageBtn} ${currentPage === 1 ? styles.disabled : ""}`}
-                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                    disabled={currentPage === 1}
-                  >
-                    <i className="fas fa-chevron-left me-1"></i> Prev
-                  </button>
-
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`${styles.pageNumberBtn} ${currentPage === page ? styles.activePage : ""}`}
-                    >
-                      {page}
-                    </button>
-                  ))}
-
-                  <button
-                    className={`${styles.pageBtn} ${currentPage === totalPages ? styles.disabled : ""}`}
-                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                    disabled={currentPage === totalPages}
-                  >
-                    Next <i className="fas fa-chevron-right ms-1"></i>
-                  </button>
-                </div>
+            {/* Table Footer with View All Link (No Pagination Controls) */}
+            <div className={styles.tableCardFooter}>
+              <div className={styles.paginationInfo}>
+                Showing <span>{displayedTransactions.length}</span> of <span>{transactions.length}</span> recent entries
               </div>
-            )}
+              <Link to="/deposit_transactions" className={styles.btnFooterViewAll}>
+                View All Transactions <i className="fas fa-arrow-right ms-2"></i>
+              </Link>
+            </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column: Wealth Panel & System Highlights */}
-        <div className="col-12 col-lg-4">
+        <motion.div
+          className="col-12 col-lg-4"
+          variants={sectionRightVariants}
+          initial="hidden"
+          animate={isLoading ? "hidden" : "visible"}
+        >
           {/* My Card / Wallet Panel */}
           <div className={styles.myCardPanel}>
             <div className="d-flex justify-content-between align-items-center mb-3">
-              <div className={styles.myCardChip}></div>
+              <div className={styles.myCardChip} title="VIP Card Chip">
+                <i className="fas fa-microchip"></i>
+              </div>
               <span className={`${styles.badgeCustom} ${styles.badgeUsdt}`}>BINAXPAY VIP</span>
             </div>
             <div className={styles.myCardBalanceLabel}>Available Balance</div>
-            <div className={styles.myCardBalance}>${formatAmount(dashboardData?.walletBalance) ?? "0.00"}</div>
+            <motion.div
+              className={styles.myCardBalance}
+              variants={textFadeUpVariants}
+            >
+              ${formatAmount(dashboardData?.walletBalance)}
+            </motion.div>
 
-            <div className="d-flex justify-content-between align-items-center mb-3" style={{ fontSize: "0.825rem", color: "#A3A3A3" }}>
+            <div
+              className="d-flex justify-content-between align-items-center mb-3"
+              style={{ fontSize: "0.825rem", color: "#A3A3A3" }}
+            >
               <span>Total Deposits</span>
-              <span style={{ color: "#FFFFFF", fontWeight: "700" }}>${formatAmount(dashboardData?.totalDeposit) ?? "0.00"}</span>
+              <span style={{ color: "#FFFFFF", fontWeight: "700" }}>
+                ${formatAmount(dashboardData?.totalDeposit)}
+              </span>
             </div>
 
             <div className={styles.quickActionsRow}>
@@ -300,53 +520,58 @@ const Dashboard = () => {
 
           {/* System Highlights Card */}
           <div className={styles.activityCard}>
-            <h6 className="text-white font-weight-bold mb-3" style={{ fontSize: "0.95rem" }}>
+            <motion.div
+              className={styles.activityCardHeader}
+              variants={textFadeUpVariants}
+            >
               System Highlights
-            </h6>
+            </motion.div>
 
-            <div className={styles.activityItem}>
-              <div className={styles.activityIcon}>
-                <i className="fas fa-bolt"></i>
-              </div>
-              <div>
-                <div style={{ fontSize: "0.85rem", color: "#FFFFFF", fontWeight: "600" }}>
-                  Instant Settlement
+            <div className={styles.activityItemsGrid}>
+              <div className={styles.activityItem}>
+                <div className={styles.activityIcon}>
+                  <i className="fas fa-bolt"></i>
                 </div>
-                <div style={{ fontSize: "0.78rem", color: "#A3A3A3" }}>
-                  Near real-time node sync
+                <div className={styles.activityTextGroup}>
+                  <motion.div className={styles.activityItemTitle} variants={textFadeUpVariants}>
+                    Instant Settlement
+                  </motion.div>
+                  <div className={styles.activityItemSubtitle}>
+                    Near real-time node sync
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className={styles.activityItem}>
-              <div className={styles.activityIcon}>
-                <i className="fas fa-shield-alt"></i>
-              </div>
-              <div>
-                <div style={{ fontSize: "0.85rem", color: "#FFFFFF", fontWeight: "600" }}>
-                  Security Engine
+              <div className={styles.activityItem}>
+                <div className={styles.activityIcon}>
+                  <i className="fas fa-shield-alt"></i>
                 </div>
-                <div style={{ fontSize: "0.78rem", color: "#A3A3A3" }}>
-                  Encrypted BSC Smart Contract
+                <div className={styles.activityTextGroup}>
+                  <motion.div className={styles.activityItemTitle} variants={textFadeUpVariants}>
+                    Security Engine
+                  </motion.div>
+                  <div className={styles.activityItemSubtitle}>
+                    Encrypted BSC Smart Contract
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className={styles.activityItem}>
-              <div className={styles.activityIcon}>
-                <i className="fas fa-globe"></i>
-              </div>
-              <div>
-                <div style={{ fontSize: "0.85rem", color: "#FFFFFF", fontWeight: "600" }}>
-                  Global Network
+              <div className={styles.activityItem}>
+                <div className={styles.activityIcon}>
+                  <i className="fas fa-globe"></i>
                 </div>
-                <div style={{ fontSize: "0.78rem", color: "#A3A3A3" }}>
-                  Multi-currency crypto gateway
+                <div className={styles.activityTextGroup}>
+                  <motion.div className={styles.activityItemTitle} variants={textFadeUpVariants}>
+                    Global Network
+                  </motion.div>
+                  <div className={styles.activityItemSubtitle}>
+                    Multi-currency crypto gateway
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

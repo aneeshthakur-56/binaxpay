@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import Sidebar from "./Sidebar";
 import "./DashboardLayout.css";
 import Offcanvas from "bootstrap/js/dist/offcanvas";
@@ -20,10 +18,6 @@ const DashboardLayout = () => {
 
   const { logout } = useAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
 
   useEffect(() => {
     const el = document.getElementById("sidebarCollapse");
@@ -45,7 +39,7 @@ const DashboardLayout = () => {
     localStorage.removeItem("auth_token");
     localStorage.removeItem("isAuthenticated");
     logout();
-    setTimeout(() => navigate("/signin"), 500);
+    setTimeout(() => navigate("/signin"), 300); // reduced from 500ms
   };
 
   const handleToggleSidebar = (e) => {

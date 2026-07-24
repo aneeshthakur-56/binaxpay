@@ -7,31 +7,35 @@
   width: 280px !important;
   display: flex !important;
   flex-direction: column !important;
-  height: 100vh;
-  padding: 20px 16px !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  padding: 16px 16px 20px 16px !important;
   color: #ffffff !important;
   z-index: 1055 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
 .sidebarHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 16px;
-  margin-bottom: 20px;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
   border-bottom: 1px solid rgba(111, 230, 184, 0.1);
+  flex-shrink: 0;
 }
 
 .sidebarLogo {
-  height: 36px;
+  height: 34px;
   width: auto;
 }
 
 .closeBtn {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #A3A3A3;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   padding: 6px 10px;
   border-radius: 8px;
@@ -42,23 +46,40 @@
 }
 
 .closeBtn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  color: #6FE6B8;
+  background: rgba(111, 230, 184, 0.12);
+  border-color: rgba(111, 230, 184, 0.25);
 }
 
 .navContainer {
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
+  min-height: 0;
+  margin-bottom: 10px;
+}
+
+/* Custom Scrollbar for Nav Container */
+.navContainer::-webkit-scrollbar {
+  width: 4px;
+}
+
+.navContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.navContainer::-webkit-scrollbar-thumb {
+  background: rgba(111, 230, 184, 0.2);
+  border-radius: 4px;
 }
 
 .navLink {
   display: flex;
   align-items: center;
-  padding: 11px 16px;
-  margin-bottom: 6px;
-  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 4px;
+  border-radius: 10px;
   color: #A3A3A3;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   background: transparent;
   border: 1px solid transparent;
@@ -84,16 +105,21 @@
 }
 
 .footerSection {
-  padding-top: 20px;
-  border-top: 1px solid rgba(111, 230, 184, 0.1);
+  padding-top: 14px;
+  border-top: 1px solid rgba(111, 230, 184, 0.12);
+  flex-shrink: 0;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .footerTitle {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 1.2px;
   color: #A3A3A3;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   font-weight: 600;
 }
 
@@ -102,24 +128,23 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
+  padding: 9px;
+  border-radius: 9px;
   border: 1.5px solid rgba(111, 230, 184, 0.3);
   background: rgba(111, 230, 184, 0.06);
   color: #6FE6B8;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   text-decoration: none;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btnSignin:hover {
   background: rgba(111, 230, 184, 0.16);
   color: #ffffff;
   border-color: #6FE6B8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(111, 230, 184, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(111, 230, 184, 0.2);
 }
 
 .btnSignin:active {
@@ -131,23 +156,23 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 9px;
+  border-radius: 9px;
   border: none;
   background: linear-gradient(135deg, #6FE6B8 0%, #2E9F97 100%);
   color: #0A0A0A;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   text-decoration: none;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(111, 230, 184, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(111, 230, 184, 0.25);
 }
 
 .btnSignup:hover {
   background: linear-gradient(135deg, #82f5c9 0%, #34b3a9 100%);
   color: #0A0A0A;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(111, 230, 184, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(111, 230, 184, 0.4);
 }
 
 .btnSignup:active {

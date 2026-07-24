@@ -48,13 +48,15 @@ const Signup = () => {
           <img src={bitsfar} alt="Binaxpay Logo" />
         </Link>
       </div>
-      <h1>
-        <span className="accent">Join </span> Us
-      </h1>
-      <p>
-        Create your Binaxpay account to start using our crypto payment gateway
-        services today.
-      </p>
+      <div className="auth-heading">
+        <h1>
+          <span className="accent">Join </span> Us
+        </h1>
+        <p>
+          Create your Binaxpay account to start using our crypto payment gateway
+          services today.
+        </p>
+      </div>
       <div className="auth-features">
         <div className="feature-item">
           <span className="feature-icon-ring me-3">
